@@ -14,8 +14,9 @@ Our primary research areas include:
 - Text Embeddings and Language Models
 - ... And more!
 
-## 📁 Repository Structure
+## 📁 Code/supplementary material
 
+```
 CORAL/ 
 ├── README.md 
 ├── CONTRIBUTING.md 
@@ -23,7 +24,7 @@ CORAL/
 ├── .gitignore 
 ├── greedyLR (https://www.amazon.science/publications/zeroth-order-greedylr-an-adaptive-learning-rate-scheduler-for-deep-neural-network-training)
 ├── skipLR (https://www.amazon.science/publications/hop-skip-jump-to-convergence-dynamics-of-learning-rate-transitions-for-improved-training-of-large-language-models) 
-
+```
 
 ## License
 
