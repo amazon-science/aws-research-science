@@ -18,12 +18,13 @@ Our primary research areas include:
 
 ```
 CORAL/ 
+├── GreedyLR (<a>https://www.amazon.science/publications/zeroth-order-greedylr-an-adaptive-learning-rate-scheduler-for-deep-neural-network-training</a>)
+├── SkipLR (<a>https://www.amazon.science/publications/hop-skip-jump-to-convergence-dynamics-of-learning-rate-transitions-for-improved-training-of-large-language-models</a>)
+├── ShellAgent (...)
 ├── README.md 
 ├── CONTRIBUTING.md 
 ├── LICENSE 
 ├── .gitignore 
-├── greedyLR (https://www.amazon.science/publications/zeroth-order-greedylr-an-adaptive-learning-rate-scheduler-for-deep-neural-network-training)
-├── skipLR (https://www.amazon.science/publications/hop-skip-jump-to-convergence-dynamics-of-learning-rate-transitions-for-improved-training-of-large-language-models) 
 ```
 
 ## License
