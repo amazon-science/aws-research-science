@@ -16,9 +16,9 @@ Our primary research areas include:
 
 ## 📁 Code/supplementary material
 
-├── [GreedyLR](https://www.amazon.science/publications/zeroth-order-greedylr-an-adaptive-learning-rate-scheduler-for-deep-neural-network-training)
-├── [SkipLR](https://www.amazon.science/publications/hop-skip-jump-to-convergence-dynamics-of-learning-rate-transitions-for-improved-training-of-large-language-models)
-├── ShellAgent (...)
+- [GreedyLR](https://www.amazon.science/publications/zeroth-order-greedylr-an-adaptive-learning-rate-scheduler-for-deep-neural-network-training)
+- [SkipLR](https://www.amazon.science/publications/hop-skip-jump-to-convergence-dynamics-of-learning-rate-transitions-for-improved-training-of-large-language-models)
+- ShellAgent (...)
 
 
 ## License
