@@ -1,6 +1,6 @@
 ![Header](./banner.png)
 
-## 🌟 About CORAL
+## 🪸 About CORAL
 
 CORAL (Customer Obsessed Research at Amazon Lab) is a data science research group at Amazon focused on developing cutting-edge machine learning and artificial intelligence solutions to enhance customer experiences. Our work spans various domains, including natural language processing, computer vision, and reinforcement learning.
 
@@ -14,15 +14,11 @@ Our primary research areas include:
 - Text Embeddings and Language Models
 - ... And more!
 
-## 📁 Repository Structure
+## 📁 Code/supplementary material
 
-CORAL/ 
-├── README.md 
-├── CONTRIBUTING.md 
-├── LICENSE 
-├── .gitignore 
-├── greedyLR (https://www.amazon.science/publications/zeroth-order-greedylr-an-adaptive-learning-rate-scheduler-for-deep-neural-network-training)
-├── skipLR (https://www.amazon.science/publications/hop-skip-jump-to-convergence-dynamics-of-learning-rate-transitions-for-improved-training-of-large-language-models) 
+- [GreedyLR](https://www.amazon.science/publications/zeroth-order-greedylr-an-adaptive-learning-rate-scheduler-for-deep-neural-network-training)
+- [SkipLR](https://www.amazon.science/publications/hop-skip-jump-to-convergence-dynamics-of-learning-rate-transitions-for-improved-training-of-large-language-models)
+- ShellAgent (...)
 
 
 ## License
