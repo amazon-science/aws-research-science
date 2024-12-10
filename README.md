@@ -1,6 +1,6 @@
 ![Header](./banner.png)
 
-## 🌟 About CORAL
+## 🪸 About CORAL
 
 CORAL (Customer Obsessed Research at Amazon Lab) is a data science research group at Amazon focused on developing cutting-edge machine learning and artificial intelligence solutions to enhance customer experiences. Our work spans various domains, including natural language processing, computer vision, and reinforcement learning.
 
