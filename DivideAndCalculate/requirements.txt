@@ -1,0 +1,9 @@
+unsloth
+vllm
+torch
+transformers
+sentence-transformers
+trl
+peft
+numexpr
+seaborn
