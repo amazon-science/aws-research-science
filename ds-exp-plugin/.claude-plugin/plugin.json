@@ -1,0 +1,11 @@
+{
+  "name": "ds-exp",
+  "version": "1.0.0",
+  "description": "Zero-overhead ML experiment tracking. Auto-commits, tracks GPUs, maintains results table.",
+  "author": {
+    "name": "DS Powers"
+  },
+  "keywords": ["ml", "experiment-tracking", "gpu-monitoring", "git-automation"],
+  "commands": "./commands/",
+  "outputStyles": "./output-styles/"
+}
