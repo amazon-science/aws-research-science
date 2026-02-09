@@ -67,12 +67,29 @@ GPU 3: IDLE (22GB free)
 
 ## Installation
 
-### 1. Load the plugin
+### Option 1: Install via Plugin Marketplace (Recommended)
+
 ```bash
+# Add the marketplace
+/plugin marketplace add amazon-science/aws-research-science#plugins
+
+# Install the plugin
+/plugin install ds@coral
+```
+
+### Option 2: Direct Plugin Directory (Development)
+
+```bash
+# Clone the repository
+git clone --branch plugins https://github.com/amazon-science/aws-research-science.git coral-ds-plugin
+
+# Start Claude with the plugin
 claude --plugin-dir /path/to/coral-ds-plugin
 ```
 
-### 2. Enable status line (optional)
+### Configuration
+
+#### Enable status line (optional)
 Add to your `.claude/settings.json`:
 ```json
 {
@@ -92,14 +109,14 @@ cat coral-ds-plugin/settings.example.json
 # Manually add to your settings
 ```
 
-### 3. Start queue watcher (recommended)
+#### Start queue watcher (recommended)
 For automatic job queuing:
 ```bash
 cd /path/to/coral-ds-plugin
 ./scripts/queue_start_watcher.sh
 ```
 
-### 4. Enable output style (optional)
+#### Enable output style (optional)
 For thoughtful, scientist-mode responses:
 ```bash
 /output-style ds:Precise
