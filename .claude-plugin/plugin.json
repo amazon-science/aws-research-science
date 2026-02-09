@@ -1,9 +1,9 @@
 {
-  "name": "ds-exp",
+  "name": "ds",
   "version": "1.0.0",
-  "description": "Zero-overhead ML experiment tracking. Auto-commits, tracks GPUs, maintains results table.",
+  "description": "Simple data science plugin for experimentation on GPUs",
   "author": {
-    "name": "DS Powers"
+    "name": "Shreyas Subramanian"
   },
   "keywords": ["ml", "experiment-tracking", "gpu-monitoring", "git-automation"],
   "commands": "./commands/",

@@ -2,12 +2,10 @@
 description: List all experiment sessions
 ---
 
-List all Claude Code sessions with experiments.
-
-Execute:
+Execute this command immediately without any preamble:
 
 ```bash
-./ds-exp-plugin/scripts/list_sessions.sh
+bash ${CLAUDE_PLUGIN_ROOT}/scripts/list_sessions.sh
 ```
 
 Shows all session IDs with experiment counts and timestamps.

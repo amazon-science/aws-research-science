@@ -1,7 +1,7 @@
 #!/bin/bash
-# Quick installer for DS Agent plugin
+# Quick installer for CORAL DS plugin
 
-echo "🚀 Installing DS Agent Plugin..."
+echo "🚀 Installing CORAL DS Plugin..."
 echo ""
 
 # Check Claude Code installed
@@ -30,16 +30,16 @@ echo ""
 echo "📝 To enable automatic experiment tracking:"
 echo ""
 echo "1. Add to Claude Code settings (~/.claude/settings.json):"
-echo '   {"enabledPlugins": {"ds-exp": true}}'
+echo '   {"enabledPlugins": {"ds": true}}'
 echo ""
 echo "2. Start Claude Code in your project directory"
 echo ""
 echo "3. The plugin will automatically:"
 echo "   - Track all training tasks"
 echo "   - Show GPU status on startup"
-echo "   - Enable /ds-exp:dash and statusline"
+echo "   - Enable /ds:dash and statusline"
 echo ""
 echo "📊 Commands:"
-echo "   /ds-exp:dash    # View dashboard"
-echo "   /ds-exp:help    # Show help"
+echo "   /ds:dash    # View dashboard"
+echo "   /ds:help    # Show help"
 echo ""

@@ -1,4 +1,4 @@
-# DS-Exp: Automatic ML Experiment Tracking Plugin for Claude Code
+# CORAL DS: ML Experiment Tracking Plugin for Claude Code
 
 **Zero-overhead ML experiment tracking with intelligent job queuing**
 
@@ -25,7 +25,7 @@ Say "try rank 4, 8, and 16" and Claude automatically:
 
 **No babysitting required - queue them all at once!**
 
-### 📊 Live Dashboard (`/ds-exp:dash`)
+### 📊 Live Dashboard (`/ds:dash`)
 One command to see everything:
 ```
 🔥 ML Experiment Dashboard  |  19:16:04  |  📊 1 exp (✅0 ❌0 🔄1)  |  🔄 Queue: 1 running, 2 waiting
@@ -69,7 +69,7 @@ GPU 3: IDLE (22GB free)
 
 ### 1. Load the plugin
 ```bash
-claude --plugin-dir /path/to/ds-exp-plugin
+claude --plugin-dir /path/to/coral-ds-plugin
 ```
 
 ### 2. Enable status line (optional)
@@ -87,7 +87,7 @@ Add to your `.claude/settings.json`:
 Or copy the example:
 ```bash
 # View the example config
-cat ds-exp-plugin/settings.example.json
+cat coral-ds-plugin/settings.example.json
 
 # Manually add to your settings
 ```
@@ -95,45 +95,45 @@ cat ds-exp-plugin/settings.example.json
 ### 3. Start queue watcher (recommended)
 For automatic job queuing:
 ```bash
-cd /path/to/ds-exp-plugin
+cd /path/to/coral-ds-plugin
 ./scripts/queue_start_watcher.sh
 ```
 
 ### 4. Enable output style (optional)
 For thoughtful, scientist-mode responses:
 ```bash
-/output-style ds-exp:Precise
+/output-style ds:Precise
 ```
 
 ## Commands
 
-### `/ds-exp:dash` - Dashboard
+### `/ds:dash` - Dashboard
 Shows GPU status, queue, running processes, and experiments in a compact view.
 
 **Usage:**
 ```bash
-/ds-exp:dash
+/ds:dash
 ```
 
 **Output:** Compact, single-screen dashboard with color-coded status and queue section.
 
-### `/ds-exp:queue` - Queue Status
+### `/ds:queue` - Queue Status
 Shows current job queue status.
 
 **Usage:**
 ```bash
-/ds-exp:queue
+/ds:queue
 ```
 
 **Output:** Running jobs, queued jobs, and watcher daemon status.
 
-### `/ds-exp:dash-all` - All Sessions
+### `/ds:dash-all` - All Sessions
 View experiments from all Claude Code sessions.
 
-### `/ds-exp:dash-sessions` - List Sessions
+### `/ds:dash-sessions` - List Sessions
 See all experiment sessions.
 
-### `/ds-exp:dash-clear` - Clear Completed
+### `/ds:dash-clear` - Clear Completed
 Remove completed experiments from current session.
 
 ## Status Line
@@ -163,7 +163,7 @@ Updates automatically as you work.
 ## File Structure
 
 ```
-ds-exp-plugin/
+coral-ds-plugin/
 ├── .claude-plugin/
 │   └── plugin.json              # Plugin manifest
 ├── commands/
@@ -283,10 +283,10 @@ for epoch in range(epochs):
 ### Monitor Progress
 ```bash
 # View dashboard
-/ds-exp:dash
+/ds:dash
 
 # Check queue
-/ds-exp:queue
+/ds:queue
 
 # Watch experiment files
 tail -f experiments/session-*/exp_*.json

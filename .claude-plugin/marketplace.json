@@ -1,5 +1,5 @@
 {
-  "name": "aws",
+  "name": "coral",
   "owner": {
     "name": "Shreyas Subramanian"
   },
@@ -8,7 +8,7 @@
   },
   "plugins": [
     {
-      "name": "coral",
+      "name": "ds",
       "source": {
         "source": "github",
         "repo": "amazon-science/aws-research-science",

@@ -6,20 +6,20 @@
 - ✅ Create experiment JSON file
 - ✅ Add metric reporting to training code
 - ✅ Track progress automatically
-- ✅ Show results in `/ds-exp:dash`
+- ✅ Show results in `/ds:dash`
 
 No extra commands needed!
 
 ## Commands
 
-- `/ds-exp:dash` - View dashboard (GPUs, processes, experiments)
-- `/ds-exp:help` - Show this help
+- `/ds:dash` - View dashboard (GPUs, processes, experiments)
+- `/ds:help` - Show this help
 
 ## Optional: Precise Output Style
 
 For a more thoughtful, collaborative AI partner:
 
-`/output-style ds-exp:Precise`
+`/output-style ds:Precise`
 
 This changes Claude to be:
 - More thorough in explanations
@@ -34,7 +34,7 @@ Default Claude works fine too - this is optional for users who want more scienti
 Claude automatically runs long tasks in the background. Check status with:
 - `/tasks` - List all background tasks with status
 - `Ctrl+B` - Quick view of background tasks
-- `/ds-exp:dash` - Dashboard with GPUs, processes, experiments
+- `/ds:dash` - Dashboard with GPUs, processes, experiments
 
 **Tip**: Say "run this in the background" to explicitly request background execution.
 
@@ -56,9 +56,9 @@ The statusline is configured in `~/.claude/settings.json`:
 {
   "statusLine": {
     "type": "command",
-    "command": "/path/to/ds-exp-plugin/scripts/statusline.sh"
+    "command": "/path/to/coral-ds-plugin/scripts/statusline.sh"
   }
 }
 ```
 
-Run `/ds-exp:statusline-setup` to configure automatically.
+Run `/ds:statusline-setup` to configure automatically.

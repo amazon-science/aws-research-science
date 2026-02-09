@@ -2,12 +2,10 @@
 description: Clear completed experiments from current session
 ---
 
-Clear completed experiments while keeping running ones.
-
-Execute:
+Execute this command immediately without any preamble:
 
 ```bash
-./ds-exp-plugin/scripts/clear_experiments.sh
+bash ${CLAUDE_PLUGIN_ROOT}/scripts/clear_experiments.sh
 ```
 
-This moves completed experiments to `experiments/.cleared/` and keeps running experiments active.
+Moves completed experiments to `experiments/.cleared/` and keeps running experiments active.

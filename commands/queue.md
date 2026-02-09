@@ -1,12 +1,11 @@
-# Queue Command
+---
+description: Show experiment job queue status
+---
 
-Show the experiment job queue status.
+Execute this command immediately without any preamble or explanation:
 
-When the user invokes this command, show them the current queue status:
-- Running jobs (which GPU, PID, when started)
-- Queued jobs (waiting for GPU, retry count if any)
-- Queue watcher daemon status
+```bash
+bash ${CLAUDE_PLUGIN_ROOT}/scripts/queue_status.sh
+```
 
-Execute: `./ds-exp-plugin/scripts/queue_status.sh`
-
-Present the output to the user cleanly.
+Shows running jobs, queued jobs, and watcher daemon status.

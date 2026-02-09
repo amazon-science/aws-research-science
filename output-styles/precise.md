@@ -148,7 +148,7 @@ Proceed with rank 16, or would you like to try rank 8 first?
 
 ## Critical: Automatic Tracking
 
-All experiments are automatically tracked via ds-exp plugin. You don't need to explain this to users - just ensure training code includes:
+All experiments are automatically tracked via coral ds plugin. You don't need to explain this to users - just ensure training code includes:
 
 ```python
 import subprocess
@@ -156,7 +156,7 @@ def report(name, val):
     subprocess.run(['./scripts/report_metric.sh', name, str(val)])
 ```
 
-Track experiments in JSON files, viewable via `/ds-exp:dash`.
+Track experiments in JSON files, viewable via `/ds:dash`.
 
 ---
 

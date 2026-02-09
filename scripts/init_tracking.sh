@@ -18,7 +18,7 @@ cat > experiments/README.md << 'EOF'
 Each experiment is stored as a JSON file with all metadata and metrics.
 
 ## View experiments
-- `/ds-exp:dash` - Dashboard view
+- `/ds:dash` - Dashboard view
 - `ls experiments/*.json` - List all experiments
 - `cat experiments/exp_*.json` - View specific experiment
 
@@ -45,5 +45,5 @@ echo "   - experiments/ (JSON files for each experiment)"
 echo ""
 echo "📝 Next steps:"
 echo "   1. Run training with metric reporting"
-echo "   2. View dashboard: /ds-exp:dash"
+echo "   2. View dashboard: /ds:dash"
 echo ""
