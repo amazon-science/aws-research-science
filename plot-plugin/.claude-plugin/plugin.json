@@ -1,0 +1,10 @@
+{
+  "name": "plot",
+  "version": "1.0.0",
+  "description": "Generate publication-quality diagrams with iterative refinement",
+  "author": {
+    "name": "Shreyas Subramanian"
+  },
+  "keywords": ["plotting", "diagrams", "visualization", "publication", "latex"],
+  "commands": "./commands/"
+}

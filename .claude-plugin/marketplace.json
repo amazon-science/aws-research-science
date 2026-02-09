@@ -4,18 +4,28 @@
     "name": "Shreyas Subramanian"
   },
   "metadata": {
-    "description": "Simple data science plugin for experimentation on GPUs"
+    "description": "Data science plugins for experimentation and visualization"
   },
   "plugins": [
     {
       "name": "ds",
       "source": "./",
-      "description": "Simple data science plugin for experimentation on GPUs",
+      "description": "ML experiment tracking with GPU monitoring and job queuing",
       "version": "1.0.0",
       "author": {
         "name": "Shreyas Subramanian"
       },
       "keywords": ["ml", "experiment-tracking", "gpu-monitoring", "git-automation"]
+    },
+    {
+      "name": "plot",
+      "source": "./plot-plugin",
+      "description": "Generate publication-quality diagrams with iterative refinement",
+      "version": "1.0.0",
+      "author": {
+        "name": "Shreyas Subramanian"
+      },
+      "keywords": ["plotting", "diagrams", "visualization", "publication", "latex", "tikz"]
     }
   ]
 }
