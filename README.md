@@ -65,32 +65,165 @@ GPU 3: IDLE (22GB free)
 📊 Experiments: 1 total, 1 running
 ```
 
-## Installation
+## Quick Start
 
-### Option 1: Install via Plugin Marketplace (Recommended)
+Get up and running in 2 minutes:
 
+### 1. Install the Plugin
+
+Start Claude Code in your project directory:
 ```bash
-# Add the marketplace
-/plugin marketplace add amazon-science/aws-research-science#plugins
+cd your-ml-project
+claude .
+```
 
-# Install the plugin
+Inside Claude, add the marketplace and install the plugin:
+```bash
+/plugin marketplace add amazon-science/aws-research-science#plugins
 /plugin install ds@coral
 ```
 
-### Option 2: Direct Plugin Directory (Development)
+### 2. Set Up Status Line (Optional but Recommended)
+
+Enable GPU monitoring at the bottom of your screen:
+```bash
+/ds:statusline-setup
+```
+
+Then restart Claude Code to see live GPU status.
+
+### 3. Enable Precise Mode (Optional)
+
+For more thoughtful, scientifically rigorous responses:
+```bash
+/output-style ds:Precise
+```
+
+### 4. Start Using It
+
+Just talk naturally! Say:
+- "Train a model with LoRA rank 8"
+- "Try batch sizes 16, 32, and 64"
+- "Run this experiment on GPU 2"
+
+Claude automatically:
+- ✅ Tracks experiments in JSON files
+- ✅ Adds metric reporting to your code
+- ✅ Queues jobs when GPUs are busy
+- ✅ Shows everything in `/ds:dash`
+
+**That's it!** No configuration files, no manual setup. Start training and check `/ds:dash` to see your experiments.
+
+---
+
+## How Experiment Tracking Works
+
+### Automatic Tracking
+
+When you ask Claude to train a model, it automatically:
+
+1. **Creates an experiment file** (`experiments/session-*/exp_name.json`)
+2. **Adds metric reporting** to your training code:
+   ```python
+   import subprocess
+   def report(name, val):
+       subprocess.run(['./scripts/report_metric.sh', name, str(val)])
+   ```
+3. **Tracks everything**: parameters, metrics, GPU usage, timestamps
+4. **Shows in dashboard**: View with `/ds:dash`
+
+### Manual Metric Reporting
+
+Claude adds this code automatically, but you can also add it manually:
+
+```python
+import subprocess
+
+# Report any metric
+def report(name, value):
+    subprocess.run(['./scripts/report_metric.sh', name, str(value)])
+
+# Add observations
+def note(text):
+    subprocess.run(['./scripts/report_note.sh', text])
+
+# In your training loop
+for epoch in range(num_epochs):
+    loss = train_one_epoch()
+    val_acc = evaluate()
+
+    report('train_loss', loss)
+    report('val_accuracy', val_acc)
+    report('learning_rate', optimizer.param_groups[0]['lr'])
+
+    if loss > prev_loss:
+        note(f'Loss increased from {prev_loss:.4f} to {loss:.4f}')
+```
+
+### View Results
+
+Check your experiments anytime:
+```bash
+/ds:dash              # Live dashboard
+/ds:queue             # Job queue status
+/ds:dash-all          # All sessions
+```
+
+### Experiment Data
+
+All data is stored in JSON files:
+```bash
+experiments/
+├── session-abc123/
+│   ├── exp_lora_rank8.json
+│   └── exp_batch32.json
+└── queue.json
+```
+
+Each file contains:
+- Experiment metadata (name, description, start time)
+- Parameters (learning rate, batch size, etc.)
+- Metrics (loss, accuracy, etc.) with timestamps
+- Notes and observations
+- GPU assignment and resource usage
+
+---
+
+## Installation
+
+**TL;DR:** See [Quick Start](#quick-start) for the fastest way to get running.
+
+### Method 1: Plugin Marketplace (Recommended)
+
+Inside Claude Code:
+```bash
+/plugin marketplace add amazon-science/aws-research-science#plugins
+/plugin install ds@coral
+```
+
+Then optionally:
+```bash
+/ds:statusline-setup          # Enable GPU status line
+/output-style ds:Precise      # Enable thoughtful scientist mode
+```
+
+### Method 2: Direct Plugin Directory (Development)
+
+For plugin development or offline use:
 
 ```bash
 # Clone the repository
 git clone --branch plugins https://github.com/amazon-science/aws-research-science.git coral-ds-plugin
 
 # Start Claude with the plugin
-claude --plugin-dir /path/to/coral-ds-plugin
+claude --plugin-dir ./coral-ds-plugin
 ```
 
-### Configuration
+### Advanced Configuration
 
-#### Enable status line (optional)
-Add to your `.claude/settings.json`:
+**Manual status line setup** (if `/ds:statusline-setup` doesn't work):
+
+Add to `~/.claude/settings.json`:
 ```json
 {
   "statusLine": {
@@ -101,79 +234,83 @@ Add to your `.claude/settings.json`:
 }
 ```
 
-Or copy the example:
+**Queue watcher** (for automatic job launching when GPUs free up):
 ```bash
-# View the example config
-cat coral-ds-plugin/settings.example.json
+# Start the background watcher
+${CLAUDE_PLUGIN_ROOT}/scripts/queue_start_watcher.sh
 
-# Manually add to your settings
+# Check if it's running
+ps aux | grep queue_watcher
+
+# Stop it if needed
+${CLAUDE_PLUGIN_ROOT}/scripts/queue_stop_watcher.sh
 ```
 
-#### Start queue watcher (recommended)
-For automatic job queuing:
-```bash
-cd /path/to/coral-ds-plugin
-./scripts/queue_start_watcher.sh
+## Requirements
+
+- **NVIDIA GPU** with `nvidia-smi` - For GPU monitoring
+- **Python 3.6+** - For dashboard and scripts
+- **Python package: `rich`** - For terminal UI
+  ```bash
+  pip install rich
+  ```
+- **jq** - For JSON parsing (optional, for status line)
+- **Git** - For repository info (optional)
+
+## Available Commands
+
+| Command | Description |
+|---------|-------------|
+| `/ds:dash` | Live dashboard showing GPUs, queue, processes, and experiments |
+| `/ds:queue` | Current job queue status |
+| `/ds:dash-all` | View experiments from all Claude sessions |
+| `/ds:dash-sessions` | List all experiment sessions |
+| `/ds:dash-clear` | Clear completed experiments from current session |
+| `/ds:help` | Show help information |
+| `/ds:statusline-setup` | Configure GPU status line at bottom |
+| `/output-style ds:Precise` | Enable thoughtful scientist mode |
+
+### Command Details
+
+**`/ds:dash` - Live Dashboard**
+
+Shows everything in one view:
+- GPU status (utilization, memory, temperature)
+- Job queue (running and waiting)
+- Active processes
+- Experiment results
+
+**`/ds:queue` - Queue Status**
+
+Running jobs, queued jobs, and watcher daemon status.
+
+**Status Line**
+
+After running `/ds:statusline-setup`, see GPU status at the bottom:
+```
+[Sonnet 4.5 | 90k/200k (45%)] 📁 dir | GPU# (mem/util) |0. 0%/0% |1. 55%/45% |2. 98%/52% ┃Proc: 3┃
 ```
 
-#### Enable output style (optional)
-For thoughtful, scientist-mode responses:
-```bash
-/output-style ds:Precise
-```
-
-## Commands
-
-### `/ds:dash` - Dashboard
-Shows GPU status, queue, running processes, and experiments in a compact view.
-
-**Usage:**
-```bash
-/ds:dash
-```
-
-**Output:** Compact, single-screen dashboard with color-coded status and queue section.
-
-### `/ds:queue` - Queue Status
-Shows current job queue status.
-
-**Usage:**
-```bash
-/ds:queue
-```
-
-**Output:** Running jobs, queued jobs, and watcher daemon status.
-
-### `/ds:dash-all` - All Sessions
-View experiments from all Claude Code sessions.
-
-### `/ds:dash-sessions` - List Sessions
-See all experiment sessions.
-
-### `/ds:dash-clear` - Clear Completed
-Remove completed experiments from current session.
-
-## Status Line
-
-The status line shows at the bottom of Claude Code:
-- **Model name** - Current Claude model (Opus, Sonnet, Haiku)
-- **Directory** - Current working directory
-- **GPU status** - Idle/busy GPU count
-- **Training jobs** - Number of active training processes
-
-**Example:**
-```
-[Sonnet] 📁 superweights | 🔥 2 idle, 2 busy | ⚙️ 2 training
-```
+- **Green**: <30% util (available)
+- **Orange**: 30-70% util (moderate)
+- **Red**: >70% util (busy)
 
 Updates automatically as you work.
 
-## What This Plugin Does NOT Do
+## Philosophy
 
-❌ **No auto-commits** - Git is manual (or use `/background git commit ...`)
-❌ **No hook noise** - Only runs on startup
-❌ **No background monitoring** - Use `/background` when you need it
-❌ **No Stop hooks** - Claude exits normally
+This plugin follows a "tools when needed" approach:
+
+✅ **What it does:**
+- Automatic experiment tracking
+- GPU monitoring and job queuing
+- Live dashboard and status line
+
+❌ **What it doesn't do:**
+- No auto-commits (use `/background git commit ...`)
+- No hook spam (only runs on startup)
+- No constant background monitoring
+- No exit hooks (Claude exits normally)
 
 **Philosophy:** Provide tools when you need them, stay invisible otherwise.
 
@@ -216,97 +353,104 @@ coral-ds-plugin/
 └── README.md
 ```
 
-## Scripts
+## Advanced: Manual Scripts
 
-All scripts are inside the plugin at `scripts/`:
+For advanced users who want direct script access:
 
-**Core Tracking:**
-- **start_experiment.sh** - Initialize experiment JSON
-- **report_metric.sh** - Report metrics from training code
-- **report_note.sh** - Add timestamped notes/observations
-- **update_param.sh** - Track hyperparameters
-- **complete_experiment.sh** - Mark experiment as completed/failed
+**Experiment Tracking:**
+```bash
+# Start an experiment manually
+EXP_FILE=$(${CLAUDE_PLUGIN_ROOT}/scripts/start_experiment.sh "exp_name" "description" [gpu_id])
+
+# Report metrics
+${CLAUDE_PLUGIN_ROOT}/scripts/report_metric.sh metric_name value
+
+# Add notes
+${CLAUDE_PLUGIN_ROOT}/scripts/report_note.sh "observation text"
+
+# Mark complete
+${CLAUDE_PLUGIN_ROOT}/scripts/complete_experiment.sh completed $EXP_FILE
+```
 
 **Job Queue:**
-- **queue_experiment.sh** - Queue job with auto-launch
-- **queue_watcher.sh** - Background daemon (monitors queue every 30s)
-- **queue_start_watcher.sh** - Start the watcher daemon
-- **queue_stop_watcher.sh** - Stop the watcher daemon
-- **queue_status.sh** - Show queue status
+```bash
+# Queue a job
+${CLAUDE_PLUGIN_ROOT}/scripts/queue_experiment.sh "name" "command" [memory_mb]
+
+# Queue management
+${CLAUDE_PLUGIN_ROOT}/scripts/queue_start_watcher.sh   # Start daemon
+${CLAUDE_PLUGIN_ROOT}/scripts/queue_stop_watcher.sh    # Stop daemon
+${CLAUDE_PLUGIN_ROOT}/scripts/queue_status.sh          # Check status
+```
 
 **Display:**
-- **env_check.sh** - Shows GPU/experiment status on startup
-- **dashboard.py** - Compact TUI dashboard with Rich (includes queue section)
-- **statusline.sh** - Generates status line with GPU info
-
-## Customization
-
-### Status Line
-Edit `scripts/statusline.sh` to customize what appears in the status bar.
-
-### Dashboard
-Edit `scripts/dashboard.py` to change table layout, colors, or add sections.
-
-### Startup Check
-Edit `scripts/env_check.sh` to change what's shown on startup.
-
-## Requirements
-
-- **nvidia-smi** - For GPU monitoring
-- **Python 3.6+** with `rich` - For dashboard
-- **jq** - For JSON parsing in status line
-- **Git** - For branch info (optional)
-
-Install requirements:
 ```bash
-pip install rich
+# Run dashboard directly
+python ${CLAUDE_PLUGIN_ROOT}/scripts/dashboard.py --once
+
+# Generate status line
+${CLAUDE_PLUGIN_ROOT}/scripts/statusline.sh
 ```
+
 
 ## Usage Examples
 
-### Queue Multiple Experiments
-```bash
-# Claude automatically uses queue_experiment.sh when you say:
-"Try LoRA with rank 4, 8, and 16"
+### Natural Language Training
 
-# Or manually:
-./scripts/queue_experiment.sh "exp_rank4" "python train.py --rank 4" 6000
-./scripts/queue_experiment.sh "exp_rank8" "python train.py --rank 8" 8000
-./scripts/queue_experiment.sh "exp_rank16" "python train.py --rank 16" 12000
+Just talk to Claude naturally:
+
+**Example 1: Single experiment**
+```
+You: "Train a LoRA model with rank 8, learning rate 1e-4"
+```
+Claude will:
+- Create experiment JSON
+- Add metric reporting to code
+- Launch training
+- Track everything in `/ds:dash`
+
+**Example 2: Multiple experiments**
+```
+You: "Try LoRA with rank 4, 8, and 16"
+```
+Claude will:
+- Queue all three experiments
+- Launch first one immediately (if GPU available)
+- Auto-launch others when GPUs free up
+- Track all in the queue
+
+**Example 3: Compare approaches**
+```
+You: "Compare LoRA vs full fine-tuning on this dataset"
+```
+Claude will:
+- Set up both experiments
+- Configure proper baselines
+- Run them (queued if needed)
+- Help you analyze results
+
+### Manual Experiment Queuing
+
+If you prefer manual control:
+
+```bash
+# Queue experiments manually
+${CLAUDE_PLUGIN_ROOT}/scripts/queue_experiment.sh "exp_name" "python train.py --args" [gpu_mem_mb]
+
+# Examples:
+${CLAUDE_PLUGIN_ROOT}/scripts/queue_experiment.sh "lora_rank4" "python train.py --rank 4" 6000
+${CLAUDE_PLUGIN_ROOT}/scripts/queue_experiment.sh "lora_rank8" "python train.py --rank 8" 8000
+${CLAUDE_PLUGIN_ROOT}/scripts/queue_experiment.sh "lora_rank16" "python train.py --rank 16" 12000
 ```
 
-### Track Metrics in Training Code
-```python
-import subprocess
+### Monitoring Commands
 
-def report(name, val):
-    subprocess.run(['./scripts/report_metric.sh', name, str(val)])
-
-def note(text):
-    subprocess.run(['./scripts/report_note.sh', text])
-
-# During training
-for epoch in range(epochs):
-    loss = train_epoch()
-    acc = evaluate()
-
-    report('loss', loss)
-    report('accuracy', acc)
-
-    if loss_plateau_detected():
-        note('Loss plateau at epoch {epoch}, trying LR adjustment')
-```
-
-### Monitor Progress
 ```bash
-# View dashboard
-/ds:dash
-
-# Check queue
-/ds:queue
-
-# Watch experiment files
-tail -f experiments/session-*/exp_*.json
+/ds:dash              # Live dashboard - GPU, queue, experiments
+/ds:queue             # Job queue status
+/ds:dash-all          # All experiments across sessions
+/ds:dash-sessions     # List all sessions
+/ds:dash-clear        # Clear completed experiments
 ```
 
 ## Troubleshooting
@@ -357,34 +501,54 @@ nvidia-smi
 python scripts/dashboard.py --once
 ```
 
-## Key Features Summary
-
-✅ **Automatic tracking** - No manual logging needed
-✅ **Smart job queue** - Auto-launches when GPUs free
-✅ **Retry logic** - Handles transient failures automatically
-✅ **Session isolation** - Clean separation by Claude Code session
-✅ **Live dashboard** - Real-time view of GPUs, queue, experiments
-✅ **Notes API** - Add observations during training
-✅ **Color-coded GPU status** - Green/orange/red indicators
-✅ **Scientist mode** - Optional thoughtful output style
-
 ## Architecture
 
-**Data Storage:**
-- Experiments: `experiments/session-{id}/exp_*.json`
-- Queue state: `experiments/queue.json`
-- Session ID: `.claude_session`
+### Data Storage
+```
+your-project/
+├── experiments/
+│   ├── session-abc123/
+│   │   ├── exp_lora_rank8.json      # Experiment data
+│   │   └── exp_batch32.json
+│   ├── queue.json                    # Job queue state
+│   └── .cleared/                     # Archived experiments
+└── .claude_session                   # Current session ID
+```
 
-**Queue System:**
-- Checks GPU availability (<10% util, >needed memory)
-- Fast failure (<60s): Retry up to 3x (likely resource issue)
-- Mid-run failure (>60s): No retry (likely code bug)
-- Background daemon runs every 30s
+### Queue System
+- **GPU check**: Looks for <10% utilization and sufficient free memory
+- **Retry logic**:
+  - Fast failure (<60s): Retry up to 3x (likely OOM or device busy)
+  - Late failure (>60s): No retry (likely code bug)
+- **Daemon**: Background watcher checks queue every 30s
 
-**Integration:**
-- SessionStart hook provides Claude with tracking protocol
-- Claude automatically uses `queue_experiment.sh` for training requests
-- Manual usage also supported via scripts
+### Integration
+- **SessionStart hook**: Tells Claude about tracking on startup
+- **Automatic**: Claude uses queue system when you request training
+- **Manual**: All scripts can be called directly too
+
+## Customization
+
+Want to customize the plugin behavior? All scripts are in `${CLAUDE_PLUGIN_ROOT}/scripts/`:
+
+**Status Line** (`statusline.sh`):
+- Modify GPU status thresholds
+- Change display format
+- Add custom metrics
+
+**Dashboard** (`dashboard.py`):
+- Customize table layout
+- Add/remove sections
+- Change color scheme
+
+**Startup Check** (`env_check.sh`):
+- Modify what's shown on session start
+- Add custom environment checks
+- Change tracking protocol messages
+
+After making changes, restart Claude Code to see updates.
+
+---
 
 ## Version
 
@@ -393,6 +557,10 @@ python scripts/dashboard.py --once
 ## Author
 
 Amazon CORAL Lab
+
+## License
+
+MIT
 
 ## Keywords
 
