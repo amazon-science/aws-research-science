@@ -19,6 +19,38 @@ while true; do
         continue
     fi
 
+    # Health check: Remove dead processes from running queue
+    (
+        flock -x -w 5 200 || exit 0
+
+        RUNNING_JOBS=$(jq -r '.running[] | @json' "$QUEUE_FILE" 2>/dev/null)
+
+        if [ -n "$RUNNING_JOBS" ]; then
+            DEAD_JOBS=()
+            while IFS= read -r job; do
+                if [ -z "$job" ] || [ "$job" = "null" ]; then
+                    continue
+                fi
+
+                PID=$(echo "$job" | jq -r '.pid')
+                NAME=$(echo "$job" | jq -r '.name')
+
+                # Check if process is still alive
+                if ! kill -0 "$PID" 2>/dev/null; then
+                    echo "🧹 [$(date +'%H:%M:%S')] Cleaning up dead job: $NAME (PID $PID)"
+                    DEAD_JOBS+=("$NAME")
+                fi
+            done <<< "$RUNNING_JOBS"
+
+            # Remove all dead jobs from running queue
+            for NAME in "${DEAD_JOBS[@]}"; do
+                jq --arg name "$NAME" \
+                   '.running = [.running[] | select(.name != $name)]' \
+                   "$QUEUE_FILE" > "$QUEUE_FILE.tmp" && mv "$QUEUE_FILE.tmp" "$QUEUE_FILE"
+            done
+        fi
+    ) 200>"$LOCK_FILE"
+
     # Get queued jobs
     QUEUED_COUNT=$(jq '.queued | length' "$QUEUE_FILE" 2>/dev/null || echo "0")
 
@@ -74,26 +106,11 @@ while true; do
 
             TIMESTAMP_START=$(date -Iseconds)
 
-            # Add to running queue immediately
-            jq --arg name "$EXP_NAME" \
-               --arg gpu "$IDLE_GPU" \
-               --arg pid "$$" \
-               --arg started "$TIMESTAMP_START" \
-               --arg exp_file "$EXP_FILE" \
-               '.running += [{
-                   name: $name,
-                   gpu: ($gpu | tonumber),
-                   pid: ($pid | tonumber),
-                   started_at: $started,
-                   exp_file: $exp_file
-               }]' "$QUEUE_FILE" > "$QUEUE_FILE.tmp" && mv "$QUEUE_FILE.tmp" "$QUEUE_FILE"
-
-            # Hold lock for 10 seconds to ensure GPU shows activity before next check
-            echo "⏸️  [$(date +'%H:%M:%S')] Holding lock for 10s to prevent race conditions..."
-            sleep 10
-
-            # Launch job and monitor (background, outside the lock)
+            # Launch job monitor in background
             (
+                # Log the actual PID of this subshell
+                ACTUAL_PID=$$
+
                 cd "$PWD"
                 export CUDA_VISIBLE_DEVICES="$IDLE_GPU"
                 export EXP_FILE="$EXP_FILE"
@@ -163,6 +180,29 @@ while true; do
                     "$SCRIPT_DIR/report_note.sh" "Failed after ${RUNTIME}s (exit $EXIT_CODE)" "$EXP_FILE"
                 fi
             ) &
+
+            # Capture the actual PID of the background job
+            JOB_PID=$!
+
+            # Add to running queue with correct PID
+            jq --arg name "$EXP_NAME" \
+               --arg gpu "$IDLE_GPU" \
+               --arg pid "$JOB_PID" \
+               --arg started "$TIMESTAMP_START" \
+               --arg exp_file "$EXP_FILE" \
+               '.running += [{
+                   name: $name,
+                   gpu: ($gpu | tonumber),
+                   pid: ($pid | tonumber),
+                   started_at: $started,
+                   exp_file: $exp_file
+               }]' "$QUEUE_FILE" > "$QUEUE_FILE.tmp" && mv "$QUEUE_FILE.tmp" "$QUEUE_FILE"
+
+            echo "✅ [$(date +'%H:%M:%S')] Launched $EXP_NAME on GPU $IDLE_GPU (PID: $JOB_PID)"
+
+            # Hold lock for 10 seconds to ensure GPU shows activity before next check
+            echo "⏸️  [$(date +'%H:%M:%S')] Holding lock for 10s to prevent race conditions..."
+            sleep 10
 
         ) 200>"$LOCK_FILE"
     fi
