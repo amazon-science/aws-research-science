@@ -9,11 +9,6 @@
   "plugins": [
     {
       "name": "ds",
-      "source": {
-        "source": "github",
-        "repo": "amazon-science/aws-research-science",
-        "ref": "coralds"
-      },
       "description": "Simple data science plugin for experimentation on GPUs",
       "version": "1.0.0",
       "author": {
