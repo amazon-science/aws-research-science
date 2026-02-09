@@ -8,9 +8,26 @@ WATCH_INTERVAL=30  # Check every 30 seconds
 
 echo "🔄 Queue watcher started (checking every ${WATCH_INTERVAL}s)"
 
-# Ensure lock file exists
+# Ensure experiments directory exists
 mkdir -p experiments
-touch "$LOCK_FILE"
+
+# Portable locking functions (works without flock)
+acquire_lock() {
+    local max_wait=${1:-10}
+    local wait_time=0
+    while [ $wait_time -lt $max_wait ]; do
+        if mkdir "$LOCK_FILE.dir" 2>/dev/null; then
+            return 0
+        fi
+        sleep 0.5
+        wait_time=$((wait_time + 1))
+    done
+    return 1
+}
+
+release_lock() {
+    rmdir "$LOCK_FILE.dir" 2>/dev/null
+}
 
 while true; do
     # Check if queue file exists
@@ -20,9 +37,7 @@ while true; do
     fi
 
     # Health check: Remove dead processes from running queue
-    (
-        flock -x -w 5 200 || exit 0
-
+    if acquire_lock 5; then
         RUNNING_JOBS=$(jq -r '.running[] | @json' "$QUEUE_FILE" 2>/dev/null)
 
         if [ -n "$RUNNING_JOBS" ]; then
@@ -49,7 +64,9 @@ while true; do
                    "$QUEUE_FILE" > "$QUEUE_FILE.tmp" && mv "$QUEUE_FILE.tmp" "$QUEUE_FILE"
             done
         fi
-    ) 200>"$LOCK_FILE"
+
+        release_lock
+    fi
 
     # Get queued jobs
     QUEUED_COUNT=$(jq '.queued | length' "$QUEUE_FILE" 2>/dev/null || echo "0")
@@ -62,39 +79,45 @@ while true; do
     # Check for available GPUs with file locking
     if command -v nvidia-smi &> /dev/null; then
         # Acquire lock before checking/launching
-        (
-            flock -x -w 5 200 || {
-                echo "⚠️  [$(date +'%H:%M:%S')] Could not acquire lock, skipping this cycle"
-                exit 1
-            }
+        if ! acquire_lock 5; then
+            echo "⚠️  [$(date +'%H:%M:%S')] Could not acquire lock, skipping this cycle"
+            sleep "$WATCH_INTERVAL"
+            continue
+        fi
 
-            # Get next queued job
-            NEXT_JOB=$(jq -r '.queued[0] | @json' "$QUEUE_FILE")
+        # Get next queued job
+        NEXT_JOB=$(jq -r '.queued[0] | @json' "$QUEUE_FILE")
 
-            if [ "$NEXT_JOB" = "null" ] || [ -z "$NEXT_JOB" ]; then
-                exit 0
-            fi
+        if [ "$NEXT_JOB" = "null" ] || [ -z "$NEXT_JOB" ]; then
+            release_lock
+            sleep "$WATCH_INTERVAL"
+            continue
+        fi
 
-            EXP_NAME=$(echo "$NEXT_JOB" | jq -r '.name')
-            COMMAND=$(echo "$NEXT_JOB" | jq -r '.command')
-            GPU_MEM_NEEDED=$(echo "$NEXT_JOB" | jq -r '.gpu_mem_needed')
-            RETRY_COUNT=$(echo "$NEXT_JOB" | jq -r '.retry_count // 0')
+        EXP_NAME=$(echo "$NEXT_JOB" | jq -r '.name')
+        COMMAND=$(echo "$NEXT_JOB" | jq -r '.command')
+        GPU_MEM_NEEDED=$(echo "$NEXT_JOB" | jq -r '.gpu_mem_needed')
+        RETRY_COUNT=$(echo "$NEXT_JOB" | jq -r '.retry_count // 0')
 
-            # Find idle GPU with enough memory
-            IDLE_GPU=$(nvidia-smi --query-gpu=index,utilization.gpu,memory.free --format=csv,noheader,nounits 2>/dev/null | \
-                awk -F',' -v mem="$GPU_MEM_NEEDED" '$2 < 10 && $3 > mem {print $1; exit}')
+        # Find idle GPU with enough memory (check both util AND memory usage)
+        IDLE_GPU=$(nvidia-smi --query-gpu=index,utilization.gpu,memory.free,memory.used --format=csv,noheader,nounits 2>/dev/null | \
+            awk -F',' -v mem="$GPU_MEM_NEEDED" '$2 < 10 && $3 > mem && $4 < 1000 {print $1; exit}')
 
-            if [ -z "$IDLE_GPU" ]; then
-                exit 0
-            fi
+        if [ -z "$IDLE_GPU" ]; then
+            release_lock
+            sleep "$WATCH_INTERVAL"
+            continue
+        fi
 
-            # Check if this GPU already has a running job
-            RUNNING_ON_GPU=$(jq -r --arg gpu "$IDLE_GPU" '.running[] | select(.gpu == ($gpu | tonumber)) | .name' "$QUEUE_FILE" 2>/dev/null | head -1)
+        # Check if this GPU already has a running job
+        RUNNING_ON_GPU=$(jq -r --arg gpu "$IDLE_GPU" '.running[] | select(.gpu == ($gpu | tonumber)) | .name' "$QUEUE_FILE" 2>/dev/null | head -1)
 
-            if [ -n "$RUNNING_ON_GPU" ]; then
-                echo "⏳ [$(date +'%H:%M:%S')] GPU $IDLE_GPU already has running job: $RUNNING_ON_GPU (startup race avoided)"
-                exit 0
-            fi
+        if [ -n "$RUNNING_ON_GPU" ]; then
+            echo "⏳ [$(date +'%H:%M:%S')] GPU $IDLE_GPU already has running job: $RUNNING_ON_GPU (startup race avoided)"
+            release_lock
+            sleep "$WATCH_INTERVAL"
+            continue
+        fi
 
             echo "🚀 [$(date +'%H:%M:%S')] Launching $EXP_NAME on GPU $IDLE_GPU..."
 
@@ -125,11 +148,11 @@ while true; do
                 RUNTIME=$((END_TIME - START_TIME))
 
                 # Remove from running queue (need lock for queue file access)
-                (
-                    flock -x 201
+                if acquire_lock 10; then
                     jq --arg name "$EXP_NAME" \
                        '.running = [.running[] | select(.name != $name)]' "$QUEUE_FILE" > "$QUEUE_FILE.tmp" && mv "$QUEUE_FILE.tmp" "$QUEUE_FILE"
-                ) 201>"$LOCK_FILE"
+                    release_lock
+                fi
 
                 if [ $EXIT_CODE -eq 0 ]; then
                     # Success
@@ -145,8 +168,7 @@ while true; do
                         echo "⚠️  [$(date +'%H:%M:%S')] $EXP_NAME failed fast, re-queuing (attempt $NEW_RETRY_COUNT/3)"
 
                         # Re-queue with updated retry count (need lock)
-                        (
-                            flock -x 201
+                        if acquire_lock 10; then
                             jq --arg name "$EXP_NAME" \
                                --arg cmd "$COMMAND" \
                                --arg mem "$GPU_MEM_NEEDED" \
@@ -163,7 +185,8 @@ while true; do
                                    notes: [$note],
                                    last_error: "Exit code \($EXIT_CODE | tostring), runtime \($RUNTIME | tostring)s"
                                }]' "$QUEUE_FILE" > "$QUEUE_FILE.tmp" && mv "$QUEUE_FILE.tmp" "$QUEUE_FILE"
-                        ) 201>"$LOCK_FILE"
+                            release_lock
+                        fi
 
                         "$SCRIPT_DIR/complete_experiment.sh" failed "$EXP_FILE"
                         "$SCRIPT_DIR/report_note.sh" "$ERROR_MSG" "$EXP_FILE"
@@ -198,13 +221,13 @@ while true; do
                    exp_file: $exp_file
                }]' "$QUEUE_FILE" > "$QUEUE_FILE.tmp" && mv "$QUEUE_FILE.tmp" "$QUEUE_FILE"
 
-            echo "✅ [$(date +'%H:%M:%S')] Launched $EXP_NAME on GPU $IDLE_GPU (PID: $JOB_PID)"
+        echo "✅ [$(date +'%H:%M:%S')] Launched $EXP_NAME on GPU $IDLE_GPU (PID: $JOB_PID)"
 
-            # Hold lock for 10 seconds to ensure GPU shows activity before next check
-            echo "⏸️  [$(date +'%H:%M:%S')] Holding lock for 10s to prevent race conditions..."
-            sleep 10
+        # Hold lock for 20 seconds to ensure GPU shows memory usage before next check
+        echo "⏸️  [$(date +'%H:%M:%S')] Holding lock for 20s to prevent race conditions..."
+        sleep 20
 
-        ) 200>"$LOCK_FILE"
+        release_lock
     fi
 
     sleep "$WATCH_INTERVAL"
