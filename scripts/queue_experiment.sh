@@ -5,6 +5,7 @@ set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 QUEUE_FILE="experiments/queue.json"
+LOCK_FILE="experiments/.queue.lock"
 
 # Parse arguments
 EXP_NAME="$1"
@@ -18,26 +19,76 @@ if [ -z "$EXP_NAME" ] || [ -z "$COMMAND" ]; then
 fi
 
 # Initialize queue file if doesn't exist
+mkdir -p experiments
 if [ ! -f "$QUEUE_FILE" ]; then
-    mkdir -p experiments
     echo '{"queued": [], "running": []}' > "$QUEUE_FILE"
 fi
 
-# Check if GPU is available NOW
-IDLE_GPU=""
-if command -v nvidia-smi &> /dev/null; then
-    IDLE_GPU=$(nvidia-smi --query-gpu=index,utilization.gpu,memory.free --format=csv,noheader,nounits 2>/dev/null | \
-        awk -F',' -v mem="$GPU_MEM_NEEDED" '$2 < 10 && $3 > mem {print $1; exit}')
-fi
+# Create lock file if doesn't exist
+touch "$LOCK_FILE"
 
-TIMESTAMP=$(date -Iseconds)
+# Use file locking to prevent race conditions
+(
+    # Acquire exclusive lock (wait up to 10 seconds)
+    flock -x -w 10 200 || {
+        echo "⚠️  Could not acquire lock, adding to queue instead..."
+        jq --arg name "$EXP_NAME" \
+           --arg cmd "$COMMAND" \
+           --arg mem "$GPU_MEM_NEEDED" \
+           --arg queued "$(date -Iseconds)" \
+           '.queued += [{
+               name: $name,
+               command: $cmd,
+               gpu_mem_needed: ($mem | tonumber),
+               queued_at: $queued,
+               status: "waiting",
+               retry_count: 0,
+               notes: []
+           }]' "$QUEUE_FILE" > "$QUEUE_FILE.tmp" && mv "$QUEUE_FILE.tmp" "$QUEUE_FILE"
+        echo "✅ Added $EXP_NAME to queue (couldn't acquire lock)"
+        exit 0
+    }
 
-if [ -n "$IDLE_GPU" ]; then
-    # GPU available - launch immediately
-    echo "🚀 GPU $IDLE_GPU available, launching immediately..."
+    # Check if GPU is available NOW
+    IDLE_GPU=""
+    if command -v nvidia-smi &> /dev/null; then
+        IDLE_GPU=$(nvidia-smi --query-gpu=index,utilization.gpu,memory.free --format=csv,noheader,nounits 2>/dev/null | \
+            awk -F',' -v mem="$GPU_MEM_NEEDED" '$2 < 10 && $3 > mem {print $1; exit}')
+    fi
 
-    # Start experiment tracking
-    EXP_FILE=$("$SCRIPT_DIR/start_experiment.sh" "$EXP_NAME" "Auto-launched from queue" "$IDLE_GPU")
+    TIMESTAMP=$(date -Iseconds)
+
+    if [ -n "$IDLE_GPU" ]; then
+        # Check if this GPU already has a running job
+        RUNNING_ON_GPU=$(jq -r --arg gpu "$IDLE_GPU" '.running[] | select(.gpu == ($gpu | tonumber)) | .name' "$QUEUE_FILE" 2>/dev/null | head -1)
+
+        if [ -n "$RUNNING_ON_GPU" ]; then
+            echo "⏳ GPU $IDLE_GPU already has running job: $RUNNING_ON_GPU (startup race condition avoided)"
+            echo "⏳ Adding to queue instead..."
+
+            jq --arg name "$EXP_NAME" \
+               --arg cmd "$COMMAND" \
+               --arg mem "$GPU_MEM_NEEDED" \
+               --arg queued "$TIMESTAMP" \
+               '.queued += [{
+                   name: $name,
+                   command: $cmd,
+                   gpu_mem_needed: ($mem | tonumber),
+                   queued_at: $queued,
+                   status: "waiting",
+                   retry_count: 0,
+                   notes: ["GPU was loading another job"]
+               }]' "$QUEUE_FILE" > "$QUEUE_FILE.tmp" && mv "$QUEUE_FILE.tmp" "$QUEUE_FILE"
+
+            echo "✅ Added $EXP_NAME to queue"
+            exit 0
+        fi
+
+        # GPU truly available - launch immediately
+        echo "🚀 GPU $IDLE_GPU available, launching immediately..."
+
+        # Start experiment tracking
+        EXP_FILE=$("$SCRIPT_DIR/start_experiment.sh" "$EXP_NAME" "Auto-launched from queue" "$IDLE_GPU")
 
     # Launch in background
     nohup bash -c "
@@ -77,29 +128,35 @@ if [ -n "$IDLE_GPU" ]; then
            exp_file: $exp_file
        }]' "$QUEUE_FILE" > "$QUEUE_FILE.tmp" && mv "$QUEUE_FILE.tmp" "$QUEUE_FILE"
 
-    echo "✅ Launched $EXP_NAME on GPU $IDLE_GPU (PID: $PID)"
-    echo "📊 Experiment file: $EXP_FILE"
-    echo "📝 Output log: experiments/${EXP_NAME}_output.log"
-else
-    # No GPU available - add to queue
-    echo "⏳ No GPU available, adding to queue..."
+        echo "✅ Launched $EXP_NAME on GPU $IDLE_GPU (PID: $PID)"
+        echo "📊 Experiment file: $EXP_FILE"
+        echo "📝 Output log: experiments/${EXP_NAME}_output.log"
 
-    jq --arg name "$EXP_NAME" \
-       --arg cmd "$COMMAND" \
-       --arg mem "$GPU_MEM_NEEDED" \
-       --arg queued "$TIMESTAMP" \
-       '.queued += [{
-           name: $name,
-           command: $cmd,
-           gpu_mem_needed: ($mem | tonumber),
-           queued_at: $queued,
-           status: "waiting",
-           retry_count: 0,
-           notes: []
-       }]' "$QUEUE_FILE" > "$QUEUE_FILE.tmp" && mv "$QUEUE_FILE.tmp" "$QUEUE_FILE"
+        # Hold lock for 10 seconds to ensure GPU shows activity
+        echo "⏸️  Holding lock for 10s to prevent race conditions..."
+        sleep 10
+    else
+        # No GPU available - add to queue
+        echo "⏳ No GPU available, adding to queue..."
 
-    echo "✅ Added $EXP_NAME to queue"
-    echo "📊 Queue status:"
-    jq -r '.queued | length | "   Queued: \(.)"' "$QUEUE_FILE"
-    jq -r '.running | length | "   Running: \(.)"' "$QUEUE_FILE"
-fi
+        jq --arg name "$EXP_NAME" \
+           --arg cmd "$COMMAND" \
+           --arg mem "$GPU_MEM_NEEDED" \
+           --arg queued "$TIMESTAMP" \
+           '.queued += [{
+               name: $name,
+               command: $cmd,
+               gpu_mem_needed: ($mem | tonumber),
+               queued_at: $queued,
+               status: "waiting",
+               retry_count: 0,
+               notes: []
+           }]' "$QUEUE_FILE" > "$QUEUE_FILE.tmp" && mv "$QUEUE_FILE.tmp" "$QUEUE_FILE"
+
+        echo "✅ Added $EXP_NAME to queue"
+        echo "📊 Queue status:"
+        jq -r '.queued | length | "   Queued: \(.)"' "$QUEUE_FILE"
+        jq -r '.running | length | "   Running: \(.)"' "$QUEUE_FILE"
+    fi
+
+) 200>"$LOCK_FILE"
