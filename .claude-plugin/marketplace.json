@@ -11,7 +11,7 @@
       "name": "ds-exp",
       "source": {
         "source": "github",
-        "repo": "w601sxs/aws-research-science",
+        "repo": "amazon-science/aws-research-science",
         "ref": "ds-exp-plugin-dist"
       },
       "description": "Simple data science plugin for experimentation on GPUs",
