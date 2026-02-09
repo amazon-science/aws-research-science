@@ -12,7 +12,7 @@
       "source": {
         "source": "github",
         "repo": "amazon-science/aws-research-science",
-        "ref": "ds-exp-plugin-dist"
+        "ref": "coralds"
       },
       "description": "Simple data science plugin for experimentation on GPUs",
       "version": "1.0.0",
