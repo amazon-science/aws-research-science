@@ -1,0 +1,25 @@
+{
+  "name": "ds-exp",
+  "owner": {
+    "name": "Shreyas Subramanian"
+  },
+  "metadata": {
+    "description": "Simple data science plugin for experimentation on GPUs"
+  },
+  "plugins": [
+    {
+      "name": "ds-exp",
+      "source": {
+        "source": "github",
+        "repo": "w601sxs/aws-research-science",
+        "ref": "ds-exp-plugin-dist"
+      },
+      "description": "Simple data science plugin for experimentation on GPUs",
+      "version": "1.0.0",
+      "author": {
+        "name": "Shreyas Subramanian"
+      },
+      "keywords": ["ml", "experiment-tracking", "gpu-monitoring", "git-automation"]
+    }
+  ]
+}
