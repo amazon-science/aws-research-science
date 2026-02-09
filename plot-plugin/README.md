@@ -40,18 +40,18 @@ sudo apt-get install imagemagick
 
 ## Usage
 
-Simply use the `/plot` command with your requirements:
+Simply use the `/plot:tex` command with your requirements:
 
 ```
-/plot neural network with 3 input nodes, 4 hidden nodes, and 2 output nodes
-```
-
-```
-/plot flowchart for data processing pipeline with error handling
+/plot:tex neural network with 3 input nodes, 4 hidden nodes, and 2 output nodes
 ```
 
 ```
-/plot architecture diagram showing microservices communication
+/plot:tex flowchart for data processing pipeline with error handling
+```
+
+```
+/plot:tex architecture diagram showing microservices communication
 ```
 
 Claude will:
