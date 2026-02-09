@@ -501,31 +501,74 @@ nvidia-smi
 python scripts/dashboard.py --once
 ```
 
-## Architecture
+## How It Works
 
-### Data Storage
+### Job Queue with Race Condition Prevention
+
+The queue system prevents multiple experiments from launching simultaneously on the same GPU (which causes OOM):
+
+**File Locking**:
+- All queue operations use exclusive file locks (`experiments/.queue.lock`)
+- Only one process can launch jobs at a time
+- Prevents simultaneous GPU checks during startup window
+
+**GPU Reservation Check**:
+```bash
+# Before launching, check if GPU already has a running job
+# This catches the "startup race" where GPU shows free but job is loading
+if GPU_has_running_job:
+    add_to_queue()
+else:
+    launch_job()
+    hold_lock_for_10s()  # Ensures GPU shows activity
 ```
-your-project/
-├── experiments/
-│   ├── session-abc123/
-│   │   ├── exp_lora_rank8.json      # Experiment data
-│   │   └── exp_batch32.json
-│   ├── queue.json                    # Job queue state
-│   └── .cleared/                     # Archived experiments
-└── .claude_session                   # Current session ID
+
+**Smart Retry Logic**:
+- Fast failure (<60s): Retry up to 3x (likely OOM or device busy)
+- Late failure (>60s): No retry (likely code bug)
+- Background watcher checks queue every 30s
+
+**How it prevents OOM**:
+1. Job 1 acquires lock, launches on GPU 0, holds lock for 10s
+2. Job 2 waits for lock, then sees Job 1 in running queue
+3. Job 2 queues instead of launching
+4. Result: Sequential launches, no OOM
+
+### Experiment Tracking
+
+**Automatic via SessionStart Hook**:
+- Claude is told about tracking protocol on startup
+- When you say "train a model", Claude automatically uses queue scripts
+- No configuration needed
+
+**JSON Storage**:
+```
+experiments/
+├── session-{id}/
+│   ├── exp_name.json     # Params, metrics, notes, GPU, timestamps
+│   └── ...
+├── queue.json             # Running and queued jobs
+└── .cleared/              # Archived completed experiments
 ```
 
-### Queue System
-- **GPU check**: Looks for <10% utilization and sufficient free memory
-- **Retry logic**:
-  - Fast failure (<60s): Retry up to 3x (likely OOM or device busy)
-  - Late failure (>60s): No retry (likely code bug)
-- **Daemon**: Background watcher checks queue every 30s
+Each experiment JSON contains:
+- Metadata (name, description, start/end time, status)
+- Parameters (learning rate, batch size, etc.)
+- Metrics (loss, accuracy, etc.) with timestamps
+- Notes and observations
+- GPU assignment and PID
 
-### Integration
-- **SessionStart hook**: Tells Claude about tracking on startup
-- **Automatic**: Claude uses queue system when you request training
-- **Manual**: All scripts can be called directly too
+### GPU Monitoring
+
+**Status Line**:
+- Runs `statusline.sh` script configured in settings
+- Queries `nvidia-smi` for GPU stats
+- Color-codes based on utilization: green (<30%), orange (30-70%), red (>70%)
+
+**Dashboard**:
+- Python script using Rich library for terminal UI
+- Shows GPUs, processes, queue, and experiments in one view
+- Updates on demand with `/ds:dash`
 
 ## Customization
 
