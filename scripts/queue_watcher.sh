@@ -99,21 +99,37 @@ while true; do
         GPU_MEM_NEEDED=$(echo "$NEXT_JOB" | jq -r '.gpu_mem_needed')
         RETRY_COUNT=$(echo "$NEXT_JOB" | jq -r '.retry_count // 0')
 
-        # Find idle GPU with enough memory (check both util AND memory usage)
-        IDLE_GPU=$(nvidia-smi --query-gpu=index,utilization.gpu,memory.free,memory.used --format=csv,noheader,nounits 2>/dev/null | \
-            awk -F',' -v mem="$GPU_MEM_NEEDED" '$2 < 10 && $3 > mem && $4 < 1000 {print $1; exit}')
+        # Find best available GPU using round-robin + running job check
+        CANDIDATE_GPUS=$(nvidia-smi --query-gpu=index,utilization.gpu,memory.free --format=csv,noheader,nounits 2>/dev/null | \
+            awk -F',' -v mem="$GPU_MEM_NEEDED" '$2 < 30 && $3 > mem {print $1}')
 
-        if [ -z "$IDLE_GPU" ]; then
+        if [ -z "$CANDIDATE_GPUS" ]; then
             release_lock
             sleep "$WATCH_INTERVAL"
             continue
         fi
 
-        # Check if this GPU already has a running job
-        RUNNING_ON_GPU=$(jq -r --arg gpu "$IDLE_GPU" '.running[] | select(.gpu == ($gpu | tonumber)) | .name' "$QUEUE_FILE" 2>/dev/null | head -1)
+        # Filter out GPUs that already have running jobs
+        IDLE_GPU=""
+        for gpu in $CANDIDATE_GPUS; do
+            RUNNING_ON_GPU=$(jq -r --arg gpu "$gpu" '.running[] | select(.gpu == ($gpu | tonumber)) | .name' "$QUEUE_FILE" 2>/dev/null)
 
-        if [ -n "$RUNNING_ON_GPU" ]; then
-            echo "⏳ [$(date +'%H:%M:%S')] GPU $IDLE_GPU already has running job: $RUNNING_ON_GPU (startup race avoided)"
+            if [ -z "$RUNNING_ON_GPU" ]; then
+                # This GPU has no running jobs - use it!
+                IDLE_GPU=$gpu
+                break
+            fi
+        done
+
+        # If all GPUs have jobs, pick the GPU with fewest jobs
+        if [ -z "$IDLE_GPU" ]; then
+            IDLE_GPU=$(for gpu in $CANDIDATE_GPUS; do
+                COUNT=$(jq -r --arg gpu "$gpu" '[.running[] | select(.gpu == ($gpu | tonumber))] | length' "$QUEUE_FILE")
+                echo "$COUNT $gpu"
+            done | sort -n | head -1 | awk '{print $2}')
+        fi
+
+        if [ -z "$IDLE_GPU" ]; then
             release_lock
             sleep "$WATCH_INTERVAL"
             continue
@@ -223,9 +239,9 @@ while true; do
 
         echo "✅ [$(date +'%H:%M:%S')] Launched $EXP_NAME on GPU $IDLE_GPU (PID: $JOB_PID)"
 
-        # Hold lock for 20 seconds to ensure GPU shows memory usage before next check
-        echo "⏸️  [$(date +'%H:%M:%S')] Holding lock for 20s to prevent race conditions..."
-        sleep 20
+        # Hold lock briefly to ensure queue state is updated
+        echo "⏸️  [$(date +'%H:%M:%S')] Holding lock for 3s to update queue state..."
+        sleep 3
 
         release_lock
     fi
