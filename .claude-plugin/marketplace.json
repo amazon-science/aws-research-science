@@ -9,6 +9,7 @@
   "plugins": [
     {
       "name": "ds",
+      "source": "./",
       "description": "Simple data science plugin for experimentation on GPUs",
       "version": "1.0.0",
       "author": {
