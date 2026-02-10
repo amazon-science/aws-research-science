@@ -33,7 +33,12 @@ Create LaTeX/TikZ diagrams (neural networks, flowcharts, architecture diagrams) 
 **2. Install plugins:**
 ```bash
 /plugin install ds@coral     # ML experiment tracking
-/plugin install plot@coral   # Diagram generation (optional)
+```
+
+Or...
+
+```bash
+/plugin install plot@coral   # Diagram generation 
 ```
 
 **3. Configure DS plugin (recommended):**
