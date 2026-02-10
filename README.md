@@ -1,8 +1,46 @@
-# CORAL DS: ML Experiment Tracking Plugin for Claude Code
+# CORAL: Data Science Plugin Marketplace for Claude Code
 
+**A collection of data science plugins for ML experimentation and visualization**
+
+This marketplace provides plugins for ML experiment tracking, GPU monitoring, job queuing, and publication-quality diagram generation.
+
+## Plugins
+
+### 📊 DS Plugin - ML Experiment Tracking
 **Zero-overhead ML experiment tracking with intelligent job queuing**
 
 Automatic experiment tracking, GPU monitoring, smart job queuing, and live dashboard. Just talk naturally - tracking and queuing happen automatically.
+
+**Install:** `/plugin install ds@coral`
+
+### 📈 Plot Plugin - Publication-Quality Diagrams
+**Generate publication-quality diagrams with iterative refinement**
+
+Create LaTeX/TikZ diagrams (neural networks, flowcharts, architecture diagrams) with automatic iterative refinement until publication-ready.
+
+**Install:** `/plugin install plot@coral`
+**Docs:** [plot-plugin/README.md](plot-plugin/README.md)
+
+---
+
+## Quick Start
+
+**Add the marketplace:**
+```bash
+/plugin marketplace add amazon-science/aws-research-science#plugins
+```
+
+**Install plugins:**
+```bash
+/plugin install ds@coral     # ML experiment tracking
+/plugin install plot@coral   # Diagram generation
+```
+
+---
+
+# DS Plugin: ML Experiment Tracking
+
+The rest of this README covers the DS plugin in detail.
 
 ## Features
 
@@ -65,11 +103,11 @@ GPU 3: IDLE (22GB free)
 📊 Experiments: 1 total, 1 running
 ```
 
-## Quick Start
+## DS Plugin Quick Start
 
 Get up and running in 2 minutes:
 
-### 1. Install the Plugin
+### 1. Install the DS Plugin
 
 Start Claude Code in your project directory:
 ```bash
@@ -77,7 +115,7 @@ cd your-ml-project
 claude .
 ```
 
-Inside Claude, add the marketplace and install the plugin:
+Inside Claude, add the marketplace and install the DS plugin:
 ```bash
 /plugin marketplace add amazon-science/aws-research-science#plugins
 /plugin install ds@coral
@@ -189,16 +227,17 @@ Each file contains:
 
 ---
 
-## Installation
+## DS Plugin Installation
 
-**TL;DR:** See [Quick Start](#quick-start) for the fastest way to get running.
+**TL;DR:** See [DS Plugin Quick Start](#ds-plugin-quick-start) for the fastest way to get running.
 
 ### Method 1: Plugin Marketplace (Recommended)
 
 Inside Claude Code:
 ```bash
 /plugin marketplace add amazon-science/aws-research-science#plugins
-/plugin install ds@coral
+/plugin install ds@coral      # ML experiment tracking
+/plugin install plot@coral    # (Optional) Diagram generation
 ```
 
 Then optionally:
@@ -259,6 +298,8 @@ ${CLAUDE_PLUGIN_ROOT}/scripts/queue_stop_watcher.sh
 
 ## Available Commands
 
+### DS Plugin Commands
+
 | Command | Description |
 |---------|-------------|
 | `/ds:dash` | Live dashboard showing GPUs, queue, processes, and experiments |
@@ -269,6 +310,14 @@ ${CLAUDE_PLUGIN_ROOT}/scripts/queue_stop_watcher.sh
 | `/ds:help` | Show help information |
 | `/ds:statusline-setup` | Configure GPU status line at bottom |
 | `/output-style ds:Precise` | Enable thoughtful scientist mode |
+
+### Plot Plugin Commands
+
+| Command | Description |
+|---------|-------------|
+| `/plot:tex` | Generate publication-quality LaTeX/TikZ diagrams with iterative refinement |
+
+See [plot-plugin/README.md](plot-plugin/README.md) for plot plugin documentation.
 
 ### Command Details
 
@@ -317,10 +366,11 @@ This plugin follows a "tools when needed" approach:
 ## File Structure
 
 ```
-coral-ds-plugin/
+aws-research-science/
 ├── .claude-plugin/
-│   └── plugin.json              # Plugin manifest
-├── commands/
+│   ├── marketplace.json         # Marketplace definition
+│   └── plugin.json              # DS plugin manifest
+├── commands/                    # DS plugin commands
 │   ├── dash.md                  # Dashboard command
 │   ├── dash-all.md              # All sessions dashboard
 │   ├── dash-sessions.md         # List sessions
@@ -349,8 +399,17 @@ coral-ds-plugin/
 │   │   └── exp_*.json           # Experiment JSON files
 │   ├── queue.json               # Job queue state
 │   └── queue_watcher.log        # Queue watcher logs
+├── plot-plugin/                  # Plot plugin directory
+│   ├── .claude-plugin/
+│   │   └── plugin.json          # Plot plugin manifest
+│   ├── commands/
+│   │   └── tex.md               # /plot:tex command
+│   ├── scripts/
+│   │   └── compile_diagram.sh   # LaTeX/TikZ compilation
+│   ├── examples/                # Sample diagrams
+│   └── README.md                # Plot plugin documentation
 ├── settings.example.json        # Status line config
-└── README.md
+└── README.md                    # This file
 ```
 
 ## Advanced: Manual Scripts
@@ -607,4 +666,4 @@ MIT
 
 ## Keywords
 
-ml, experiment-tracking, gpu-monitoring, job-queue, automatic-retry, claude-code-plugin
+ml, experiment-tracking, gpu-monitoring, job-queue, automatic-retry, claude-code-plugin, data-science, visualization, latex, tikz, publication-quality, diagrams
