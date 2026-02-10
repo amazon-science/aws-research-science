@@ -25,16 +25,24 @@ Create LaTeX/TikZ diagrams (neural networks, flowcharts, architecture diagrams) 
 
 ## Quick Start
 
-**Add the marketplace:**
+**1. Add the marketplace:**
 ```bash
 /plugin marketplace add amazon-science/aws-research-science#plugins
 ```
 
-**Install plugins:**
+**2. Install plugins:**
 ```bash
 /plugin install ds@coral     # ML experiment tracking
-/plugin install plot@coral   # Diagram generation
+/plugin install plot@coral   # Diagram generation (optional)
 ```
+
+**3. Configure DS plugin (recommended):**
+```bash
+/ds:statusline-setup         # Enable GPU status line at bottom
+/output-style ds:Precise     # Enable thoughtful scientist mode
+```
+
+Then restart Claude Code to activate the status line.
 
 ---
 
