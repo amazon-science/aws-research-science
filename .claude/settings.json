@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/dash-interceptor.sh",
+            "timeout": 30,
+            "statusMessage": "Running dashboard..."
+          }
+        ]
+      }
+    ]
+  }
+}
