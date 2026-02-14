@@ -527,6 +527,22 @@ ${CLAUDE_PLUGIN_ROOT}/scripts/queue_experiment.sh "lora_rank16" "python train.py
 
 ## Troubleshooting
 
+### Marketplace refresh fails with SSH authentication error
+
+If you see `SSH authentication failed` when adding or refreshing the marketplace, this is a [known Claude Code issue](https://github.com/anthropics/claude-code/issues/13553). Claude Code internally uses SSH URLs for GitHub repos, which fails if SSH keys aren't configured.
+
+**Fix:** Configure git to rewrite SSH URLs to HTTPS:
+```bash
+git config --global url."https://github.com/".insteadOf git@github.com:
+```
+
+If the repository is private, you'll also need a GitHub token:
+```bash
+export GITHUB_TOKEN=ghp_your_token_here
+```
+
+You can generate a token at [github.com/settings/tokens](https://github.com/settings/tokens) (needs `repo` scope for private repos).
+
 ### Queue watcher not starting
 ```bash
 # Check if already running
