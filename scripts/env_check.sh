@@ -15,6 +15,10 @@ else
     fi
 fi
 
+# Resolve plugin root — CLAUDE_PLUGIN_ROOT is set by Claude Code when running plugin hooks
+# Fall back to script's parent directory for local development
+PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
+
 output=""
 
 # GPU status - find idle GPUs
@@ -39,7 +43,7 @@ if [ -d experiments ]; then
         output="$output\n📊 Tracking initialized (no experiments yet)"
     fi
 else
-    output="$output\n⚠️  No tracking (run: ./scripts/init_tracking.sh)"
+    output="$output\n⚠️  No tracking (run: ${PLUGIN_ROOT}/scripts/init_tracking.sh)"
 fi
 
 # Running processes
@@ -55,7 +59,7 @@ if [ "$disk_usage" -gt 90 ]; then
 fi
 
 # Add experiment tracking protocol
-instructions="\n\n🔬 CORAL DS PLUGIN: Automatic Experiment Tracking\n\nWhen user requests training/ML tasks, automatically track and queue experiments:\n\n**PREFERRED: Use Job Queue (auto-launches when GPU free)**\n./coral-ds-plugin/scripts/queue_experiment.sh \"exp_name\" \"python train.py\" [gpu_mem_mb]\n\nQueue system:\n- Checks GPU availability\n- Launches immediately if GPU free\n- Queues and auto-launches later if GPUs busy\n- Retries failed launches (up to 3x)\n- Start watcher: ./coral-ds-plugin/scripts/queue_start_watcher.sh\n- Check status: ./coral-ds-plugin/scripts/queue_status.sh\n\n**Manual tracking (if not using queue):**\n1. Start: EXP_FILE=\$(./coral-ds-plugin/scripts/start_experiment.sh \"name\" \"desc\" [gpu])\n2. In training code:\n   import subprocess\n   def report(name, val): subprocess.run(['./coral-ds-plugin/scripts/report_metric.sh', name, str(val)])\n   def note(text): subprocess.run(['./coral-ds-plugin/scripts/report_note.sh', text])\n3. Complete: ./coral-ds-plugin/scripts/complete_experiment.sh completed \$EXP_FILE\n\nView: /ds:dash"
+instructions="\n\n🔬 CORAL DS PLUGIN: Automatic Experiment Tracking\n\nWhen user requests training/ML tasks, automatically track and queue experiments:\n\n**PREFERRED: Use Job Queue (auto-launches when GPU free)**\n${PLUGIN_ROOT}/scripts/queue_experiment.sh \"exp_name\" \"python train.py\" [gpu_mem_mb]\n\nQueue system:\n- Checks GPU availability\n- Launches immediately if GPU free\n- Queues and auto-launches later if GPUs busy\n- Retries failed launches (up to 3x)\n- Start watcher: ${PLUGIN_ROOT}/scripts/queue_start_watcher.sh\n- Check status: ${PLUGIN_ROOT}/scripts/queue_status.sh\n\n**Manual tracking (if not using queue):**\n1. Start: EXP_FILE=\$(${PLUGIN_ROOT}/scripts/start_experiment.sh \"name\" \"desc\" [gpu])\n2. In training code:\n   import subprocess\n   def report(name, val): subprocess.run(['${PLUGIN_ROOT}/scripts/report_metric.sh', name, str(val)])\n   def note(text): subprocess.run(['${PLUGIN_ROOT}/scripts/report_note.sh', text])\n3. Complete: ${PLUGIN_ROOT}/scripts/complete_experiment.sh completed \$EXP_FILE\n\nView: /ds:dash"
 
 output="$output$instructions"
 

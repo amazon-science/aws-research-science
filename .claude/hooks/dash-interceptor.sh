@@ -1,30 +1,46 @@
 #!/bin/bash
-# Intercepts /ds:dash command and runs dashboard directly
+# Intercepts /ds:* commands and runs scripts directly (no Claude API call)
 
 # Read JSON input from stdin
 INPUT=$(cat)
 PROMPT=$(echo "$INPUT" | jq -r '.prompt // empty')
 
-# Check if prompt is exactly "/ds:dash" (with optional whitespace)
-if [[ "$PROMPT" =~ ^[[:space:]]*/ds:dash[[:space:]]*$ ]]; then
-  # Get the script directory
-  SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-  PROJECT_DIR="${CLAUDE_PROJECT_DIR:-$(cd "$SCRIPT_DIR/../.." && pwd)}"
+# Resolve project directory
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+PROJECT_DIR="${CLAUDE_PROJECT_DIR:-$(cd "$SCRIPT_DIR/../.." && pwd)}"
 
-  # Run the dashboard script (using list_experiments.sh since it has no dependencies)
-  DASHBOARD_OUTPUT=$("$PROJECT_DIR/scripts/list_experiments.sh" 2>&1)
+# Strip whitespace from prompt
+TRIMMED=$(echo "$PROMPT" | xargs)
 
-  # Return the output as additional context and block the original prompt
-  jq -n --arg output "$DASHBOARD_OUTPUT" '{
-    decision: "block",
-    reason: "Dashboard displayed by hook",
-    hookSpecificOutput: {
-      hookEventName: "UserPromptSubmit",
-      additionalContext: $output
-    }
-  }'
-  exit 0
-fi
+# Route /ds:* commands to their scripts
+case "$TRIMMED" in
+  /ds:dash)
+    OUTPUT=$("$PROJECT_DIR/scripts/list_experiments.sh" 2>&1)
+    ;;
+  /ds:queue)
+    OUTPUT=$("$PROJECT_DIR/scripts/queue_status.sh" 2>&1)
+    ;;
+  /ds:dash-sessions)
+    OUTPUT=$("$PROJECT_DIR/scripts/list_sessions.sh" 2>&1)
+    ;;
+  /ds:dash-clear)
+    OUTPUT=$("$PROJECT_DIR/scripts/clear_experiments.sh" 2>&1)
+    ;;
+  /ds:dash-all)
+    # Combine experiments + sessions for a full view
+    OUTPUT=$("$PROJECT_DIR/scripts/list_experiments.sh" 2>&1)
+    OUTPUT+=$'\n\n'
+    OUTPUT+=$("$PROJECT_DIR/scripts/list_sessions.sh" 2>&1)
+    ;;
+  *)
+    # Not a /ds: command — allow normal processing
+    exit 0
+    ;;
+esac
 
-# For any other prompt, allow it to proceed normally
+# Stop Claude entirely and show output to user
+jq -n --arg output "$OUTPUT" '{
+  continue: false,
+  stopReason: $output
+}'
 exit 0
