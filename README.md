@@ -275,9 +275,10 @@ To get the latest version:
 ```bash
 /plugin marketplace refresh coral
 /plugin update ds@coral
+/clear
 ```
 
-Then restart Claude Code to activate the changes.
+`/clear` re-triggers the session start hooks so Claude immediately picks up the updated plugin context — no restart needed.
 
 ### Method 2: Direct Plugin Directory (Development)
 
