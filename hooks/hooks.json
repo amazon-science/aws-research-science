@@ -15,6 +15,18 @@
           }
         ]
       }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/dash-interceptor.sh",
+            "timeout": 30,
+            "statusMessage": "Running..."
+          }
+        ]
+      }
     ]
   }
 }
