@@ -55,10 +55,12 @@ Key behaviors:
 - If deps ran on different GPUs, warns and uses the last-completed dep's GPU
 - Independent jobs in the queue skip past blocked deps and run on other GPUs
 
-## Experiment Tracking
+## Mandatory Workflow — Follow This Every Time
 
-### Automatic (preferred)
-When you queue a job, the plugin creates an experiment file automatically. Before queuing, instrument the training script to call `report_metric.sh` so the dashboard shows live progress:
+When a user asks to run, train, or queue any experiment, you MUST follow these steps in order. Do not skip any step.
+
+### Step 1 — Instrument the training script
+Before queuing, add `report_metric.sh` calls to the training script so metrics appear in `/ds:dash`. Find every place that logs or prints a metric and add:
 
 ```python
 import subprocess
@@ -69,17 +71,34 @@ def report(name, val):
 def note(text):
     subprocess.run(['${CLAUDE_PLUGIN_ROOT}/scripts/report_note.sh', text])
 
-# In training loop:
+# Add at every eval/logging point in the training loop:
 report('train_loss', loss)
 report('val_accuracy', val_acc)
-note('Learning rate reduced at epoch 10')
 ```
 
-### Manual tracking
+If you cannot find the training script or it has no logging, ask the user before queuing.
+
+### Step 2 — Queue the experiment
 ```bash
-EXP_FILE=$(${CLAUDE_PLUGIN_ROOT}/scripts/start_experiment.sh "name" "description" [gpu_id])
-# ... run training ...
-${CLAUDE_PLUGIN_ROOT}/scripts/complete_experiment.sh completed $EXP_FILE
+${CLAUDE_PLUGIN_ROOT}/scripts/queue_experiment.sh "exp_name" "python train.py --args" [gpu_mem_mb]
+```
+
+For sequential jobs on the same GPU, use `--after`:
+```bash
+${CLAUDE_PLUGIN_ROOT}/scripts/queue_experiment.sh finetune "python finetune.py" 8000 --after pretrain
+```
+
+### Step 3 — Tell the user how to monitor
+After queuing, always tell the user:
+- Run `/ds:dash` to see experiment progress and metrics
+- Run `/ds:queue` to check job queue status
+
+Never queue silently without telling the user how to monitor.
+
+### Step 4 — Start the watcher if not running
+Check if the queue watcher is running. If not, start it:
+```bash
+${CLAUDE_PLUGIN_ROOT}/scripts/queue_start_watcher.sh
 ```
 
 ## GPU Assignment
@@ -100,9 +119,8 @@ experiments/
 └── queue_watcher.log     # watcher daemon output
 ```
 
-## Philosophy
+## Rules
 
-- **Automatic**: just say "train a model" — Claude queues and tracks without being asked
-- **Instrument first**: always add `report_metric.sh` calls to training scripts before queuing so results are visible in `/ds:dash`
-- **Queue, don't launch directly**: use `queue_experiment.sh` so GPU assignment, retry, and chaining work correctly
-- **Non-intrusive**: only runs on session start, no constant background hooks
+- Always instrument training scripts with `report_metric.sh` before queuing — never queue an uninstrumented script without asking the user
+- Always use `queue_experiment.sh`, never launch training directly — this ensures GPU assignment, retry, and chaining work correctly
+- Always tell the user to check `/ds:dash` after queuing — never queue silently
