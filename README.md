@@ -279,7 +279,7 @@ To get the latest version:
 
 Script changes (queue behavior, dashboard, hooks) take effect immediately — no restart needed.
 
-If the update adds new commands or instructions that Claude needs to know about, run `/clear` to re-inject the plugin context into the current session.
+If the update adds new commands or instructions that Claude needs to know about, run `/compact` to re-inject the plugin context while preserving your conversation history.
 
 ### Method 2: Direct Plugin Directory (Development)
 
