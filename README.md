@@ -66,13 +66,23 @@ Just say "train a model with LoRA rank 6" and Claude automatically:
 
 **No extra commands needed!**
 
-### 🔄 Intelligent Job Queue (NEW)
+### 🔄 Intelligent Job Queue
 Say "try rank 4, 8, and 16" and Claude automatically:
 - Checks GPU availability
 - Launches immediately if GPU free
 - Queues jobs when GPUs busy and auto-launches when free
 - Retries failed launches (OOM, device errors) up to 3 times
 - Tracks all jobs in unified queue
+
+**Chain experiments sequentially on the same GPU:**
+```bash
+./scripts/queue_experiment.sh pretrain "python pretrain.py" 12000
+./scripts/queue_experiment.sh finetune "python finetune.py"  8000 --after pretrain
+./scripts/queue_experiment.sh eval     "python eval.py"      4000 --after finetune
+```
+- `--after <name>` waits for that job to complete before launching
+- Inherits the dependency's GPU automatically (no VRAM reallocation)
+- Multiple deps: `--after exp_a --after exp_b` waits for all, inherits last completed GPU
 
 **No babysitting required - queue them all at once!**
 
@@ -458,6 +468,14 @@ ${CLAUDE_PLUGIN_ROOT}/scripts/complete_experiment.sh completed $EXP_FILE
 ```bash
 # Queue a job
 ${CLAUDE_PLUGIN_ROOT}/scripts/queue_experiment.sh "name" "command" [memory_mb]
+
+# Chain experiments (run sequentially on same GPU)
+${CLAUDE_PLUGIN_ROOT}/scripts/queue_experiment.sh pretrain "python pretrain.py" 12000
+${CLAUDE_PLUGIN_ROOT}/scripts/queue_experiment.sh finetune "python finetune.py"  8000 --after pretrain
+${CLAUDE_PLUGIN_ROOT}/scripts/queue_experiment.sh eval     "python eval.py"      4000 --after finetune
+
+# Multiple dependencies (waits for all, inherits last completed GPU)
+${CLAUDE_PLUGIN_ROOT}/scripts/queue_experiment.sh merge    "python merge.py"     4000 --after run_a --after run_b
 
 # Queue management
 ${CLAUDE_PLUGIN_ROOT}/scripts/queue_start_watcher.sh   # Start daemon

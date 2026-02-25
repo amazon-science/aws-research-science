@@ -29,6 +29,24 @@ This changes Claude to be:
 
 Default Claude works fine too - this is optional for users who want more scientific rigor.
 
+## Job Queue
+
+Queue experiments to run when GPUs are free:
+- Say "queue this experiment" or "run these back to back"
+- Claude will call `queue_experiment.sh` automatically
+
+**Chaining experiments (sequential, same GPU):**
+```
+queue_experiment.sh pretrain  "python pretrain.py"  12000
+queue_experiment.sh finetune  "python finetune.py"   8000 --after pretrain
+queue_experiment.sh eval      "python eval.py"       4000 --after finetune
+```
+- `--after <name>` waits for that job to complete before launching
+- Inherits the same GPU as the dependency automatically
+- Multiple deps: `--after exp_a --after exp_b` (waits for all)
+
+Check queue status: `/ds:queue`
+
 ## Background Tasks
 
 Claude automatically runs long tasks in the background. Check status with:
