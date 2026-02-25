@@ -277,15 +277,13 @@ To get the latest version:
 /plugin update ds@coral
 ```
 
-Script changes (queue behavior, dashboard, hooks) take effect immediately — no restart needed.
+**After updating mid-session**, two things may need attention:
 
-If the update adds new commands or instructions that Claude needs to know about, run `/ds:reload`:
+1. **If hook registrations changed** — Claude Code will warn that hooks were modified and require review. Run `/hooks` to approve the changes. Once approved, hooks take effect immediately without restart.
 
-```bash
-/ds:reload
-```
+2. **If Claude's knowledge is stale** — plugin context (instructions, command reference) is injected once at session start and doesn't update automatically. Run `/ds:reload` to re-inject without touching conversation history.
 
-**Why `/ds:reload` exists:** Claude Code snapshots session hooks at startup and injects plugin context (GPU state, instructions, command reference) once at session start. Updating the plugin mid-session installs new script files immediately — so queue behavior, dashboard, and hook scripts all work right away — but Claude's *knowledge* of the plugin (what commands exist, how to use `--after`, etc.) comes from that startup snapshot and is now stale. `/ds:reload` re-runs the context injection directly, without `/clear` (which destroys conversation history) or `/compact` (which compresses it).
+**Why `/ds:reload` exists:** Claude Code snapshots session hooks at startup and injects plugin context once. Script changes (queue behavior, dashboard logic) take effect immediately since scripts run from disk. But Claude's *knowledge* of the plugin — what commands exist, how `--after` chaining works, etc. — comes from that startup snapshot. `/ds:reload` refreshes it without `/clear` (destroys history) or `/compact` (compresses it).
 
 ### Method 2: Direct Plugin Directory (Development)
 
