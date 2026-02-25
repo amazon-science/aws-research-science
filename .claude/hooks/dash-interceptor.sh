@@ -32,6 +32,22 @@ case "$TRIMMED" in
     OUTPUT+=$'\n\n'
     OUTPUT+=$("$PROJECT_DIR/scripts/list_sessions.sh" 2>&1)
     ;;
+  /ds:reload)
+    # Re-inject plugin context (env state + CLAUDE.md) without touching history
+    # Does NOT block — Claude sees the fresh context and acknowledges it
+    PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT:-$PROJECT_DIR}"
+    ENV_OUTPUT=$(bash "$PLUGIN_ROOT/scripts/env_check.sh" 2>&1 | jq -r '.hookSpecificOutput.additionalContext // empty' 2>/dev/null || true)
+    CLAUDE_MD=""
+    [ -f "$PLUGIN_ROOT/CLAUDE.md" ] && CLAUDE_MD=$(cat "$PLUGIN_ROOT/CLAUDE.md")
+    COMBINED="[Plugin context refreshed]\n\n${ENV_OUTPUT}\n\n${CLAUDE_MD}"
+    jq -n --arg ctx "$COMBINED" '{
+      hookSpecificOutput: {
+        hookEventName: "UserPromptSubmit",
+        additionalContext: $ctx
+      }
+    }'
+    exit 0
+    ;;
   *)
     # Not a /ds: command — allow normal processing
     exit 0

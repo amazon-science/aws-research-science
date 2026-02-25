@@ -13,6 +13,8 @@ No extra commands needed!
 ## Commands
 
 - `/ds:dash` - View dashboard (GPUs, processes, experiments)
+- `/ds:queue` - Job queue status
+- `/ds:reload` - Re-inject plugin context after a plugin update (no history loss)
 - `/ds:help` - Show this help
 
 ## Optional: Precise Output Style

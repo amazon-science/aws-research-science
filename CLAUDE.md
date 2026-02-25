@@ -22,6 +22,7 @@ All `/ds:*` commands are handled instantly by a hook — they run scripts direct
 | `/ds:dash-sessions` | List all experiment sessions |
 | `/ds:dash-clear` | Archive completed experiments |
 | `/ds:help` | Show quick help |
+| `/ds:reload` | Re-inject plugin context (env state + instructions) into current session without touching history |
 
 ## Job Queue
 
