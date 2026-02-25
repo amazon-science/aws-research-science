@@ -275,10 +275,11 @@ To get the latest version:
 ```bash
 /plugin marketplace refresh coral
 /plugin update ds@coral
-/clear
 ```
 
-`/clear` re-triggers the session start hooks so Claude immediately picks up the updated plugin context — no restart needed.
+Script changes (queue behavior, dashboard, hooks) take effect immediately — no restart needed.
+
+If the update adds new commands or instructions that Claude needs to know about, run `/clear` to re-inject the plugin context into the current session.
 
 ### Method 2: Direct Plugin Directory (Development)
 
