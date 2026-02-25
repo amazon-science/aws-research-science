@@ -259,6 +259,16 @@ Then optionally:
 /output-style ds:Precise      # Enable thoughtful scientist mode
 ```
 
+### Updating the Plugin
+
+To get the latest version:
+```bash
+/plugin marketplace refresh coral
+/plugin update ds@coral
+```
+
+Then restart Claude Code to activate the changes.
+
 ### Method 2: Direct Plugin Directory (Development)
 
 For plugin development or offline use:
