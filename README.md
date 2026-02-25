@@ -279,7 +279,13 @@ To get the latest version:
 
 Script changes (queue behavior, dashboard, hooks) take effect immediately — no restart needed.
 
-If the update adds new commands or instructions that Claude needs to know about, run `/ds:reload` to re-inject the plugin context into the current session without touching conversation history.
+If the update adds new commands or instructions that Claude needs to know about, run `/ds:reload`:
+
+```bash
+/ds:reload
+```
+
+**Why `/ds:reload` exists:** Claude Code snapshots session hooks at startup and injects plugin context (GPU state, instructions, command reference) once at session start. Updating the plugin mid-session installs new script files immediately — so queue behavior, dashboard, and hook scripts all work right away — but Claude's *knowledge* of the plugin (what commands exist, how to use `--after`, etc.) comes from that startup snapshot and is now stale. `/ds:reload` re-runs the context injection directly, without `/clear` (which destroys conversation history) or `/compact` (which compresses it).
 
 ### Method 2: Direct Plugin Directory (Development)
 
