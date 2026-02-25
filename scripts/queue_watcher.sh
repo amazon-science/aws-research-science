@@ -219,9 +219,14 @@ while true; do
 
                 START_TIME=$(date +%s)
 
+                # Normalize --device cuda:X to --device cuda:0 — with CUDA_VISIBLE_DEVICES=N
+                # the assigned GPU is always logical device 0. Explicit physical indices like
+                # --device cuda:2 bypass CUDA_VISIBLE_DEVICES in some frameworks (lm-eval etc.)
+                LAUNCH_CMD=$(echo "$COMMAND" | sed 's/--device cuda:[0-9]*/--device cuda:0/g')
+
                 # CUDA_VISIBLE_DEVICES inlined in command string — ensures it's respected
                 # even by code using device_map={"": 0} or torch.cuda.set_device() internally
-                eval "CUDA_VISIBLE_DEVICES='$IDLE_GPU' $COMMAND" > "$JOB_WORKDIR/experiments/${EXP_NAME}_output.log" 2>&1
+                eval "CUDA_VISIBLE_DEVICES='$IDLE_GPU' $LAUNCH_CMD" > "$JOB_WORKDIR/experiments/${EXP_NAME}_output.log" 2>&1
                 EXIT_CODE=$?
 
                 END_TIME=$(date +%s)

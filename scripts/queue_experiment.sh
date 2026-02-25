@@ -174,7 +174,8 @@ fi
         export EXP_FILE='$EXP_FILE'
 
         START_TIME=\$(date +%s)
-        CUDA_VISIBLE_DEVICES='$IDLE_GPU' $COMMAND
+        LAUNCH_CMD=\$(echo '$COMMAND' | sed 's/--device cuda:[0-9]*/--device cuda:0/g')
+        CUDA_VISIBLE_DEVICES='$IDLE_GPU' \$LAUNCH_CMD
         EXIT_CODE=\$?
         END_TIME=\$(date +%s)
         RUNTIME=\$((END_TIME - START_TIME))
