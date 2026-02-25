@@ -37,16 +37,12 @@ if command -v nvidia-smi &> /dev/null; then
             mem_used=$(echo "$mem_used" | xargs)
             mem_total=$(echo "$mem_total" | xargs)
 
-            # Calculate memory percentage — clamp both to [0,100] against nvidia-smi glitches
+            # Calculate memory percentage
             if [ "$mem_total" -gt 0 ]; then
                 mem_pct=$((mem_used * 100 / mem_total))
             else
                 mem_pct=0
             fi
-            [ "$mem_pct" -gt 100 ] && mem_pct=100
-            [ "$mem_pct" -lt 0 ]   && mem_pct=0
-            [ "$util" -gt 100 ]    && util=100
-            [ "$util" -lt 0 ]      && util=0
 
             # Color codes: green (<30%), orange (30-70%), red (>70%)
             # Use the higher of memory or utilization for color
