@@ -85,10 +85,98 @@ while true; do
             continue
         fi
 
-        # Get next queued job
-        NEXT_JOB=$(jq -r '.queued[0] | @json' "$QUEUE_FILE")
+        # Migrate old queue files lacking completed array
+        jq 'if .completed == null then .completed = [] else . end' "$QUEUE_FILE" > "$QUEUE_FILE.tmp" && mv "$QUEUE_FILE.tmp" "$QUEUE_FILE"
 
-        if [ "$NEXT_JOB" = "null" ] || [ -z "$NEXT_JOB" ]; then
+        # Scan all queued jobs to find the first one that is eligible to run:
+        # - all depends_on entries are in the completed list
+        # - a suitable GPU is available (free, or inherited from dep)
+        NEXT_JOB=""
+        NEXT_JOB_IDX=""
+        IDLE_GPU=""
+
+        QUEUE_LEN=$(jq '.queued | length' "$QUEUE_FILE")
+        idx=0
+        while [ $idx -lt "$QUEUE_LEN" ]; do
+            CANDIDATE=$(jq -r --argjson idx "$idx" '.queued[$idx] | @json' "$QUEUE_FILE")
+            [ "$CANDIDATE" = "null" ] && { idx=$((idx+1)); continue; }
+
+            CAND_NAME=$(echo "$CANDIDATE" | jq -r '.name')
+            CAND_MEM=$(echo "$CANDIDATE" | jq -r '.gpu_mem_needed')
+            CAND_DEPS=$(echo "$CANDIDATE" | jq -r '.depends_on // [] | @json')
+
+            # Check if all dependencies are in the completed list
+            DEPS_MET=$(jq --argjson deps "$CAND_DEPS" '
+                if ($deps | length) == 0 then true
+                else
+                    ($deps | map(. as $d | any(.completed[]; .name == $d)) | all)
+                end
+            ' "$QUEUE_FILE")
+
+            if [ "$DEPS_MET" != "true" ]; then
+                idx=$((idx+1))
+                continue
+            fi
+
+            # Determine GPU: inherit from last completed dep, or find any free GPU
+            INHERITED_GPU=""
+            if [ "$CAND_DEPS" != "[]" ]; then
+                # Find GPU used by last-completed dependency
+                INHERITED_GPU=$(jq -r --argjson deps "$CAND_DEPS" '
+                    [.completed[] | select(.name as $n | $deps | index($n) != null)]
+                    | sort_by(.completed_at) | last | .gpu | tostring
+                ' "$QUEUE_FILE")
+
+                # Warn if deps ran on different GPUs
+                UNIQUE_DEP_GPUS=$(jq -r --argjson deps "$CAND_DEPS" '
+                    [.completed[] | select(.name as $n | $deps | index($n) != null) | .gpu] | unique | length
+                ' "$QUEUE_FILE")
+                if [ "$UNIQUE_DEP_GPUS" -gt 1 ]; then
+                    echo "⚠️  [$(date +'%H:%M:%S')] $CAND_NAME deps ran on different GPUs — inheriting GPU $INHERITED_GPU (last completed)"
+                fi
+
+                # Verify inherited GPU has enough free memory
+                GPU_FREE=$(nvidia-smi --query-gpu=memory.free --format=csv,noheader,nounits \
+                    --id="$INHERITED_GPU" 2>/dev/null | tr -d ' ' || echo "0")
+                if [ "$GPU_FREE" -lt "$CAND_MEM" ]; then
+                    echo "⚠️  [$(date +'%H:%M:%S')] Inherited GPU $INHERITED_GPU only has ${GPU_FREE}MB free (need ${CAND_MEM}MB) — waiting"
+                    idx=$((idx+1))
+                    continue
+                fi
+                IDLE_GPU="$INHERITED_GPU"
+            else
+                # No deps — find any free GPU
+                CANDIDATE_GPUS=$(nvidia-smi --query-gpu=index,utilization.gpu,memory.free --format=csv,noheader,nounits 2>/dev/null | \
+                    awk -F',' -v mem="$CAND_MEM" '$2 < 30 && $3 > mem {print $1}')
+
+                for gpu in $CANDIDATE_GPUS; do
+                    RUNNING_ON_GPU=$(jq -r --arg gpu "$gpu" '.running[] | select(.gpu == ($gpu | tonumber)) | .name' "$QUEUE_FILE" 2>/dev/null)
+                    if [ -z "$RUNNING_ON_GPU" ]; then
+                        IDLE_GPU=$gpu
+                        break
+                    fi
+                done
+
+                # If all GPUs have jobs, pick the one with fewest
+                if [ -z "$IDLE_GPU" ] && [ -n "$CANDIDATE_GPUS" ]; then
+                    IDLE_GPU=$(for gpu in $CANDIDATE_GPUS; do
+                        COUNT=$(jq -r --arg gpu "$gpu" '[.running[] | select(.gpu == ($gpu | tonumber))] | length' "$QUEUE_FILE")
+                        echo "$COUNT $gpu"
+                    done | sort -n | head -1 | awk '{print $2}')
+                fi
+            fi
+
+            if [ -n "$IDLE_GPU" ]; then
+                NEXT_JOB="$CANDIDATE"
+                NEXT_JOB_IDX="$idx"
+                GPU_MEM_NEEDED="$CAND_MEM"
+                break
+            fi
+
+            idx=$((idx+1))
+        done
+
+        if [ -z "$NEXT_JOB" ] || [ -z "$IDLE_GPU" ]; then
             release_lock
             sleep "$WATCH_INTERVAL"
             continue
@@ -96,56 +184,20 @@ while true; do
 
         EXP_NAME=$(echo "$NEXT_JOB" | jq -r '.name')
         COMMAND=$(echo "$NEXT_JOB" | jq -r '.command')
-        GPU_MEM_NEEDED=$(echo "$NEXT_JOB" | jq -r '.gpu_mem_needed')
         RETRY_COUNT=$(echo "$NEXT_JOB" | jq -r '.retry_count // 0')
+        DEPENDS_ON_JSON=$(echo "$NEXT_JOB" | jq -r '.depends_on // [] | @json')
         # Restore launch environment captured at queue time
         JOB_WORKDIR=$(echo "$NEXT_JOB" | jq -r '.workdir // ""')
         JOB_PYTHONPATH=$(echo "$NEXT_JOB" | jq -r '.pythonpath // ""')
         JOB_VIRTUAL_ENV=$(echo "$NEXT_JOB" | jq -r '.virtual_env // ""')
         JOB_CONDA_ENV=$(echo "$NEXT_JOB" | jq -r '.conda_env // ""')
-        # Fall back to current directory if workdir wasn't captured (old queue entries)
         [ -z "$JOB_WORKDIR" ] && JOB_WORKDIR="$PWD"
-
-        # Find best available GPU using round-robin + running job check
-        CANDIDATE_GPUS=$(nvidia-smi --query-gpu=index,utilization.gpu,memory.free --format=csv,noheader,nounits 2>/dev/null | \
-            awk -F',' -v mem="$GPU_MEM_NEEDED" '$2 < 30 && $3 > mem {print $1}')
-
-        if [ -z "$CANDIDATE_GPUS" ]; then
-            release_lock
-            sleep "$WATCH_INTERVAL"
-            continue
-        fi
-
-        # Filter out GPUs that already have running jobs
-        IDLE_GPU=""
-        for gpu in $CANDIDATE_GPUS; do
-            RUNNING_ON_GPU=$(jq -r --arg gpu "$gpu" '.running[] | select(.gpu == ($gpu | tonumber)) | .name' "$QUEUE_FILE" 2>/dev/null)
-
-            if [ -z "$RUNNING_ON_GPU" ]; then
-                # This GPU has no running jobs - use it!
-                IDLE_GPU=$gpu
-                break
-            fi
-        done
-
-        # If all GPUs have jobs, pick the GPU with fewest jobs
-        if [ -z "$IDLE_GPU" ]; then
-            IDLE_GPU=$(for gpu in $CANDIDATE_GPUS; do
-                COUNT=$(jq -r --arg gpu "$gpu" '[.running[] | select(.gpu == ($gpu | tonumber))] | length' "$QUEUE_FILE")
-                echo "$COUNT $gpu"
-            done | sort -n | head -1 | awk '{print $2}')
-        fi
-
-        if [ -z "$IDLE_GPU" ]; then
-            release_lock
-            sleep "$WATCH_INTERVAL"
-            continue
-        fi
 
             echo "🚀 [$(date +'%H:%M:%S')] Launching $EXP_NAME on GPU $IDLE_GPU..."
 
-            # Remove from queue
-            jq '.queued = .queued[1:]' "$QUEUE_FILE" > "$QUEUE_FILE.tmp" && mv "$QUEUE_FILE.tmp" "$QUEUE_FILE"
+            # Remove from queue by index (may not be queued[0] if earlier jobs have unmet deps)
+            jq --argjson idx "$NEXT_JOB_IDX" '.queued = (.queued[:$idx] + .queued[$idx+1:])' \
+                "$QUEUE_FILE" > "$QUEUE_FILE.tmp" && mv "$QUEUE_FILE.tmp" "$QUEUE_FILE"
 
             # Start experiment tracking
             EXP_FILE=$("$SCRIPT_DIR/start_experiment.sh" "$EXP_NAME" "Auto-launched from queue (attempt $((RETRY_COUNT + 1)))" "$IDLE_GPU")
@@ -183,9 +235,17 @@ while true; do
                 fi
 
                 if [ $EXIT_CODE -eq 0 ]; then
-                    # Success
+                    # Success — record in completed list so dependent jobs can check
                     "$SCRIPT_DIR/complete_experiment.sh" completed "$EXP_FILE"
                     echo "✅ [$(date +'%H:%M:%S')] $EXP_NAME completed successfully"
+                    if acquire_lock 10; then
+                        jq --arg name "$EXP_NAME" \
+                           --arg gpu "$IDLE_GPU" \
+                           --arg completed_at "$(date -Iseconds)" \
+                           '.completed += [{name: $name, gpu: ($gpu | tonumber), completed_at: $completed_at}]' \
+                           "$QUEUE_FILE" > "$QUEUE_FILE.tmp" && mv "$QUEUE_FILE.tmp" "$QUEUE_FILE"
+                        release_lock
+                    fi
                 elif [ $RUNTIME -lt 60 ]; then
                     # Fast failure - likely resource issue, retry
                     if [ $RETRY_COUNT -lt 3 ]; then

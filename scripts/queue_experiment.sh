@@ -7,14 +7,34 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 QUEUE_FILE="experiments/queue.json"
 LOCK_FILE="experiments/.queue.lock"
 
-# Parse arguments
+# Parse arguments — positional: name, command, [mem_mb]; named: --after <name> (repeatable)
 EXP_NAME="$1"
 COMMAND="$2"
-GPU_MEM_NEEDED="${3:-8000}"  # Default 8GB
+GPU_MEM_NEEDED="8000"
+DEPENDS_ON_JSON="[]"
+
+i=3
+while [ $i -le $# ]; do
+    arg="${!i}"
+    case "$arg" in
+        --after)
+            i=$((i+1))
+            dep="${!i}"
+            DEPENDS_ON_JSON=$(echo "$DEPENDS_ON_JSON" | jq --arg dep "$dep" '. += [$dep]')
+            ;;
+        *)
+            if [[ "$arg" =~ ^[0-9]+$ ]]; then
+                GPU_MEM_NEEDED="$arg"
+            fi
+            ;;
+    esac
+    i=$((i+1))
+done
 
 if [ -z "$EXP_NAME" ] || [ -z "$COMMAND" ]; then
-    echo "Usage: $0 <exp_name> <command> [gpu_mem_needed_mb]"
-    echo "Example: $0 exp_rank16 'python train.py --rank 16' 10000"
+    echo "Usage: $0 <exp_name> <command> [gpu_mem_needed_mb] [--after <dep_name>...]"
+    echo "Example: $0 exp_finetune 'python finetune.py' 10000 --after exp_pretrain"
+    echo "Example: $0 exp_eval 'python eval.py' 4000 --after exp_a --after exp_b"
     exit 1
 fi
 
@@ -27,8 +47,10 @@ QUEUE_CONDA_ENV="${CONDA_DEFAULT_ENV:-}"
 # Initialize queue file if doesn't exist
 mkdir -p experiments
 if [ ! -f "$QUEUE_FILE" ]; then
-    echo '{"queued": [], "running": []}' > "$QUEUE_FILE"
+    echo '{"queued": [], "running": [], "completed": []}' > "$QUEUE_FILE"
 fi
+# Migrate old queue files that lack completed array
+jq 'if .completed == null then .completed = [] else . end' "$QUEUE_FILE" > "$QUEUE_FILE.tmp" && mv "$QUEUE_FILE.tmp" "$QUEUE_FILE"
 
 # Create lock file if doesn't exist
 touch "$LOCK_FILE"
@@ -54,6 +76,7 @@ if [ $LOCK_ACQUIRED -eq 0 ]; then
        --arg pythonpath "$QUEUE_PYTHONPATH" \
        --arg virtual_env "$QUEUE_VIRTUAL_ENV" \
        --arg conda_env "$QUEUE_CONDA_ENV" \
+       --argjson depends_on "$DEPENDS_ON_JSON" \
        '.queued += [{
            name: $name,
            command: $cmd,
@@ -65,11 +88,46 @@ if [ $LOCK_ACQUIRED -eq 0 ]; then
            workdir: $workdir,
            pythonpath: $pythonpath,
            virtual_env: $virtual_env,
-           conda_env: $conda_env
+           conda_env: $conda_env,
+           depends_on: $depends_on
        }]' "$QUEUE_FILE" > "$QUEUE_FILE.tmp" && mv "$QUEUE_FILE.tmp" "$QUEUE_FILE"
     echo "✅ Added $EXP_NAME to queue (couldn't acquire lock)"
+    [ "$DEPENDS_ON_JSON" != "[]" ] && echo "🔗 Depends on: $(echo "$DEPENDS_ON_JSON" | jq -r 'join(", ")')"
     exit 0
 fi
+
+    # If this job has dependencies, always queue — watcher will launch when deps complete
+    if [ "$DEPENDS_ON_JSON" != "[]" ]; then
+        TIMESTAMP=$(date -Iseconds)
+        jq --arg name "$EXP_NAME" \
+           --arg cmd "$COMMAND" \
+           --arg mem "$GPU_MEM_NEEDED" \
+           --arg queued "$TIMESTAMP" \
+           --arg workdir "$QUEUE_WORKDIR" \
+           --arg pythonpath "$QUEUE_PYTHONPATH" \
+           --arg virtual_env "$QUEUE_VIRTUAL_ENV" \
+           --arg conda_env "$QUEUE_CONDA_ENV" \
+           --argjson depends_on "$DEPENDS_ON_JSON" \
+           '.queued += [{
+               name: $name,
+               command: $cmd,
+               gpu_mem_needed: ($mem | tonumber),
+               queued_at: $queued,
+               status: "waiting",
+               retry_count: 0,
+               notes: [],
+               workdir: $workdir,
+               pythonpath: $pythonpath,
+               virtual_env: $virtual_env,
+               conda_env: $conda_env,
+               depends_on: $depends_on
+           }]' "$QUEUE_FILE" > "$QUEUE_FILE.tmp" && mv "$QUEUE_FILE.tmp" "$QUEUE_FILE"
+        echo "✅ Added $EXP_NAME to queue (waiting for deps)"
+        echo "🔗 Depends on: $(echo "$DEPENDS_ON_JSON" | jq -r 'join(", ")')"
+        rmdir "$LOCK_FILE.dir" 2>/dev/null
+        trap - EXIT
+        exit 0
+    fi
 
     # Find best available GPU using round-robin + running job check
     IDLE_GPU=""
@@ -171,6 +229,7 @@ else
        --arg pythonpath "$QUEUE_PYTHONPATH" \
        --arg virtual_env "$QUEUE_VIRTUAL_ENV" \
        --arg conda_env "$QUEUE_CONDA_ENV" \
+       --argjson depends_on "$DEPENDS_ON_JSON" \
        '.queued += [{
            name: $name,
            command: $cmd,
@@ -182,7 +241,8 @@ else
            workdir: $workdir,
            pythonpath: $pythonpath,
            virtual_env: $virtual_env,
-           conda_env: $conda_env
+           conda_env: $conda_env,
+           depends_on: $depends_on
        }]' "$QUEUE_FILE" > "$QUEUE_FILE.tmp" && mv "$QUEUE_FILE.tmp" "$QUEUE_FILE"
 
     echo "✅ Added $EXP_NAME to queue"
