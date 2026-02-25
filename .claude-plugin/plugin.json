@@ -7,5 +7,6 @@
   },
   "keywords": ["ml", "experiment-tracking", "gpu-monitoring", "git-automation"],
   "commands": "./commands/",
-  "outputStyles": "./output-styles/"
+  "outputStyles": "./output-styles/",
+  "hooks": "./hooks/hooks.json"
 }
