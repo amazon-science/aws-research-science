@@ -98,6 +98,13 @@ while true; do
         COMMAND=$(echo "$NEXT_JOB" | jq -r '.command')
         GPU_MEM_NEEDED=$(echo "$NEXT_JOB" | jq -r '.gpu_mem_needed')
         RETRY_COUNT=$(echo "$NEXT_JOB" | jq -r '.retry_count // 0')
+        # Restore launch environment captured at queue time
+        JOB_WORKDIR=$(echo "$NEXT_JOB" | jq -r '.workdir // ""')
+        JOB_PYTHONPATH=$(echo "$NEXT_JOB" | jq -r '.pythonpath // ""')
+        JOB_VIRTUAL_ENV=$(echo "$NEXT_JOB" | jq -r '.virtual_env // ""')
+        JOB_CONDA_ENV=$(echo "$NEXT_JOB" | jq -r '.conda_env // ""')
+        # Fall back to current directory if workdir wasn't captured (old queue entries)
+        [ -z "$JOB_WORKDIR" ] && JOB_WORKDIR="$PWD"
 
         # Find best available GPU using round-robin + running job check
         CANDIDATE_GPUS=$(nvidia-smi --query-gpu=index,utilization.gpu,memory.free --format=csv,noheader,nounits 2>/dev/null | \
@@ -145,19 +152,24 @@ while true; do
 
             TIMESTAMP_START=$(date -Iseconds)
 
+            # Snapshot GPU memory before launch for post-launch verification
+            GPU_MEM_BEFORE=$(nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits \
+                --id="$IDLE_GPU" 2>/dev/null | tr -d ' ' || echo "0")
+
             # Launch job monitor in background
             (
-                # Log the actual PID of this subshell
-                ACTUAL_PID=$$
-
-                cd "$PWD"
-                export CUDA_VISIBLE_DEVICES="$IDLE_GPU"
+                # Restore launch environment captured at queue time
+                cd "$JOB_WORKDIR"
+                [ -n "$JOB_PYTHONPATH" ] && export PYTHONPATH="$JOB_PYTHONPATH"
+                [ -n "$JOB_VIRTUAL_ENV" ] && export VIRTUAL_ENV="$JOB_VIRTUAL_ENV"
+                [ -n "$JOB_CONDA_ENV" ]   && export CONDA_DEFAULT_ENV="$JOB_CONDA_ENV"
                 export EXP_FILE="$EXP_FILE"
 
                 START_TIME=$(date +%s)
 
-                # Run the command
-                eval "$COMMAND" > "experiments/${EXP_NAME}_output.log" 2>&1
+                # CUDA_VISIBLE_DEVICES inlined in command string — ensures it's respected
+                # even by code using device_map={"": 0} or torch.cuda.set_device() internally
+                eval "CUDA_VISIBLE_DEVICES='$IDLE_GPU' $COMMAND" > "$JOB_WORKDIR/experiments/${EXP_NAME}_output.log" 2>&1
                 EXIT_CODE=$?
 
                 END_TIME=$(date +%s)
@@ -239,11 +251,26 @@ while true; do
 
         echo "✅ [$(date +'%H:%M:%S')] Launched $EXP_NAME on GPU $IDLE_GPU (PID: $JOB_PID)"
 
-        # Hold lock briefly to ensure queue state is updated
-        echo "⏸️  [$(date +'%H:%M:%S')] Holding lock for 3s to update queue state..."
-        sleep 3
+        # Hold lock for 45s to cover model loading window — prevents the next queued job
+        # from seeing this GPU as free before its VRAM is actually claimed
+        echo "⏸️  [$(date +'%H:%M:%S')] Holding lock for 45s (model loading window)..."
+        sleep 45
 
         release_lock
+
+        # Post-launch memory verification: check that the assigned GPU actually got used
+        # Runs outside the lock — just diagnostic, doesn't block further launches
+        GPU_MEM_AFTER=$(nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits \
+            --id="$IDLE_GPU" 2>/dev/null | tr -d ' ' || echo "0")
+        GPU_MEM_DELTA=$(( GPU_MEM_AFTER - GPU_MEM_BEFORE ))
+        if [ "$GPU_MEM_DELTA" -lt 500 ]; then
+            echo "⚠️  [$(date +'%H:%M:%S')] GPU $IDLE_GPU memory delta only ${GPU_MEM_DELTA}MB after 45s" \
+                 "— $EXP_NAME may not be using the assigned GPU (CUDA_VISIBLE_DEVICES ignored?)" \
+                 >> "experiments/${EXP_NAME}_output.log"
+            echo "⚠️  [$(date +'%H:%M:%S')] WARNING: $EXP_NAME shows <500MB VRAM delta on GPU $IDLE_GPU — check CUDA device assignment"
+        else
+            echo "✅ [$(date +'%H:%M:%S')] GPU $IDLE_GPU VRAM +${GPU_MEM_DELTA}MB confirmed for $EXP_NAME"
+        fi
     fi
 
     sleep "$WATCH_INTERVAL"

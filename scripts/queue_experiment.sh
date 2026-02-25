@@ -18,6 +18,12 @@ if [ -z "$EXP_NAME" ] || [ -z "$COMMAND" ]; then
     exit 1
 fi
 
+# Capture launch environment at queue time so the watcher can reproduce it
+QUEUE_WORKDIR="$PWD"
+QUEUE_PYTHONPATH="${PYTHONPATH:-}"
+QUEUE_VIRTUAL_ENV="${VIRTUAL_ENV:-}"
+QUEUE_CONDA_ENV="${CONDA_DEFAULT_ENV:-}"
+
 # Initialize queue file if doesn't exist
 mkdir -p experiments
 if [ ! -f "$QUEUE_FILE" ]; then
@@ -44,6 +50,10 @@ if [ $LOCK_ACQUIRED -eq 0 ]; then
        --arg cmd "$COMMAND" \
        --arg mem "$GPU_MEM_NEEDED" \
        --arg queued "$(date -Iseconds)" \
+       --arg workdir "$QUEUE_WORKDIR" \
+       --arg pythonpath "$QUEUE_PYTHONPATH" \
+       --arg virtual_env "$QUEUE_VIRTUAL_ENV" \
+       --arg conda_env "$QUEUE_CONDA_ENV" \
        '.queued += [{
            name: $name,
            command: $cmd,
@@ -51,7 +61,11 @@ if [ $LOCK_ACQUIRED -eq 0 ]; then
            queued_at: $queued,
            status: "waiting",
            retry_count: 0,
-           notes: []
+           notes: [],
+           workdir: $workdir,
+           pythonpath: $pythonpath,
+           virtual_env: $virtual_env,
+           conda_env: $conda_env
        }]' "$QUEUE_FILE" > "$QUEUE_FILE.tmp" && mv "$QUEUE_FILE.tmp" "$QUEUE_FILE"
     echo "✅ Added $EXP_NAME to queue (couldn't acquire lock)"
     exit 0
@@ -92,14 +106,17 @@ fi
         # Start experiment tracking
         EXP_FILE=$("$SCRIPT_DIR/start_experiment.sh" "$EXP_NAME" "Auto-launched from queue" "$IDLE_GPU")
 
-    # Launch in background
+    # Launch in background — CUDA_VISIBLE_DEVICES inlined in command string to ensure
+    # it's respected even by code that uses device_map={"": 0} or set_device() internally
     nohup bash -c "
-        cd '$PWD'
-        export CUDA_VISIBLE_DEVICES='$IDLE_GPU'
+        cd '$QUEUE_WORKDIR'
+        export PYTHONPATH='$QUEUE_PYTHONPATH'
+        export VIRTUAL_ENV='$QUEUE_VIRTUAL_ENV'
+        export CONDA_DEFAULT_ENV='$QUEUE_CONDA_ENV'
         export EXP_FILE='$EXP_FILE'
 
         START_TIME=\$(date +%s)
-        $COMMAND
+        CUDA_VISIBLE_DEVICES='$IDLE_GPU' $COMMAND
         EXIT_CODE=\$?
         END_TIME=\$(date +%s)
         RUNTIME=\$((END_TIME - START_TIME))
@@ -134,9 +151,10 @@ fi
         echo "📊 Experiment file: $EXP_FILE"
         echo "📝 Output log: experiments/${EXP_NAME}_output.log"
 
-        # Hold lock briefly to update queue state
-        echo "⏸️  Holding lock for 3s to ensure queue state is updated..."
-        sleep 3
+        # Hold lock for 45s to cover model loading window — prevents the next job
+        # from seeing this GPU as free before its VRAM is actually claimed
+        echo "⏸️  Holding lock for 45s (model loading window)..."
+        sleep 45
 
         # Release lock
         rmdir "$LOCK_FILE.dir" 2>/dev/null
@@ -149,6 +167,10 @@ else
        --arg cmd "$COMMAND" \
        --arg mem "$GPU_MEM_NEEDED" \
        --arg queued "$TIMESTAMP" \
+       --arg workdir "$QUEUE_WORKDIR" \
+       --arg pythonpath "$QUEUE_PYTHONPATH" \
+       --arg virtual_env "$QUEUE_VIRTUAL_ENV" \
+       --arg conda_env "$QUEUE_CONDA_ENV" \
        '.queued += [{
            name: $name,
            command: $cmd,
@@ -156,7 +178,11 @@ else
            queued_at: $queued,
            status: "waiting",
            retry_count: 0,
-           notes: []
+           notes: [],
+           workdir: $workdir,
+           pythonpath: $pythonpath,
+           virtual_env: $virtual_env,
+           conda_env: $conda_env
        }]' "$QUEUE_FILE" > "$QUEUE_FILE.tmp" && mv "$QUEUE_FILE.tmp" "$QUEUE_FILE"
 
     echo "✅ Added $EXP_NAME to queue"
