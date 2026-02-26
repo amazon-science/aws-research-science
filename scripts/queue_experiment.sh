@@ -175,7 +175,7 @@ fi
 
         START_TIME=\$(date +%s)
         LAUNCH_CMD=\$(echo '$COMMAND' | sed 's/--device cuda:[0-9]*/--device cuda:0/g')
-        CUDA_VISIBLE_DEVICES='$IDLE_GPU' \$LAUNCH_CMD
+        CUDA_VISIBLE_DEVICES=$IDLE_GPU \$LAUNCH_CMD
         EXIT_CODE=\$?
         END_TIME=\$(date +%s)
         RUNTIME=\$((END_TIME - START_TIME))
