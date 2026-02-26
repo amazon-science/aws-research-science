@@ -78,16 +78,18 @@ report('train_loss', loss)
 report('val_accuracy', val_acc)
 ```
 
-**1b. Fix any unconditional `CUDA_VISIBLE_DEVICES` override.** Many scripts set the GPU device from a `--device` argument, which overwrites the plugin's GPU assignment. Find any pattern like:
+**1b. Fix any unconditional `CUDA_VISIBLE_DEVICES` override — this is the critical GPU assignment fix.**
 
+The plugin sets `CUDA_VISIBLE_DEVICES=N` before launch so the job runs on the assigned GPU. However, many training scripts unconditionally overwrite this from their `--device` argument, defeating the assignment entirely. **The plugin's queue-time sed normalization (`--device cuda:X` → `--device cuda:0`) is only a partial safeguard — it does not prevent this override.** The script guard is required.
+
+Find any pattern like:
 ```python
-# BAD — overwrites plugin's GPU assignment:
+# BAD — silently overwrites plugin's CUDA_VISIBLE_DEVICES=N with 0:
 gpu_id = args.device.split(":")[-1]
 os.environ["CUDA_VISIBLE_DEVICES"] = gpu_id
 ```
 
-And change it to only set if not already assigned by the plugin:
-
+Change it to:
 ```python
 # GOOD — respects plugin's GPU assignment:
 if "CUDA_VISIBLE_DEVICES" not in os.environ:
@@ -95,7 +97,13 @@ if "CUDA_VISIBLE_DEVICES" not in os.environ:
     os.environ["CUDA_VISIBLE_DEVICES"] = gpu_id
 ```
 
-Also look for `torch.cuda.set_device()` calls and wrap them with the same guard.
+Also find and wrap any `torch.cuda.set_device()` calls with the same guard:
+```python
+if "CUDA_VISIBLE_DEVICES" not in os.environ:
+    torch.cuda.set_device(args.device)
+```
+
+**This guard is required for GPU assignment to work correctly. Do not skip it.**
 
 If you cannot find the training script or it has no logging, ask the user before queuing.
 
