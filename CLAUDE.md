@@ -60,7 +60,9 @@ Key behaviors:
 When a user asks to run, train, or queue any experiment, you MUST follow these steps in order. Do not skip any step.
 
 ### Step 1 — Instrument the training script
-Before queuing, add `report_metric.sh` calls to the training script so metrics appear in `/ds:dash`. Find every place that logs or prints a metric and add:
+Before queuing, make two changes to the training script:
+
+**1a. Add `report_metric.sh` calls** so metrics appear in `/ds:dash`. Find every place that logs or prints a metric and add:
 
 ```python
 import subprocess
@@ -75,6 +77,25 @@ def note(text):
 report('train_loss', loss)
 report('val_accuracy', val_acc)
 ```
+
+**1b. Fix any unconditional `CUDA_VISIBLE_DEVICES` override.** Many scripts set the GPU device from a `--device` argument, which overwrites the plugin's GPU assignment. Find any pattern like:
+
+```python
+# BAD — overwrites plugin's GPU assignment:
+gpu_id = args.device.split(":")[-1]
+os.environ["CUDA_VISIBLE_DEVICES"] = gpu_id
+```
+
+And change it to only set if not already assigned by the plugin:
+
+```python
+# GOOD — respects plugin's GPU assignment:
+if "CUDA_VISIBLE_DEVICES" not in os.environ:
+    gpu_id = args.device.split(":")[-1]
+    os.environ["CUDA_VISIBLE_DEVICES"] = gpu_id
+```
+
+Also look for `torch.cuda.set_device()` calls and wrap them with the same guard.
 
 If you cannot find the training script or it has no logging, ask the user before queuing.
 
