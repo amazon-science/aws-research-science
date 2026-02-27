@@ -264,7 +264,7 @@ def generate_compact_dashboard():
 
     # ── Queue ────────────────────────────────────────────────────────────────
     if queue and (queue['running'] or queue['queued']):
-        q_table = Table(box=box.SIMPLE_HEAD, padding=(0, 1), header_style="bold yellow",
+        q_table = Table(box=box.SIMPLE_HEAD, padding=(0, 1), header_style="bold",
                         show_edge=False)
         q_table.add_column("Job", min_width=26)
         q_table.add_column("GPU", justify="center", min_width=5)
@@ -289,13 +289,13 @@ def generate_compact_dashboard():
                 "",
             )
 
-        console.print(Rule("[bold yellow]Queue[/bold yellow]", style="yellow", align="left"))
+        console.print(Rule("Queue", style="dim", align="left"))
         console.print(q_table)
         console.print()
 
     # ── GPUs ─────────────────────────────────────────────────────────────────
     if gpus:
-        g_table = Table(box=box.SIMPLE_HEAD, padding=(0, 1), header_style="bold magenta",
+        g_table = Table(box=box.SIMPLE_HEAD, padding=(0, 1), header_style="bold",
                         show_edge=False)
         g_table.add_column("#", style="cyan", justify="right", min_width=2)
         g_table.add_column("Name", min_width=10)
@@ -316,13 +316,13 @@ def generate_compact_dashboard():
                 f"[{temp_col}]{gpu['temp']}°C[/{temp_col}]",
             )
 
-        console.print(Rule("[bold magenta]GPUs[/bold magenta]", style="magenta", align="left"))
+        console.print(Rule("GPUs", style="dim", align="left"))
         console.print(g_table)
         console.print()
 
     # ── Processes ─────────────────────────────────────────────────────────────
     if processes:
-        p_table = Table(box=box.SIMPLE_HEAD, padding=(0, 1), header_style="bold blue",
+        p_table = Table(box=box.SIMPLE_HEAD, padding=(0, 1), header_style="bold",
                         show_edge=False)
         p_table.add_column("PID", style="cyan", min_width=7)
         p_table.add_column("CPU", justify="right", min_width=5)
@@ -340,14 +340,14 @@ def generate_compact_dashboard():
                 cmd,
             )
 
-        console.print(Rule("[bold blue]Processes[/bold blue]", style="blue", align="left"))
+        console.print(Rule("Processes", style="dim", align="left"))
         console.print(p_table)
         console.print()
 
     # ── Experiments ───────────────────────────────────────────────────────────
     if experiments:
         experiments = sorted(experiments, key=lambda x: x.get('value') or 0, reverse=True)
-        e_table = Table(box=box.SIMPLE_HEAD, padding=(0, 1), header_style="bold cyan",
+        e_table = Table(box=box.SIMPLE_HEAD, padding=(0, 1), header_style="bold",
                         show_edge=False)
         e_table.add_column("Experiment", min_width=26)
         e_table.add_column("", min_width=2)
@@ -374,10 +374,10 @@ def generate_compact_dashboard():
                 m_str,
             )
 
-        console.print(Rule("[bold cyan]Experiments[/bold cyan]", style="cyan", align="left"))
+        console.print(Rule("Experiments", style="dim", align="left"))
         console.print(e_table)
     else:
-        console.print(Rule("[bold cyan]Experiments[/bold cyan]", style="cyan", align="left"))
+        console.print(Rule("Experiments", style="dim", align="left"))
         console.print("[dim]  No experiments tracked yet[/dim]")
 
 def main():

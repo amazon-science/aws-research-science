@@ -1,6 +1,6 @@
 {
   "name": "ds",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Simple data science plugin for experimentation on GPUs",
   "author": {
     "name": "Shreyas Subramanian"
