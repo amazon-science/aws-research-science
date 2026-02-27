@@ -1,100 +1,48 @@
 #!/bin/bash
-# List all experiments with their status and results
+# List experiments from JSON files written by the queue system
 
-set -e
+QUEUE_FILE="experiments/queue.json"
 
-echo "🔬 ALL EXPERIMENTS"
-echo "═══════════════════════════════════════════════════════════════════"
-echo ""
+# Collect all experiment JSON files, newest first
+EXP_FILES=$(find experiments -name "exp_*.json" 2>/dev/null | xargs ls -t 2>/dev/null)
 
-# Get all experiment branches
-experiment_branches=$(git branch | grep "exp/" | sed 's/^\*//' | xargs)
-
-if [ -z "$experiment_branches" ]; then
+if [ -z "$EXP_FILES" ]; then
     echo "No experiments found."
     echo ""
-    echo "💡 Start an experiment:"
-    echo "   ./scripts/auto_experiment_start.sh <name> <description>"
+    echo "💡 Queue an experiment:"
+    echo "   ./scripts/queue_experiment.sh <name> 'python train.py' [gpu_mem_mb]"
     exit 0
 fi
 
-for branch in $experiment_branches; do
-    branch=$(echo "$branch" | xargs)
+echo "📊 EXPERIMENTS"
+echo "──────────────────────────────────────────────────────────────────"
 
-    # Get metrics from branch
-    metrics=$(git show "$branch:experiments/metrics.yaml" 2>/dev/null) || continue
+while IFS= read -r exp_file; do
+    [ -f "$exp_file" ] || continue
 
-    # Parse key info
-    exp_name=$(echo "$metrics" | grep "^experiment:" | head -1 | awk '{print $2}')
-    status=$(echo "$metrics" | grep "^status:" | head -1 | awk '{print $2}')
-    primary_value=$(echo "$metrics" | grep -A 1 "^metrics:" | grep "value:" | awk '{print $2}')
+    name=$(jq -r '.name // "unknown"' "$exp_file" 2>/dev/null)
+    status=$(jq -r '.status // "unknown"' "$exp_file" 2>/dev/null)
+    gpu=$(jq -r '.gpu // "?"' "$exp_file" 2>/dev/null)
+    start=$(jq -r '.start_time // ""' "$exp_file" 2>/dev/null | cut -c1-16 | tr 'T' ' ')
+    metrics=$(jq -r '.metrics // {} | to_entries | map("\(.key)=\(.value)") | join("  ")' "$exp_file" 2>/dev/null)
 
-    # Get date from params
-    params=$(git show "$branch:experiments/params.yaml" 2>/dev/null) || continue
-    exp_date=$(echo "$params" | grep "  date:" | head -1 | awk '{print $2}')
-
-    # Status emoji
     case "$status" in
-        completed)
-            status_emoji="✅"
-            ;;
-        training|in_progress)
-            status_emoji="🔄"
-            ;;
-        failed)
-            status_emoji="❌"
-            ;;
-        configured|not_started)
-            status_emoji="⏸️ "
-            ;;
-        *)
-            status_emoji="❓"
-            ;;
+        completed) emoji="✅" ;;
+        running)   emoji="🔄" ;;
+        failed)    emoji="❌" ;;
+        *)         emoji="⏸️ " ;;
     esac
 
-    # Print experiment info
-    echo "$status_emoji $branch"
-    echo "   Name: $exp_name"
-    echo "   Date: $exp_date"
-    echo "   Status: $status"
-    echo "   Primary Metric: ${primary_value:-N/A}"
-    echo ""
-done
+    printf "%s %-28s GPU:%-2s  %s\n" "$emoji" "$name" "$gpu" "$start"
+    [ -n "$metrics" ] && echo "     $metrics"
 
-echo "═══════════════════════════════════════════════════════════════════"
-echo "🏷️  TAGGED EXPERIMENTS"
-echo "═══════════════════════════════════════════════════════════════════"
-echo ""
+done <<< "$EXP_FILES"
 
-tags=$(git tag -l)
-if [ -z "$tags" ]; then
-    echo "No tagged experiments yet."
+# Queue summary from queue.json
+if [ -f "$QUEUE_FILE" ]; then
+    running=$(jq '.running | length' "$QUEUE_FILE" 2>/dev/null || echo 0)
+    queued=$(jq '.queued | length' "$QUEUE_FILE" 2>/dev/null || echo 0)
     echo ""
-    echo "💡 Tag a successful experiment:"
-    echo "   ./scripts/auto_experiment_tag.sh <exp_name> <tag> <message>"
-else
-    git tag -l -n1 | while read -r tag message; do
-        echo "📌 $tag"
-        echo "   $message"
-        echo ""
-    done
+    echo "──────────────────────────────────────────────────────────────────"
+    printf "🔄 Running: %s   ⏳ Queued: %s   →  /ds:queue for details\n" "$running" "$queued"
 fi
-
-echo "═══════════════════════════════════════════════════════════════════"
-echo "📊 QUICK ACTIONS"
-echo "═══════════════════════════════════════════════════════════════════"
-echo ""
-echo "View results table:"
-echo "   cat RESULTS_TABLE.md"
-echo ""
-echo "Compare experiments:"
-echo "   ./scripts/compare_experiments.sh exp1_name exp2_name"
-echo ""
-echo "View experiment details:"
-echo "   git checkout exp/<name>"
-echo "   cat experiments/params.yaml"
-echo "   cat experiments/metrics.yaml"
-echo ""
-echo "Start new experiment:"
-echo "   ./scripts/auto_experiment_start.sh <name> <description>"
-echo ""
