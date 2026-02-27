@@ -244,21 +244,21 @@ def generate_compact_dashboard():
     # ── Header ──────────────────────────────────────────────────────────────
     now = datetime.now().strftime("%H:%M:%S")
     header = Text()
-    header.append("🔥 ML Dashboard", style="bold cyan")
+    header.append("ML Dashboard", style="bold")
     header.append(f"  {now}", style="dim")
     if results:
-        header.append(f"   📊 {results['total']} exp ", style="bold white")
-        header.append(f"✅{results['completed']} ", style="green")
-        header.append(f"❌{results['failed']} ", style="red")
-        header.append(f"🔄{results.get('running',0)}", style="yellow")
+        header.append(f"   {results['total']} exp ", style="bold")
+        header.append(f"+{results['completed']} ", style="green")
+        header.append(f"-{results['failed']} ", style="red")
+        header.append(f"~{results.get('running',0)}", style="yellow")
     if disk:
         pct = disk['percent']
         col = "red" if pct > 90 else "yellow" if pct > 75 else "dim"
-        header.append(f"   💾 {disk['used']}/{disk['total']}", style=col)
+        header.append(f"   disk:{disk['used']}/{disk['total']}", style=col)
     if queue:
         r, q = len(queue['running']), len(queue['queued'])
         if r or q:
-            header.append(f"   ⚡{r} running  ⏳{q} queued", style="cyan")
+            header.append(f"   {r} running  {q} queued", style="cyan")
     console.print(header)
     console.print()
 
