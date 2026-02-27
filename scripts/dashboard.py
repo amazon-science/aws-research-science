@@ -17,7 +17,6 @@ from rich.text import Text
 from rich.panel import Panel
 from rich.columns import Columns
 from rich import box
-from rich.rule import Rule
 
 import shutil
 _tw = shutil.get_terminal_size(fallback=(100, 40)).columns
@@ -289,9 +288,8 @@ def generate_compact_dashboard():
                 "",
             )
 
-        console.print(Rule("Queue", style="dim", align="left"))
+        console.print("[bold]Queue[/bold]")
         console.print(q_table)
-        console.print()
 
     # ── GPUs ─────────────────────────────────────────────────────────────────
     if gpus:
@@ -316,9 +314,8 @@ def generate_compact_dashboard():
                 f"[{temp_col}]{gpu['temp']}°C[/{temp_col}]",
             )
 
-        console.print(Rule("GPUs", style="dim", align="left"))
+        console.print("[bold]GPUs[/bold]")
         console.print(g_table)
-        console.print()
 
     # ── Processes ─────────────────────────────────────────────────────────────
     if processes:
@@ -340,9 +337,8 @@ def generate_compact_dashboard():
                 cmd,
             )
 
-        console.print(Rule("Processes", style="dim", align="left"))
+        console.print("[bold]Processes[/bold]")
         console.print(p_table)
-        console.print()
 
     # ── Experiments ───────────────────────────────────────────────────────────
     if experiments:
@@ -356,8 +352,8 @@ def generate_compact_dashboard():
 
         for exp in experiments[:5]:
             status = exp.get('status', '')
-            icon = {"completed": "[green]✅[/green]", "running": "[yellow]🔄[/yellow]",
-                    "failed": "[red]❌[/red]"}.get(status, "[dim]·[/dim]")
+            icon = {"completed": "[green]ok[/green]", "running": "[yellow]~[/yellow]",
+                    "failed": "[red]err[/red]"}.get(status, "[dim]-[/dim]")
 
             value = exp.get('value', 0)
             metric = exp.get('metric', '')
@@ -374,10 +370,10 @@ def generate_compact_dashboard():
                 m_str,
             )
 
-        console.print(Rule("Experiments", style="dim", align="left"))
+        console.print("[bold]Experiments[/bold]")
         console.print(e_table)
     else:
-        console.print(Rule("Experiments", style="dim", align="left"))
+        console.print("[bold]Experiments[/bold]")
         console.print("[dim]  No experiments tracked yet[/dim]")
 
 def main():
