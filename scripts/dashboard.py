@@ -152,7 +152,8 @@ def get_results_summary():
         import json
         import glob
 
-        exp_files = glob.glob("experiments/exp_*.json")
+        exp_files = glob.glob("experiments/**/exp_*.json", recursive=True) + \
+                    glob.glob("experiments/exp_*.json")
         if not exp_files:
             return None
 
