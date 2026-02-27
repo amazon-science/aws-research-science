@@ -23,6 +23,7 @@ All `/ds:*` commands are handled instantly by a hook — they run scripts direct
 | `/ds:dash-clear` | Archive completed experiments |
 | `/ds:help` | Show quick help |
 | `/ds:reload` | Re-inject plugin context (env state + instructions) into current session without touching history |
+| `/ds:queue-clean` | Remove stale dead-process entries from running queue so blocked GPUs show as free |
 
 ## Job Queue
 

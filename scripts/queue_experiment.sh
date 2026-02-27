@@ -57,7 +57,7 @@ touch "$LOCK_FILE"
 
 # Use directory-based locking (portable, works without flock)
 LOCK_ACQUIRED=0
-for attempt in {1..30}; do
+for attempt in {1..120}; do
     if mkdir "$LOCK_FILE.dir" 2>/dev/null; then
         LOCK_ACQUIRED=1
         trap "rmdir '$LOCK_FILE.dir' 2>/dev/null" EXIT
@@ -67,7 +67,7 @@ for attempt in {1..30}; do
 done
 
 if [ $LOCK_ACQUIRED -eq 0 ]; then
-    echo "⚠️  Could not acquire lock after 15 seconds, adding to queue instead..."
+    echo "⚠️  Could not acquire lock after 60 seconds, adding to queue instead..."
     jq --arg name "$EXP_NAME" \
        --arg cmd "$COMMAND" \
        --arg mem "$GPU_MEM_NEEDED" \

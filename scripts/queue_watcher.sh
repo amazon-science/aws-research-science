@@ -11,6 +11,42 @@ echo "🔄 Queue watcher started (checking every ${WATCH_INTERVAL}s)"
 # Ensure experiments directory exists
 mkdir -p experiments
 
+# Seed completed[] from experiment JSON files so --after chains survive
+# watcher restarts and cross-session scenarios. Scans all session experiment
+# files for status:completed and adds them to queue.json completed[] if missing.
+seed_completed_from_experiments() {
+    [ -f "$QUEUE_FILE" ] || return
+    jq 'if .completed == null then .completed = [] else . end' "$QUEUE_FILE" > "$QUEUE_FILE.tmp" && mv "$QUEUE_FILE.tmp" "$QUEUE_FILE"
+
+    local seeded=0
+    for exp_file in experiments/session-*/exp_*.json experiments/exp_*.json; do
+        [ -f "$exp_file" ] || continue
+        status=$(jq -r '.status // ""' "$exp_file" 2>/dev/null)
+        [ "$status" = "completed" ] || continue
+
+        name=$(jq -r '.name // ""' "$exp_file" 2>/dev/null)
+        gpu=$(jq -r '.gpu // 0' "$exp_file" 2>/dev/null)
+        completed_at=$(jq -r '.end_time // ""' "$exp_file" 2>/dev/null)
+        [ -z "$name" ] && continue
+
+        # Add only if not already in completed[]
+        already=$(jq -r --arg name "$name" '[.completed[] | select(.name == $name)] | length' "$QUEUE_FILE" 2>/dev/null || echo "0")
+        if [ "$already" = "0" ]; then
+            jq --arg name "$name" \
+               --arg gpu "${gpu:-0}" \
+               --arg completed_at "$completed_at" \
+               '.completed += [{name: $name, gpu: ($gpu | tonumber), completed_at: $completed_at}]' \
+               "$QUEUE_FILE" > "$QUEUE_FILE.tmp" && mv "$QUEUE_FILE.tmp" "$QUEUE_FILE"
+            seeded=$((seeded + 1))
+        fi
+    done
+    [ $seeded -gt 0 ] && echo "📋 [$(date +'%H:%M:%S')] Seeded $seeded completed experiments into queue.json"
+}
+
+if [ -f "$QUEUE_FILE" ]; then
+    seed_completed_from_experiments
+fi
+
 # Portable locking functions (works without flock)
 acquire_lock() {
     local max_wait=${1:-10}
@@ -36,36 +72,33 @@ while true; do
         continue
     fi
 
-    # Health check: Remove dead processes from running queue
-    if acquire_lock 5; then
-        RUNNING_JOBS=$(jq -r '.running[] | @json' "$QUEUE_FILE" 2>/dev/null)
+    # Health check: find dead PIDs without holding the lock (lock may be held
+    # for 45s after a launch — we must not skip cleanup during that window)
+    RUNNING_JOBS=$(jq -r '.running[] | @json' "$QUEUE_FILE" 2>/dev/null)
+    DEAD_JOBS=()
+    if [ -n "$RUNNING_JOBS" ]; then
+        while IFS= read -r job; do
+            [ -z "$job" ] || [ "$job" = "null" ] && continue
+            PID=$(echo "$job" | jq -r '.pid')
+            NAME=$(echo "$job" | jq -r '.name')
+            if ! kill -0 "$PID" 2>/dev/null; then
+                echo "🧹 [$(date +'%H:%M:%S')] Dead job detected: $NAME (PID $PID)"
+                DEAD_JOBS+=("$NAME")
+            fi
+        done <<< "$RUNNING_JOBS"
+    fi
 
-        if [ -n "$RUNNING_JOBS" ]; then
-            DEAD_JOBS=()
-            while IFS= read -r job; do
-                if [ -z "$job" ] || [ "$job" = "null" ]; then
-                    continue
-                fi
-
-                PID=$(echo "$job" | jq -r '.pid')
-                NAME=$(echo "$job" | jq -r '.name')
-
-                # Check if process is still alive
-                if ! kill -0 "$PID" 2>/dev/null; then
-                    echo "🧹 [$(date +'%H:%M:%S')] Cleaning up dead job: $NAME (PID $PID)"
-                    DEAD_JOBS+=("$NAME")
-                fi
-            done <<< "$RUNNING_JOBS"
-
-            # Remove all dead jobs from running queue
+    # Only acquire lock to write the removals
+    if [ ${#DEAD_JOBS[@]} -gt 0 ]; then
+        if acquire_lock 10; then
             for NAME in "${DEAD_JOBS[@]}"; do
+                echo "🧹 [$(date +'%H:%M:%S')] Removing dead job from queue: $NAME"
                 jq --arg name "$NAME" \
                    '.running = [.running[] | select(.name != $name)]' \
                    "$QUEUE_FILE" > "$QUEUE_FILE.tmp" && mv "$QUEUE_FILE.tmp" "$QUEUE_FILE"
             done
+            release_lock
         fi
-
-        release_lock
     fi
 
     # Get queued jobs
