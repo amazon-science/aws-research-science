@@ -19,7 +19,9 @@ from rich.columns import Columns
 from rich import box
 from rich.rule import Rule
 
-console = Console()
+import shutil
+_tw = shutil.get_terminal_size(fallback=(100, 40)).columns
+console = Console(width=_tw, highlight=False, force_terminal=True)
 
 def get_gpu_status():
     """Get GPU utilization and memory"""
@@ -239,28 +241,25 @@ def generate_compact_dashboard():
     queue = get_queue_status()
 
     # ── Header ──────────────────────────────────────────────────────────────
-    now = datetime.now().strftime("%H:%M:%S  %b %d")
-    summary = Text()
+    now = datetime.now().strftime("%H:%M:%S")
+    header = Text()
+    header.append("🔥 ML Dashboard", style="bold cyan")
+    header.append(f"  {now}", style="dim")
     if results:
-        summary.append(f"  {results['total']} experiments  ", style="bold white")
-        summary.append(f"✅ {results['completed']}  ", style="green")
-        summary.append(f"❌ {results['failed']}  ", style="red")
-        summary.append(f"🔄 {results.get('running', 0)}", style="yellow")
+        header.append(f"   📊 {results['total']} exp ", style="bold white")
+        header.append(f"✅{results['completed']} ", style="green")
+        header.append(f"❌{results['failed']} ", style="red")
+        header.append(f"🔄{results.get('running',0)}", style="yellow")
     if disk:
         pct = disk['percent']
         col = "red" if pct > 90 else "yellow" if pct > 75 else "dim"
-        summary.append(f"   💾 {disk['used']}/{disk['total']}", style=col)
+        header.append(f"   💾 {disk['used']}/{disk['total']}", style=col)
     if queue:
         r, q = len(queue['running']), len(queue['queued'])
         if r or q:
-            summary.append(f"   ⚡ {r} running  ⏳ {q} queued", style="cyan")
-
-    console.print(Panel(
-        summary,
-        title=f"[bold cyan]🔥 ML Dashboard[/bold cyan]  [dim]{now}[/dim]",
-        border_style="cyan",
-        padding=(0, 1),
-    ))
+            header.append(f"   ⚡{r} running  ⏳{q} queued", style="cyan")
+    console.print(header)
+    console.print()
 
     # ── Queue ────────────────────────────────────────────────────────────────
     if queue and (queue['running'] or queue['queued']):
@@ -289,8 +288,9 @@ def generate_compact_dashboard():
                 "",
             )
 
-        console.print(Panel(q_table, title="[bold yellow]Queue[/bold yellow]",
-                            border_style="yellow", padding=(0, 0)))
+        console.print(Rule("[bold yellow]Queue[/bold yellow]", style="yellow"))
+        console.print(q_table)
+        console.print()
 
     # ── GPUs ─────────────────────────────────────────────────────────────────
     if gpus:
@@ -315,8 +315,9 @@ def generate_compact_dashboard():
                 f"[{temp_col}]{gpu['temp']}°C[/{temp_col}]",
             )
 
-        console.print(Panel(g_table, title="[bold magenta]GPUs[/bold magenta]",
-                            border_style="magenta", padding=(0, 0)))
+        console.print(Rule("[bold magenta]GPUs[/bold magenta]", style="magenta"))
+        console.print(g_table)
+        console.print()
 
     # ── Processes ─────────────────────────────────────────────────────────────
     if processes:
@@ -338,8 +339,9 @@ def generate_compact_dashboard():
                 cmd,
             )
 
-        console.print(Panel(p_table, title="[bold blue]Processes[/bold blue]",
-                            border_style="blue", padding=(0, 0)))
+        console.print(Rule("[bold blue]Processes[/bold blue]", style="blue"))
+        console.print(p_table)
+        console.print()
 
     # ── Experiments ───────────────────────────────────────────────────────────
     if experiments:
@@ -371,11 +373,11 @@ def generate_compact_dashboard():
                 m_str,
             )
 
-        console.print(Panel(e_table, title="[bold cyan]Experiments[/bold cyan]",
-                            border_style="cyan", padding=(0, 0)))
+        console.print(Rule("[bold cyan]Experiments[/bold cyan]", style="cyan"))
+        console.print(e_table)
     else:
-        console.print(Panel("[dim]No experiments tracked yet[/dim]",
-                            title="[bold cyan]Experiments[/bold cyan]", border_style="cyan"))
+        console.print(Rule("[bold cyan]Experiments[/bold cyan]", style="cyan"))
+        console.print("[dim]  No experiments tracked yet[/dim]")
 
 def main():
     parser = argparse.ArgumentParser(description="ML Experiment Dashboard")

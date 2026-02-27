@@ -19,7 +19,8 @@ TRIMMED=$(echo "$PROMPT" | xargs)
 case "$TRIMMED" in
   /ds:dash)
     if python3 -c "import rich" 2>/dev/null; then
-      OUTPUT=$(cd "$PROJECT_DIR" && python3 "$PLUGIN_ROOT/scripts/dashboard.py" --once 2>&1)
+      COLS=$(tput cols 2>/dev/null || echo 100)
+      OUTPUT=$(cd "$PROJECT_DIR" && COLUMNS=$COLS python3 "$PLUGIN_ROOT/scripts/dashboard.py" --once 2>&1)
     else
       OUTPUT=$("$PLUGIN_ROOT/scripts/list_experiments.sh" 2>&1)
     fi
@@ -35,7 +36,8 @@ case "$TRIMMED" in
     ;;
   /ds:dash-all)
     if python3 -c "import rich" 2>/dev/null; then
-      OUTPUT=$(cd "$PROJECT_DIR" && python3 "$PLUGIN_ROOT/scripts/dashboard.py" --once --all 2>&1)
+      COLS=$(tput cols 2>/dev/null || echo 100)
+      OUTPUT=$(cd "$PROJECT_DIR" && COLUMNS=$COLS python3 "$PLUGIN_ROOT/scripts/dashboard.py" --once --all 2>&1)
     else
       OUTPUT=$("$PLUGIN_ROOT/scripts/list_experiments.sh" 2>&1)
       OUTPUT+=$'\n\n'
