@@ -21,7 +21,7 @@ from rich.rule import Rule
 
 import shutil
 _tw = shutil.get_terminal_size(fallback=(100, 40)).columns
-console = Console(width=_tw, highlight=False, force_terminal=True)
+console = Console(width=_tw, highlight=False, color_system="256")
 
 def get_gpu_status():
     """Get GPU utilization and memory"""
