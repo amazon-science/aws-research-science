@@ -18,7 +18,11 @@ TRIMMED=$(echo "$PROMPT" | xargs)
 # Route /ds:* commands to their scripts
 case "$TRIMMED" in
   /ds:dash)
-    OUTPUT=$("$PLUGIN_ROOT/scripts/list_experiments.sh" 2>&1)
+    if python3 -c "import rich" 2>/dev/null; then
+      OUTPUT=$(cd "$PROJECT_DIR" && python3 "$PLUGIN_ROOT/scripts/dashboard.py" --once 2>&1)
+    else
+      OUTPUT=$("$PLUGIN_ROOT/scripts/list_experiments.sh" 2>&1)
+    fi
     ;;
   /ds:queue)
     OUTPUT=$("$PLUGIN_ROOT/scripts/queue_status.sh" 2>&1)
@@ -30,10 +34,13 @@ case "$TRIMMED" in
     OUTPUT=$("$PLUGIN_ROOT/scripts/clear_experiments.sh" 2>&1)
     ;;
   /ds:dash-all)
-    # Combine experiments + sessions for a full view
-    OUTPUT=$("$PLUGIN_ROOT/scripts/list_experiments.sh" 2>&1)
-    OUTPUT+=$'\n\n'
-    OUTPUT+=$("$PLUGIN_ROOT/scripts/list_sessions.sh" 2>&1)
+    if python3 -c "import rich" 2>/dev/null; then
+      OUTPUT=$(cd "$PROJECT_DIR" && python3 "$PLUGIN_ROOT/scripts/dashboard.py" --once --all 2>&1)
+    else
+      OUTPUT=$("$PLUGIN_ROOT/scripts/list_experiments.sh" 2>&1)
+      OUTPUT+=$'\n\n'
+      OUTPUT+=$("$PLUGIN_ROOT/scripts/list_sessions.sh" 2>&1)
+    fi
     ;;
   /ds:reload)
     # Re-inject plugin context (env state + CLAUDE.md) without touching history
