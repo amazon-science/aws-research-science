@@ -250,9 +250,9 @@ def generate_compact_dashboard():
 
     # Queue Section
     if queue and (queue['queued'] or queue['running']):
-        queue_table = Table(show_header=True, header_style="bold yellow", box=None, padding=0)
-        queue_table.add_column("Job", style="white")
-        queue_table.add_column("Status", no_wrap=True)
+        queue_table = Table(show_header=True, header_style="bold yellow", box=None, padding=(0, 1))
+        queue_table.add_column("Job", style="white", min_width=24)
+        queue_table.add_column("Status", no_wrap=True, min_width=12)
         queue_table.add_column("Info", style="dim")
 
         # Show running jobs
@@ -282,13 +282,13 @@ def generate_compact_dashboard():
 
     # GPU Table - Compact
     if gpus:
-        gpu_table = Table(show_header=True, header_style="bold magenta", box=None, padding=0)
+        gpu_table = Table(show_header=True, header_style="bold magenta", box=None, padding=(0, 1))
         gpu_table.add_column("GPU", style="cyan", no_wrap=True)
-        gpu_table.add_column("Name", style="white")
-        gpu_table.add_column("Util", justify="right", no_wrap=True)
-        gpu_table.add_column("Memory", justify="right", no_wrap=True)
-        gpu_table.add_column("Temp", justify="right", no_wrap=True)
-        gpu_table.add_column("St", no_wrap=True)
+        gpu_table.add_column("Name", style="white", min_width=10)
+        gpu_table.add_column("Util", justify="right", no_wrap=True, min_width=5)
+        gpu_table.add_column("Memory", justify="right", no_wrap=True, min_width=11)
+        gpu_table.add_column("Temp", justify="right", no_wrap=True, min_width=5)
+        gpu_table.add_column("", no_wrap=True)
 
         for gpu in gpus:
             util = gpu['util_gpu']
@@ -341,10 +341,10 @@ def generate_compact_dashboard():
 
     # Running Processes - Compact
     if processes:
-        proc_table = Table(show_header=True, header_style="bold yellow", box=None, padding=0)
-        proc_table.add_column("PID", style="cyan", no_wrap=True)
-        proc_table.add_column("CPU%", justify="right", no_wrap=True)
-        proc_table.add_column("Mem%", justify="right", no_wrap=True)
+        proc_table = Table(show_header=True, header_style="bold yellow", box=None, padding=(0, 1))
+        proc_table.add_column("PID", style="cyan", no_wrap=True, min_width=7)
+        proc_table.add_column("CPU%", justify="right", no_wrap=True, min_width=5)
+        proc_table.add_column("Mem%", justify="right", no_wrap=True, min_width=5)
         proc_table.add_column("Command", style="white")
 
         for proc in processes[:3]:  # Top 3 only
@@ -377,51 +377,43 @@ def generate_compact_dashboard():
 
     # Experiments - Compact
     if experiments:
-        exp_table = Table(show_header=True, header_style="bold cyan", box=None, padding=0)
-        exp_table.add_column("Experiment", style="white")
-        exp_table.add_column("Status", no_wrap=True)
-        exp_table.add_column("Time", no_wrap=True, style="dim")
-        exp_table.add_column("Metric", no_wrap=True)
-        exp_table.add_column("Value", justify="right", no_wrap=True)
-        exp_table.add_column("File", style="dim cyan", no_wrap=True)
+        exp_table = Table(show_header=True, header_style="bold cyan", box=None, padding=(0, 1))
+        exp_table.add_column("Experiment", style="white", min_width=24)
+        exp_table.add_column("Status", no_wrap=True, min_width=4)
+        exp_table.add_column("Time", no_wrap=True, style="dim", min_width=7)
+        exp_table.add_column("Metrics", no_wrap=True)
 
         # Sort by value desc
         experiments = sorted(experiments, key=lambda x: x.get('value') or 0, reverse=True)
 
         for exp in experiments[:5]:  # Top 5
-            # Status emoji
             status = exp.get('status', 'unknown')
             if status == 'completed':
                 status_str = '[green]✅[/green]'
-            elif status in ['training', 'in_progress']:
+            elif status in ['training', 'in_progress', 'running']:
                 status_str = '[yellow]🔄[/yellow]'
             elif status == 'failed':
                 status_str = '[red]❌[/red]'
             else:
                 status_str = '[blue]⏸️[/blue]'
 
-            # Value coloring
+            # Combine metric + value into one readable column
             value = exp.get('value', 0)
-            if value is None or value == 0:
-                value_str = "[dim]N/A[/dim]"
+            metric = exp.get('metric', '')
+            if not value or metric == 'N/A':
+                metrics_str = "[dim]—[/dim]"
             elif value > 0.5:
-                value_str = f"[green bold]{value:.2f}[/green bold]"
+                metrics_str = f"[green]{metric}={value:.3f}[/green]"
             elif value > 0.1:
-                value_str = f"[yellow]{value:.2f}[/yellow]"
+                metrics_str = f"[yellow]{metric}={value:.3f}[/yellow]"
             else:
-                value_str = f"[red]{value:.2f}[/red]"
-
-            # Shorten file path for display
-            file_path = exp.get('file', '')
-            file_short = file_path.replace('experiments/', '') if file_path else 'N/A'
+                metrics_str = f"{metric}={value:.3f}"
 
             exp_table.add_row(
-                exp['branch'][:30],
+                exp['branch'][:28],
                 status_str,
-                exp.get('time_ago', '')[:10],
-                exp.get('metric', 'N/A')[:15],
-                value_str,
-                file_short[:40]
+                exp.get('time_ago', '')[:8],
+                metrics_str,
             )
 
         console.print(exp_table)
