@@ -38,28 +38,12 @@ if [ ${#DEAD_JOBS[@]} -eq 0 ]; then
     exit 0
 fi
 
-# Acquire lock and remove dead entries
-for attempt in {1..20}; do
-    if mkdir "$LOCK_FILE.dir" 2>/dev/null; then
-        trap "rmdir '$LOCK_FILE.dir' 2>/dev/null" EXIT
-        break
-    fi
-    sleep 0.5
-done
-
-if [ ! -d "$LOCK_FILE.dir" ]; then
-    echo "⚠️  Could not acquire lock — try again in a moment."
-    exit 1
-fi
-
+# Signal dead jobs to the watcher via done files — it handles queue.json
+mkdir -p experiments/queue_done
 for NAME in "${DEAD_JOBS[@]}"; do
-    jq --arg name "$NAME" \
-       '.running = [.running[] | select(.name != $name)]' \
-       "$QUEUE_FILE" > "$QUEUE_FILE.tmp" && mv "$QUEUE_FILE.tmp" "$QUEUE_FILE"
+    echo "{\"exit_code\": 1, \"name\": \"$NAME\", \"runtime\": 999, \"gpu\": 0, \"retry_count\": 3}" \
+        > "experiments/queue_done/${NAME}.json"
 done
-
-rmdir "$LOCK_FILE.dir" 2>/dev/null
-trap - EXIT
 
 echo ""
 echo "✓ Removed ${#DEAD_JOBS[@]} stale entry(s). ${#ALIVE_JOBS[@]} job(s) still running."
