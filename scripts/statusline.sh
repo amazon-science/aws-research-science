@@ -61,9 +61,10 @@ if command -v nvidia-smi &> /dev/null; then
                 COLOR="\033[31m"  # Red (busy)
             fi
 
-            # Format: |0. 045%/078% — fixed width (3 digits each) prevents
-            # stale characters bleeding through when values shrink between redraws
-            GPU_PARTS+=("$(printf "${COLOR}|${idx}. %3d%%/%3d%%${COLOR_RESET}" "$mem_pct" "$util")")
+            # Format numbers separately — never mix escape codes with printf format
+            # specifiers as \033 in format strings shifts argument parsing
+            NUM_STR=$(printf "|%s. %3d%%/%3d%%" "$idx" "$mem_pct" "$util")
+            GPU_PARTS+=("${COLOR}${NUM_STR}${COLOR_RESET}")
         done <<< "$GPU_INFO"
 
         # Join all GPUs with space
