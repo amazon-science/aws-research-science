@@ -1,8 +1,12 @@
 #!/bin/bash
-# Remove stale dead-process entries from the running queue
+# Remove stale dead-process entries from the running queue.
+# Signals the watcher via done files — it owns queue.json.
 
-QUEUE_FILE="experiments/queue.json"
-LOCK_FILE="experiments/.queue.lock"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(pwd)"
+EXPERIMENTS_DIR="$PROJECT_DIR/experiments"
+QUEUE_FILE="$EXPERIMENTS_DIR/queue.json"
+DONE_DIR="$EXPERIMENTS_DIR/queue_done"
 
 if [ ! -f "$QUEUE_FILE" ]; then
     echo "No queue file found."
@@ -22,9 +26,9 @@ while IFS= read -r job; do
     [ -z "$job" ] || [ "$job" = "null" ] && continue
     PID=$(echo "$job" | jq -r '.pid')
     NAME=$(echo "$job" | jq -r '.name')
-    GPU=$(echo "$job" | jq -r '.gpu')
+    GPU=$(echo "$job" | jq -r '.gpu // 0')
     if ! kill -0 "$PID" 2>/dev/null; then
-        DEAD_JOBS+=("$NAME")
+        DEAD_JOBS+=("$NAME:$GPU")
         echo "💀 Dead: $NAME (PID $PID, GPU $GPU)"
     else
         ALIVE_JOBS+=("$NAME")
@@ -38,12 +42,18 @@ if [ ${#DEAD_JOBS[@]} -eq 0 ]; then
     exit 0
 fi
 
-# Signal dead jobs to the watcher via done files — it handles queue.json
-mkdir -p experiments/queue_done
-for NAME in "${DEAD_JOBS[@]}"; do
-    echo "{\"exit_code\": 1, \"name\": \"$NAME\", \"runtime\": 999, \"gpu\": 0, \"retry_count\": 3}" \
-        > "experiments/queue_done/${NAME}.json"
+mkdir -p "$DONE_DIR"
+for ENTRY in "${DEAD_JOBS[@]}"; do
+    NAME="${ENTRY%%:*}"
+    GPU="${ENTRY##*:}"
+    # Unique timestamp suffix avoids collision with watcher's own done files
+    jq -n \
+        --arg  name "$NAME" \
+        --argjson gpu  "$GPU" \
+        '{ exit_code: 1, name: $name, runtime: 999,
+           gpu: $gpu, retry_count: 3 }' \
+        > "$DONE_DIR/${NAME}_clean_$(date +%s).json"
 done
 
 echo ""
-echo "✓ Removed ${#DEAD_JOBS[@]} stale entry(s). ${#ALIVE_JOBS[@]} job(s) still running."
+echo "✓ Signalled ${#DEAD_JOBS[@]} stale entry(s) for removal. Watcher will clean up within 10s."
