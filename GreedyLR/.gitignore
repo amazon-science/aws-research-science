@@ -1,0 +1,13 @@
+transformers/
+checkpoints/
+__pycache__/
+*.pyc
+.DS_Store
+.claude_session
+*.log
+FINAL_COMPREHENSIVE_README.html
+focused_recovery_progress.json
+robust_progress.json
+experiment_progress.json
+test_recovery_results.json
+scheduler_comparison_data.csv

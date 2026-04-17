@@ -1,0 +1,56 @@
+{
+  "overall": {
+    "greedy_avg_final_loss": 0.24413762677414808,
+    "cosine_avg_final_loss": 1.7090764548601227,
+    "greedy_avg_convergence_rate": 0.7799106206799596,
+    "cosine_avg_convergence_rate": 0.7565032671052011,
+    "greedy_convergence_success_rate": 0.9479166666666666,
+    "cosine_convergence_success_rate": 0.6041666666666666
+  },
+  "by_noise": {
+    "none": {
+      "greedy_avg_final_loss": 0.7934583513883546,
+      "cosine_avg_final_loss": 0.5508631493689286,
+      "greedy_recovery_rate": 0.0,
+      "cosine_recovery_rate": 0.0
+    },
+    "gaussian": {
+      "greedy_avg_final_loss": 0.16824094980818174,
+      "cosine_avg_final_loss": 3.508714833871151,
+      "greedy_recovery_rate": 0.0,
+      "cosine_recovery_rate": 0.0
+    },
+    "spike": {
+      "greedy_avg_final_loss": 0.2110564502455336,
+      "cosine_avg_final_loss": 0.7621943204870655,
+      "greedy_recovery_rate": 7.683333333333334,
+      "cosine_recovery_rate": 8.244444444444444
+    },
+    "plateau": {
+      "greedy_avg_final_loss": 0.24325133534588753,
+      "cosine_avg_final_loss": 1.0879628713203904,
+      "greedy_recovery_rate": 0.0,
+      "cosine_recovery_rate": 0.0
+    }
+  },
+  "by_model": {
+    "quadratic": {
+      "greedy_avg_final_loss": 0.032982179096906566,
+      "cosine_avg_final_loss": 1.0250062645354774,
+      "greedy_avg_min_loss": 0.03298217906892357,
+      "cosine_avg_min_loss": 1.0250062645354774
+    },
+    "rosenbrock": {
+      "greedy_avg_final_loss": 0.6856539249829439,
+      "cosine_avg_final_loss": 4.089668866917539,
+      "greedy_avg_min_loss": 0.6402248017557213,
+      "cosine_avg_min_loss": 4.089668866917539
+    },
+    "neural_net": {
+      "greedy_avg_final_loss": 0.013776776242593769,
+      "cosine_avg_final_loss": 0.01255423312735123,
+      "greedy_avg_min_loss": 0.008825470322335605,
+      "cosine_avg_min_loss": 0.01255423312735123
+    }
+  }
+}

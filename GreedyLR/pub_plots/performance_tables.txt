@@ -1,0 +1,40 @@
+OVERALL PERFORMANCE
+==================================================
+                 Mean Loss    Std Dev  N Experiments
+scheduler_type                                      
+cosine            105.7645   567.4276            828
+cosine_restarts   119.1610   665.2945            804
+exponential       271.0776  1282.7005            802
+greedy              2.3643    12.1135           1566
+
+ANALYTICAL FUNCTIONS PERFORMANCE
+==================================================
+                 Mean Loss    Std Dev
+scheduler_type                       
+cosine            313.7106   944.6500
+cosine_restarts   322.4261  1065.3667
+exponential       823.1576  2134.2329
+greedy              6.8718    20.2075
+
+NEURAL NETWORKS PERFORMANCE
+==================================================
+                 Mean Loss  Std Dev
+scheduler_type                     
+cosine              0.0870   0.1136
+cosine_restarts     0.0886   0.1129
+exponential         0.1685   0.0707
+greedy              0.0975   0.2791
+
+NOISE CONDITIONS PERFORMANCE
+==================================================
+scheduler_type    cosine  cosine_restarts  exponential  greedy
+noise_type                                                    
+adversarial      18.3831         162.2404     351.2048  3.4439
+burst            95.0251          80.0037     386.7425  3.7186
+drift           171.8547          83.0740      61.5968  3.2606
+gaussian        183.3251         158.3795      45.5546  1.7505
+none            108.0930         151.4343     101.4751  1.5502
+oscillatory      54.8206          76.7521     275.3430  3.0470
+periodic_spike   50.6023         151.1238     445.5042  1.3643
+plateau         196.6514          55.4438     600.7265  1.4712
+random_spike     74.2059         149.2022     189.2069  1.5947

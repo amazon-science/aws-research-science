@@ -1,0 +1,59 @@
+COMPREHENSIVE PERFORMANCE ANALYSIS
+================================================================================
+
+1. OVERALL PERFORMANCE ACROSS ALL EXPERIMENTS
+--------------------------------------------------
+                final_loss                         
+                      mean  median        std count
+scheduler_type                                     
+cosine             97.0159  0.2320   525.9301  1620
+cosine_restarts    91.4214  0.2255   540.6603  1619
+exponential       282.0213  0.2487  1320.7232  1620
+greedy              2.3558  0.1481    13.9952  3241
+
+2. ANALYTICAL FUNCTIONS PERFORMANCE
+--------------------------------------------------
+                final_loss                          
+                      mean   median        std count
+scheduler_type                                      
+cosine            290.8722   7.9597   879.9765   540
+cosine_restarts   273.9210   7.9598   909.6239   540
+exponential       845.7279  36.1201  2182.1710   540
+greedy              6.8708   3.0848    23.5983  1081
+
+3. NEURAL NETWORKS PERFORMANCE
+--------------------------------------------------
+                final_loss                      
+                      mean  median     std count
+scheduler_type                                  
+cosine              0.0877  0.0012  0.1136  1080
+cosine_restarts     0.0871  0.0015  0.1120  1079
+exponential         0.1680  0.1395  0.0690  1080
+greedy              0.0963  0.0006  0.2238  2160
+
+4. CLEAN CONDITIONS (NO NOISE)
+--------------------------------------------------
+                final_loss                        
+                      mean  median       std count
+scheduler_type                                    
+cosine             73.1530  0.2303  294.8073   180
+cosine_restarts   102.2522  0.2282  689.9542   180
+exponential       208.8340  0.2487  950.2513   180
+greedy              1.5338  0.0749    3.5037   361
+
+5. NOISY CONDITIONS
+--------------------------------------------------
+                final_loss                         
+                      mean  median        std count
+scheduler_type                                     
+cosine             99.9988  0.2321   548.0060  1440
+cosine_restarts    90.0666  0.2250   519.2598  1439
+exponential       291.1698  0.2487  1359.9350  1440
+greedy              2.4589  0.1510    14.7917  2880
+
+ANALYSIS NOTES:
+--------------------
+- Mean: Average final loss across experiments
+- Median: Median final loss (robust to outliers)
+- Std: Standard deviation of final loss
+- Count: Number of experiments in each category
