@@ -125,7 +125,39 @@ trainer = Trainer(
 # Loss = -sum( log P(token_t | token_1..t-1) )  for each ground-truth token
 ```
 
-The scheduler (GreedyLR, cosine, etc.) controls how the learning rate evolves while this loss is driven down.
+**How the loss value reaches GreedyLR in SFT:**
+
+`GreedyLR.step(metric)` is the single entry point — it takes a scalar and decides whether to increase, decrease, or hold the LR. In the HuggingFace Trainer, this call happens at line 2622 of `trainer.py`, immediately after each gradient step:
+
+```python
+# transformers/src/transformers/trainer.py:2564, 2622
+tr_loss_step = self.training_step(model, inputs, ...)   # computes cross-entropy loss, runs backward
+...
+self.lr_scheduler.step(tr_loss_step)   # <-- passes the raw training loss into GreedyLR.step()
+```
+
+Inside `GreedyLR.step()` (`GreedyLR.py:149`), that scalar is compared against the running best:
+
+```python
+# transformers/src/transformers/GreedyLR.py:149-186
+def step(self, metrics, epoch=None):
+    current = float(metrics)          # the loss value passed in from trainer.py
+    if self.smooth:
+        current = self.sa.streamavg(current)   # optional streaming average
+
+    if self.is_better(current, self.best):     # mode='min': is loss lower than best seen?
+        self.best = current
+        self.num_good_epochs += 1
+    else:
+        self.num_bad_epochs += 1
+
+    if self.num_bad_epochs > self.patience:
+        self._reduce_lr(epoch)        # lr = lr * factor (e.g. 0.95)
+    if self.num_good_epochs > self.patience:
+        self._increase_lr(epoch)      # lr = lr / factor
+```
+
+So in SFT: **loss goes down → LR increases; loss stalls → LR decreases.**
 
 **After — GRPO (reward maximization):**
 
@@ -199,4 +231,4 @@ trainer = GRPOTrainer(
 | **LR scheduler** | GreedyLR / cosine | Cosine (default) | Cosine (default) |
 | **Model efficiency** | Full precision | LoRA r=4 | LoRA r=8 + Unsloth 4-bit |
 
-> **Next step:** swap the cosine scheduler in GRPO v2 for GreedyLR and evaluate whether the adaptive LR provides the same gains seen in supervised settings.
+> **Next step:** swap the cosine scheduler in GRPO v2 for GreedyLR. To do this, `GreedyLR` must be initialized with `mode='max'` (reward maximization instead of loss minimization), and `scheduler.step(mean_reward)` must be called after each batch using the mean reward from `reward_func`. The GRPO trainer currently calls `scheduler.step()` with no argument (cosine needs no metric), so this call site will need to be patched to pass the reward signal in.
