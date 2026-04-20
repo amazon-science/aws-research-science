@@ -105,3 +105,98 @@ GreedyLR/
 | [grpo/grpo_training_v1.ipynb](grpo/grpo_training_v1.ipynb) | GRPO fine-tuning on Llama-3.2-1B with TRL |
 | [grpo/grpo_training_v2_unsloth.ipynb](grpo/grpo_training_v2_unsloth.ipynb) | Unsloth-optimized GRPO training (2× faster) |
 | [grpo/grpo_sample_data.jsonl](grpo/grpo_sample_data.jsonl) | 32-sample GRPO dataset (math CoT format) |
+
+#### From Loss Minimization to Reward Maximization
+
+The core shift in the GRPO experiments is replacing the standard supervised cross-entropy loss with a reward-maximizing GRPO objective.
+
+**Before — standard SFT (cross-entropy loss):**
+
+In the pre-training and fine-tuning scripts (`training/`), the model minimizes token-level cross-entropy against ground-truth completions:
+
+```python
+# Standard causal LM training — loss computed internally by HuggingFace Trainer
+trainer = Trainer(
+    model=model,
+    args=training_args,          # lr_scheduler_type="greedy", etc.
+    train_dataset=train_dataset,
+    ...
+)
+# Loss = -sum( log P(token_t | token_1..t-1) )  for each ground-truth token
+```
+
+The scheduler (GreedyLR, cosine, etc.) controls how the learning rate evolves while this loss is driven down.
+
+**After — GRPO (reward maximization):**
+
+GRPO replaces the loss signal entirely with a reward function. The model generates multiple candidate completions per prompt, scores them, and updates policy weights to increase the probability of higher-reward outputs. There is no ground-truth token sequence to predict — the model is optimized against scalar rewards.
+
+The reward in v1 combined format correctness with semantic similarity via embeddings:
+
+```python
+# grpo_training_v1.ipynb
+def format_reward_func(completions):
+    """1.0 if output matches 'answer: <...>', else 0.0"""
+    pattern = r'^answer: <.*>$'
+    matches = [re.match(pattern, content, re.DOTALL) for content in completions]
+    return [1.0 if match else 0.0 for match in matches]
+
+def answer_similarity(prompts, completions):
+    """Cosine similarity between completion and ground-truth embeddings (b1ade-embed model)"""
+    completion_embeddings = emodel.encode(processed_completions)
+    ground_truth_embeddings = emodel.encode(valid_ground_truth)
+    return emodel.similarity(completion_embeddings, ground_truth_embeddings).diagonal()
+
+def reward_func(prompts, completions):
+    # Final reward = semantic similarity × format gate (0 or 1)
+    return answer_similarity(prompts, completions) * torch.Tensor(format_reward_func(completions))
+```
+
+In v2, the embedding similarity was replaced with ROUGE-L (lighter, no GPU embedding model needed), and a length reward was added to encourage fuller responses:
+
+```python
+# grpo_training_v2_unsloth.ipynb
+def correctness_reward_func(prompts, completions, answer, **kwargs):
+    """ROUGE-L F1 score between extracted completion and ground-truth answer"""
+    rouge = Rouge()
+    extracted = [extract_content(r) for r in responses]
+    return [s["rouge-l"]["f"] for s in rouge.get_scores(extracted, answer)]
+
+def len_reward_func(prompts, completions):
+    """Normalized length reward — encourages longer (more complete) responses"""
+    return [len(c) / 1024. for c in completions]
+
+def reward_func(prompts, completions):
+    # Final reward = ROUGE-L similarity × format gate × length
+    return answer_similarity(prompts, completions) * format_reward * len_reward
+```
+
+The `GRPOTrainer` from TRL handles the policy gradient update — it passes `reward_funcs` in place of a loss function:
+
+```python
+trainer = GRPOTrainer(
+    model="w601sxs/b1ade-1b-bf16",
+    reward_funcs=reward_func,   # replaces loss_fn entirely
+    args=GRPOConfig(
+        learning_rate=1e-5,
+        use_vllm=True,          # vLLM for fast multi-sample generation
+        ...
+    ),
+    train_dataset=updated_dataset,
+    peft_config=LoraConfig(task_type="CAUSAL_LM", r=4),
+)
+```
+
+**Summary of changes across versions:**
+
+| | SFT (training/) | GRPO v1 | GRPO v2 |
+|---|---|---|---|
+| **Objective** | Minimize cross-entropy | Maximize reward | Maximize reward |
+| **Supervision signal** | Ground-truth tokens | Scalar reward per completion | Scalar reward per completion |
+| **Similarity metric** | — | Embedding cosine sim (b1ade-embed) | ROUGE-L F1 |
+| **Format enforcement** | — | Regex gate (× reward) | Regex gate (× reward) |
+| **Length incentive** | — | None | `len(completion) / 1024` |
+| **LR scheduler** | GreedyLR / cosine | Cosine (default) | Cosine (default) |
+| **Model efficiency** | Full precision | LoRA r=4 | LoRA r=8 + Unsloth 4-bit |
+
+> **Next step:** swap the cosine scheduler in GRPO v2 for GreedyLR and evaluate whether the adaptive LR provides the same gains seen in supervised settings.
