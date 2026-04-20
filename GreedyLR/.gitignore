@@ -11,3 +11,5 @@ robust_progress.json
 experiment_progress.json
 test_recovery_results.json
 scheduler_comparison_data.csv
+grpo/*_grpo.jsonl
+grpo/*mecit*.jsonl

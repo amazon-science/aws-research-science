@@ -1,0 +1,32 @@
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve for x. Return only JSON like {\"x\": <number>}. Equation: 2x + 5 = 13"}]}],"reference_answer":{"x":4}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve for x. Return only JSON like {\"x\": <number>}. Equation: 3x - 7 = 2"}]}],"reference_answer":{"x":3}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve for x. Return only JSON like {\"x\": <number>}. Equation: 5(x - 2) = 20"}]}],"reference_answer":{"x":6}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve for x. Return only JSON like {\"x\": <number>}. Equation: x/4 + 3 = 8"}]}],"reference_answer":{"x":20}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve for x. Return only JSON like {\"x\": <number>}. Equation: 7 - 2x = -11"}]}],"reference_answer":{"x":9}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve for x (real root). Return only JSON like {\"x\": <number>}. Equation: x^2 - 9 = 0"}]}],"reference_answer":{"x":3}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve for x (positive root). Return only JSON like {\"x\": <number>}. Equation: x^2 - 5x + 6 = 0"}]}],"reference_answer":{"x":3}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve the system for x and y. Return only JSON like {\"x\": <number>, \"y\": <number>}. Equations: x + y = 10; x - y = 2"}]}],"reference_answer":{"x":6,"y":4}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve for x. Return only JSON like {\"x\": <number>}. Equation: 2x + 5 = 13"}]}],"reference_answer":{"x":4}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve for x. Return only JSON like {\"x\": <number>}. Equation: 3x - 7 = 2"}]}],"reference_answer":{"x":3}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve for x. Return only JSON like {\"x\": <number>}. Equation: 5(x - 2) = 20"}]}],"reference_answer":{"x":6}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve for x. Return only JSON like {\"x\": <number>}. Equation: x/4 + 3 = 8"}]}],"reference_answer":{"x":20}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve for x. Return only JSON like {\"x\": <number>}. Equation: 7 - 2x = -11"}]}],"reference_answer":{"x":9}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve for x (real root). Return only JSON like {\"x\": <number>}. Equation: x^2 - 9 = 0"}]}],"reference_answer":{"x":3}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve for x (positive root). Return only JSON like {\"x\": <number>}. Equation: x^2 - 5x + 6 = 0"}]}],"reference_answer":{"x":3}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve the system for x and y. Return only JSON like {\"x\": <number>, \"y\": <number>}. Equations: x + y = 10; x - y = 2"}]}],"reference_answer":{"x":6,"y":4}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve for x. Return only JSON like {\"x\": <number>}. Equation: 2x + 5 = 13"}]}],"reference_answer":{"x":4}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve for x. Return only JSON like {\"x\": <number>}. Equation: 3x - 7 = 2"}]}],"reference_answer":{"x":3}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve for x. Return only JSON like {\"x\": <number>}. Equation: 5(x - 2) = 20"}]}],"reference_answer":{"x":6}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve for x. Return only JSON like {\"x\": <number>}. Equation: x/4 + 3 = 8"}]}],"reference_answer":{"x":20}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve for x. Return only JSON like {\"x\": <number>}. Equation: 7 - 2x = -11"}]}],"reference_answer":{"x":9}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve for x (real root). Return only JSON like {\"x\": <number>}. Equation: x^2 - 9 = 0"}]}],"reference_answer":{"x":3}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve for x (positive root). Return only JSON like {\"x\": <number>}. Equation: x^2 - 5x + 6 = 0"}]}],"reference_answer":{"x":3}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve the system for x and y. Return only JSON like {\"x\": <number>, \"y\": <number>}. Equations: x + y = 10; x - y = 2"}]}],"reference_answer":{"x":6,"y":4}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve for x. Return only JSON like {\"x\": <number>}. Equation: 2x + 5 = 13"}]}],"reference_answer":{"x":4}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve for x. Return only JSON like {\"x\": <number>}. Equation: 3x - 7 = 2"}]}],"reference_answer":{"x":3}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve for x. Return only JSON like {\"x\": <number>}. Equation: 5(x - 2) = 20"}]}],"reference_answer":{"x":6}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve for x. Return only JSON like {\"x\": <number>}. Equation: x/4 + 3 = 8"}]}],"reference_answer":{"x":20}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve for x. Return only JSON like {\"x\": <number>}. Equation: 7 - 2x = -11"}]}],"reference_answer":{"x":9}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve for x (real root). Return only JSON like {\"x\": <number>}. Equation: x^2 - 9 = 0"}]}],"reference_answer":{"x":3}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve for x (positive root). Return only JSON like {\"x\": <number>}. Equation: x^2 - 5x + 6 = 0"}]}],"reference_answer":{"x":3}}
+{"messages":[{"role":"user","content":[{"type":"text","text":"Solve the system for x and y. Return only JSON like {\"x\": <number>, \"y\": <number>}. Equations: x + y = 10; x - y = 2"}]}],"reference_answer":{"x":6,"y":4}}
