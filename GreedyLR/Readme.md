@@ -148,30 +148,53 @@ def step(self, metrics, epoch=None):
         self._increase_lr(epoch)      # lr = lr / factor
 ```
 
-**In SFT**, the HuggingFace Trainer calls this at `trainer.py:2622` after each gradient step, passing the cross-entropy training loss:
+**In SFT**, the Trainer skips `scheduler.step()` during the training loop for GreedyLR specifically (`trainer.py:1768`), and instead delays it until after evaluation. At that point it passes an eval metric (set by `metric_for_best_model`) from the logged metrics dict:
 
 ```python
-# transformers/src/transformers/trainer.py:2564, 2622
-tr_loss_step = self.training_step(model, inputs, ...)   # cross-entropy loss + backward pass
-...
-self.lr_scheduler.step(tr_loss_step)   # loss → GreedyLR, mode='min'
-# loss goes down → num_good_epochs++ → LR increases
-# loss stalls   → num_bad_epochs++  → LR decreases
+# transformers/trainer.py:1768 — GreedyLR is deliberately skipped here each step
+if not isinstance(self.lr_scheduler, (ReduceLROnPlateau, GreedyLR)):
+    self.lr_scheduler.step()   # cosine/linear step here; GreedyLR does NOT
+
+# transformers/trainer.py:2993-3000 — GreedyLR steps here, after evaluate()
+if isinstance(self.lr_scheduler, (ReduceLROnPlateau, GreedyLR)):
+    metric_to_check = f"eval_{self.args.metric_for_best_model}"  # e.g. "eval_loss"
+    self.lr_scheduler.step(metrics[metric_to_check])
+    # eval loss goes down → num_good_epochs++ → LR increases
+    # eval loss stalls   → num_bad_epochs++  → LR decreases
 ```
 
-**In GRPO**, the cross-entropy loss still exists — it is used internally by the GRPO policy gradient update to compute gradients. What changes is what GreedyLR watches. Instead of watching the loss, GreedyLR now receives the mean batch reward, and its mode is flipped to `'max'`:
+**In GRPO**, the policy gradient loss still drives gradients and weight updates internally. What changes is what GreedyLR watches. The GRPOTrainer accumulates per-batch reward values into `self._metrics` during each training step:
 
 ```python
-# How GreedyLR is wired into GRPO (mode='max', reward replaces loss as the metric)
-scheduler = GreedyLR(optimizer, mode='max', ...)  # 'max' because higher reward = better
-
-# After each batch, compute mean reward from reward_func outputs and step the scheduler
-mean_reward = torch.tensor(reward_func(prompts, completions)).mean()
-scheduler.step(mean_reward)   # reward goes up → num_good_epochs++ → LR increases
-                               # reward stalls  → num_bad_epochs++  → LR decreases
+# trl/trainer/grpo_trainer.py:1866-1872
+for i, reward_func_name in enumerate(self.reward_func_names):
+    mean_rewards = torch.nanmean(rewards_per_func[:, i]).item()
+    self._metrics[mode][f"rewards/{reward_func_name}/mean"].append(mean_rewards)
+    ...
+self._metrics[mode]["reward"].append(rewards.mean().item())   # total reward across all funcs
 ```
 
-The GRPO policy gradient loss (which drives the optimizer) is unchanged — GreedyLR just uses reward instead of loss as its signal for deciding whether to raise or lower the LR.
+These are averaged and flushed into the standard logs dict in the overridden `log()` method:
+
+```python
+# trl/trainer/grpo_trainer.py:2227
+metrics = {key: sum(val) / len(val) for key, val in self._metrics[mode].items()}
+logs = {**logs, **metrics}   # merged into the logs that Trainer sees
+```
+
+So to feed reward into GreedyLR, you set `metric_for_best_model="reward"` (or a specific reward function name like `"rewards/answer_similarity/mean"`) in `GRPOConfig`, and GreedyLR will receive that value automatically via the existing `trainer.py:3000` call path — no custom patching needed. The mode must be flipped to `'max'`:
+
+```python
+# GRPO + GreedyLR wiring
+training_args = GRPOConfig(
+    lr_scheduler_type = "greedy",
+    metric_for_best_model = "reward",        # picks up self._metrics["reward"] from GRPOTrainer
+    greater_is_better = True,                # tells Trainer eval direction (for checkpointing)
+    ...
+)
+# GreedyLR must be initialized with mode='max' so reward going up → LR increases
+scheduler = GreedyLR(optimizer, mode='max', ...)
+```
 
 **After — GRPO (reward maximization):**
 
