@@ -125,27 +125,18 @@ trainer = Trainer(
 # Loss = -sum( log P(token_t | token_1..t-1) )  for each ground-truth token
 ```
 
-**How the loss value reaches GreedyLR in SFT:**
+**How the metric reaches GreedyLR — the single entry point:**
 
-`GreedyLR.step(metric)` is the single entry point — it takes a scalar and decides whether to increase, decrease, or hold the LR. In the HuggingFace Trainer, this call happens at line 2622 of `trainer.py`, immediately after each gradient step:
-
-```python
-# transformers/src/transformers/trainer.py:2564, 2622
-tr_loss_step = self.training_step(model, inputs, ...)   # computes cross-entropy loss, runs backward
-...
-self.lr_scheduler.step(tr_loss_step)   # <-- passes the raw training loss into GreedyLR.step()
-```
-
-Inside `GreedyLR.step()` (`GreedyLR.py:149`), that scalar is compared against the running best:
+`GreedyLR.step(metric)` (`GreedyLR.py:149`) is the only place any signal enters the scheduler. It takes a scalar, compares it against the running best, and adjusts the LR:
 
 ```python
 # transformers/src/transformers/GreedyLR.py:149-186
 def step(self, metrics, epoch=None):
-    current = float(metrics)          # the loss value passed in from trainer.py
+    current = float(metrics)          # whatever scalar is passed in — loss or reward
     if self.smooth:
         current = self.sa.streamavg(current)   # optional streaming average
 
-    if self.is_better(current, self.best):     # mode='min': is loss lower than best seen?
+    if self.is_better(current, self.best):     # direction depends on mode='min' or 'max'
         self.best = current
         self.num_good_epochs += 1
     else:
@@ -157,7 +148,30 @@ def step(self, metrics, epoch=None):
         self._increase_lr(epoch)      # lr = lr / factor
 ```
 
-So in SFT: **loss goes down → LR increases; loss stalls → LR decreases.**
+**In SFT**, the HuggingFace Trainer calls this at `trainer.py:2622` after each gradient step, passing the cross-entropy training loss:
+
+```python
+# transformers/src/transformers/trainer.py:2564, 2622
+tr_loss_step = self.training_step(model, inputs, ...)   # cross-entropy loss + backward pass
+...
+self.lr_scheduler.step(tr_loss_step)   # loss → GreedyLR, mode='min'
+# loss goes down → num_good_epochs++ → LR increases
+# loss stalls   → num_bad_epochs++  → LR decreases
+```
+
+**In GRPO**, the cross-entropy loss still exists — it is used internally by the GRPO policy gradient update to compute gradients. What changes is what GreedyLR watches. Instead of watching the loss, GreedyLR now receives the mean batch reward, and its mode is flipped to `'max'`:
+
+```python
+# How GreedyLR is wired into GRPO (mode='max', reward replaces loss as the metric)
+scheduler = GreedyLR(optimizer, mode='max', ...)  # 'max' because higher reward = better
+
+# After each batch, compute mean reward from reward_func outputs and step the scheduler
+mean_reward = torch.tensor(reward_func(prompts, completions)).mean()
+scheduler.step(mean_reward)   # reward goes up → num_good_epochs++ → LR increases
+                               # reward stalls  → num_bad_epochs++  → LR decreases
+```
+
+The GRPO policy gradient loss (which drives the optimizer) is unchanged — GreedyLR just uses reward instead of loss as its signal for deciding whether to raise or lower the LR.
 
 **After — GRPO (reward maximization):**
 
@@ -231,4 +245,4 @@ trainer = GRPOTrainer(
 | **LR scheduler** | GreedyLR / cosine | Cosine (default) | Cosine (default) |
 | **Model efficiency** | Full precision | LoRA r=4 | LoRA r=8 + Unsloth 4-bit |
 
-> **Next step:** swap the cosine scheduler in GRPO v2 for GreedyLR. To do this, `GreedyLR` must be initialized with `mode='max'` (reward maximization instead of loss minimization), and `scheduler.step(mean_reward)` must be called after each batch using the mean reward from `reward_func`. The GRPO trainer currently calls `scheduler.step()` with no argument (cosine needs no metric), so this call site will need to be patched to pass the reward signal in.
+> **Next step:** implement the GRPO + GreedyLR integration described above in `grpo_training_v2_unsloth.ipynb` and measure whether adaptive LR produces the same gains seen in supervised settings.
