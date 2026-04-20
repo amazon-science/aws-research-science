@@ -1,0 +1,12 @@
+torch==2.0.1
+bitsandbytes==0.41.0
+peft==0.8.1
+datasets==2.18.0 
+tensorboardX==2.6.2.2
+py7zr==0.21.0
+einops==0.7.0
+scipy==1.12.0
+sagemaker==2.199.0
+accelerate==0.28.0
+ipykernel
+ipywidgets

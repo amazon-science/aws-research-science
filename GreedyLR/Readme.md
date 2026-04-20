@@ -2,6 +2,10 @@
 
 Adaptive learning rate scheduler that greedily selects the best learning rate at each step based on loss trajectory. Evaluated across 8,100 experiments showing consistent improvement over cosine, cosine-with-restarts, and exponential decay schedulers.
 
+## Status
+
+This repository is the **starting point for the next set of GreedyLR experiments**, building on the results below. Immediate next steps include integrating GreedyLR into GRPO fine-tuning (see [grpo/](grpo/)) and extending pre-training evaluations to larger models.
+
 ## Key Results
 
 | Domain | GreedyLR Advantage | Significance |
@@ -64,6 +68,19 @@ See [FINAL_COMPREHENSIVE_README.md](FINAL_COMPREHENSIVE_README.md) for the full 
 | [final_plots/](final_plots/) | Full set of final experiment plots |
 | [clear_plots/](clear_plots/) | Clean versions of key figures |
 | [research_plots/](research_plots/) | Research-phase plots and heatmaps |
+
+### Training Code
+| File | Description |
+|---|---|
+| [training/fine-tune/run_llm_finetune.py](training/fine-tune/run_llm_finetune.py) | LoRA fine-tuning script with GreedyLR, cosine, and constant schedulers |
+| [training/fine-tune/fine-tune-llm-doe.ipynb](training/fine-tune/fine-tune-llm-doe.ipynb) | Fine-tuning notebook (Falcon-7B, xP3mt dataset) |
+| [training/pre-train-llama3.2-1b.py](training/pre-train-llama3.2-1b.py) | LLaMA 3.2-1B pre-training with GreedyLR |
+| [training/pre-train-gpt2.py](training/pre-train-gpt2.py) | GPT-2 pre-training script |
+| [training/pre-train-qwen2.5-0.5b-cosine.py](training/pre-train-qwen2.5-0.5b-cosine.py) | Qwen2.5-0.5B baseline (cosine) |
+| [training/compare_schedulers.py](training/compare_schedulers.py) | Direct scheduler comparison utility |
+| [training/monitor_training.py](training/monitor_training.py) | Live training monitor |
+| [training/run_sequential_training.sh](training/run_sequential_training.sh) | Sequential training launcher |
+| [training/README.md](training/README.md) | Training setup and usage guide |
 
 ### GRPO Fine-Tuning Experiments
 | File | Description |
