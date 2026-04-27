@@ -9,11 +9,12 @@ INBOX_DIR="experiments/queue_inbox"
 
 # ── Parse arguments ────────────────────────────────────────────────────────
 # Positional: name, command, [mem_mb]
-# Named:      --after <dep> (repeatable)
+# Named:      --after <dep> (repeatable), --all-gpus
 EXP_NAME="$1"
 COMMAND="$2"
 GPU_MEM_NEEDED="8000"
 DEPENDS_ON_JSON="[]"
+ALL_GPUS="false"
 
 i=3
 while [ $i -le $# ]; do
@@ -23,6 +24,9 @@ while [ $i -le $# ]; do
             i=$((i+1))
             dep="${!i}"
             DEPENDS_ON_JSON=$(echo "$DEPENDS_ON_JSON" | jq --arg dep "$dep" '. += [$dep]')
+            ;;
+        --all-gpus)
+            ALL_GPUS="true"
             ;;
         *)
             if [[ "$arg" =~ ^[0-9]+$ ]]; then
@@ -63,10 +67,12 @@ jq -n \
     --arg virtual_env "$QUEUE_VIRTUAL_ENV" \
     --arg conda_env "$QUEUE_CONDA_ENV" \
     --argjson depends_on "$DEPENDS_ON_JSON" \
+    --argjson all_gpus "$ALL_GPUS" \
     '{
         name: $name,
         command: $cmd,
         gpu_mem_needed: ($mem | tonumber),
+        all_gpus: $all_gpus,
         queued_at: $queued,
         status: "waiting",
         retry_count: 0,
@@ -78,6 +84,6 @@ jq -n \
         depends_on: $depends_on
     }' > "$JOB_FILE"
 
-echo "✅ Queued: $EXP_NAME  (${GPU_MEM_NEEDED}MB)"
+echo "✅ Queued: $EXP_NAME  ($( [ "$ALL_GPUS" = "true" ] && echo "all GPUs" || echo "${GPU_MEM_NEEDED}MB" ))"
 [ "$DEPENDS_ON_JSON" != "[]" ] && echo "   Depends on: $(echo "$DEPENDS_ON_JSON" | jq -r 'join(", ")')"
 echo "   Watcher picks up within 10s"

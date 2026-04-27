@@ -238,9 +238,10 @@ launch_next() {
             idx=$((idx+1)); continue
         }
 
-        cand_name=$(echo "$candidate" | jq -r '.name'               2>/dev/null || echo "")
+        cand_name=$(echo "$candidate" | jq -r '.name'                  2>/dev/null || echo "")
         cand_mem=$(echo "$candidate"  | jq -r '.gpu_mem_needed // 8000' 2>/dev/null || echo 8000)
-        cand_deps=$(echo "$candidate" | jq -c '.depends_on // []'   2>/dev/null || echo "[]")
+        cand_deps=$(echo "$candidate" | jq -c '.depends_on // []'       2>/dev/null || echo "[]")
+        cand_all_gpus=$(echo "$candidate" | jq -r '.all_gpus // false'  2>/dev/null || echo "false")
 
         [ -z "$cand_name" ] && { idx=$((idx+1)); continue; }
 
@@ -250,11 +251,36 @@ launch_next() {
             idx=$((idx+1)); continue
         fi
 
-        # Determine which GPU to use
+        # Determine which GPU(s) to use
         local idle_gpu=""
-        if [ "$cand_deps" != "[]" ]; then
+        if [ "$cand_all_gpus" = "true" ]; then
+            # All-GPU job: require every GPU to be idle with enough free VRAM
+            local all_idle=true
+            while IFS=',' read -r gidx util mem_free; do
+                gidx=$(echo "$gidx"     | tr -d ' ')
+                util=$(echo "$util"     | tr -d ' ')
+                mem_free=$(echo "$mem_free" | tr -d ' ')
+                if [ "${util:-100}" -ge 30 ] || [ "${mem_free:-0}" -le "$cand_mem" ]; then
+                    all_idle=false; break
+                fi
+                local running_on
+                running_on=$(jq -r --arg g "$gidx" \
+                    '.running[] | select(.gpu == ($g|tonumber)) | .name' \
+                    "$QUEUE_FILE" 2>/dev/null)
+                if [ -n "$running_on" ]; then
+                    all_idle=false; break
+                fi
+            done <<< "$gpu_info"
+            if [ "$all_idle" = "false" ]; then
+                echo "⏳ [$(date +'%H:%M:%S')] $cand_name: waiting for all GPUs to be idle"
+                idx=$((idx+1)); continue
+            fi
+            idle_gpu="all"
+        elif [ "$cand_deps" != "[]" ]; then
+            # Dep-chained single-GPU job: inherit GPU from last completed dep
             idle_gpu=$(jq -r --argjson deps "$cand_deps" '
-                [.completed[] | select(.name as $n | $deps | index($n) != null)]
+                [.completed[] | select(.name as $n | $deps | index($n) != null)
+                              | select(.gpu != null and .gpu >= 0)]
                 | sort_by(.completed_at) | last | .gpu | tostring' \
                 "$QUEUE_FILE" 2>/dev/null || echo "")
             local gpu_free
@@ -266,6 +292,7 @@ launch_next() {
                 idx=$((idx+1)); continue
             fi
         else
+            # Single-GPU job: find any idle GPU
             while IFS=',' read -r gidx util mem_free; do
                 gidx=$(echo "$gidx"     | tr -d ' ')
                 util=$(echo "$util"     | tr -d ' ')
@@ -299,7 +326,11 @@ launch_next() {
             idx=$((idx+1)); continue
         }
 
-        echo "🚀 [$(date +'%H:%M:%S')] Launching $exp_name on GPU $idle_gpu..."
+        if [ "$idle_gpu" = "all" ]; then
+            echo "🚀 [$(date +'%H:%M:%S')] Launching $exp_name on all GPUs..."
+        else
+            echo "🚀 [$(date +'%H:%M:%S')] Launching $exp_name on GPU $idle_gpu..."
+        fi
 
         local tmp
         tmp=$(jq --argjson i "$idx" \
@@ -309,21 +340,26 @@ launch_next() {
             return 1
         }
 
+        local gpu_record_id="$idle_gpu"
+        [ "$idle_gpu" = "all" ] && gpu_record_id="-1"
+
         local exp_file=""
         exp_file=$("$SCRIPT_DIR/start_experiment.sh" \
             "$exp_name" "Auto-launched (attempt $((retry+1)))" \
-            "$idle_gpu" 2>/dev/null) || exp_file=""
+            "$gpu_record_id" 2>/dev/null) || exp_file=""
 
         local started_at; started_at=$(date -Iseconds)
-        local mem_before
-        mem_before=$(nvidia-smi --query-gpu=memory.used \
-            --format=csv,noheader,nounits --id="$idle_gpu" \
-            2>/dev/null | tr -d ' ' || echo 0)
+        local mem_before=0
+        if [ "$idle_gpu" != "all" ]; then
+            mem_before=$(nvidia-smi --query-gpu=memory.used \
+                --format=csv,noheader,nounits --id="$idle_gpu" \
+                2>/dev/null | tr -d ' ' || echo 0)
+        fi
 
         local payload abs_done_dir
         abs_done_dir="$DONE_DIR"
         payload=$(echo "$candidate" | jq \
-            --arg gpu "$idle_gpu" --arg ef "$exp_file" \
+            --arg gpu "$gpu_record_id" --arg ef "$exp_file" \
             '. + {gpu: ($gpu|tonumber), exp_file: $ef}' 2>/dev/null) || payload="{}"
 
         # Background job — all paths absolute
@@ -335,9 +371,14 @@ launch_next() {
             [ -n "$exp_file"   ] && export EXP_FILE="$exp_file"
 
             START=$(date +%s)
-            LAUNCH_CMD=$(echo "$cmd" | sed 's/--device cuda:[0-9]*/--device cuda:0/g')
-            eval "CUDA_VISIBLE_DEVICES=$idle_gpu $LAUNCH_CMD" \
-                >> "$EXPERIMENTS_DIR/${exp_name}_output.log" 2>&1
+            if [ "$idle_gpu" = "all" ]; then
+                # Multi-GPU job: don't set CUDA_VISIBLE_DEVICES, don't rewrite --device
+                eval "$cmd" >> "$EXPERIMENTS_DIR/${exp_name}_output.log" 2>&1
+            else
+                LAUNCH_CMD=$(echo "$cmd" | sed 's/--device cuda:[0-9]*/--device cuda:0/g')
+                eval "CUDA_VISIBLE_DEVICES=$idle_gpu $LAUNCH_CMD" \
+                    >> "$EXPERIMENTS_DIR/${exp_name}_output.log" 2>&1
+            fi
             EXIT_CODE=$?
             END=$(date +%s)
             RUNTIME=$((END - START))
@@ -352,29 +393,33 @@ launch_next() {
         local job_pid=$!
 
         tmp=$(jq \
-            --arg  n  "$exp_name"   \
-            --arg  g  "$idle_gpu"   \
-            --arg  p  "$job_pid"    \
-            --arg  t  "$started_at" \
-            --arg  ef "$exp_file"   \
+            --arg  n  "$exp_name"       \
+            --arg  g  "$gpu_record_id"  \
+            --arg  p  "$job_pid"        \
+            --arg  t  "$started_at"     \
+            --arg  ef "$exp_file"       \
             '.running += [{
                 name: $n, gpu: ($g|tonumber), pid: ($p|tonumber),
                 started_at: $t, exp_file: $ef
             }]' "$QUEUE_FILE" 2>/dev/null) && write_queue "$tmp" || true
 
-        echo "✅ [$(date +'%H:%M:%S')] Launched $exp_name on GPU $idle_gpu (PID: $job_pid)"
+        if [ "$idle_gpu" = "all" ]; then
+            echo "✅ [$(date +'%H:%M:%S')] Launched $exp_name on all GPUs (PID: $job_pid)"
+        else
+            echo "✅ [$(date +'%H:%M:%S')] Launched $exp_name on GPU $idle_gpu (PID: $job_pid)"
 
-        # VRAM sanity check — non-blocking
-        (
-            sleep 30
-            mem_after=$(nvidia-smi --query-gpu=memory.used \
-                --format=csv,noheader,nounits --id="$idle_gpu" \
-                2>/dev/null | tr -d ' ' || echo 0)
-            delta=$((mem_after - mem_before))
-            if [ "$delta" -lt 500 ]; then
-                echo "⚠️  [$(date +'%H:%M:%S')] $exp_name: <500MB VRAM delta on GPU $idle_gpu"
-            fi
-        ) &
+            # VRAM sanity check — non-blocking, single-GPU only
+            (
+                sleep 30
+                mem_after=$(nvidia-smi --query-gpu=memory.used \
+                    --format=csv,noheader,nounits --id="$idle_gpu" \
+                    2>/dev/null | tr -d ' ' || echo 0)
+                delta=$((mem_after - mem_before))
+                if [ "$delta" -lt 500 ]; then
+                    echo "⚠️  [$(date +'%H:%M:%S')] $exp_name: <500MB VRAM delta on GPU $idle_gpu"
+                fi
+            ) &
+        fi
 
         return 0
     done
