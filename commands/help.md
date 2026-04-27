@@ -37,7 +37,7 @@ Queue experiments to run when GPUs are free:
 - Say "queue this experiment" or "run these back to back"
 - Claude will call `queue_experiment.sh` automatically
 
-**Chaining experiments (sequential, same GPU):**
+**Single-GPU jobs (default):**
 ```
 queue_experiment.sh pretrain  "python pretrain.py"  12000
 queue_experiment.sh finetune  "python finetune.py"   8000 --after pretrain
@@ -46,6 +46,16 @@ queue_experiment.sh eval      "python eval.py"       4000 --after finetune
 - `--after <name>` waits for that job to complete before launching
 - Inherits the same GPU as the dependency automatically
 - Multiple deps: `--after exp_a --after exp_b` (waits for all)
+
+**Multi-GPU jobs (Ray, Tensor Parallel, DDP across all GPUs):**
+```
+queue_experiment.sh gsm8k      "python train_gsm8k.py ..."      4000 --all-gpus
+queue_experiment.sh appworld   "python train_appworld.py ..."   4000 --all-gpus --after gsm8k
+queue_experiment.sh officebench "python train_officebench.py ..." 4000 --all-gpus --after appworld
+```
+- `--all-gpus` waits for every GPU to be idle before launching
+- Does not set `CUDA_VISIBLE_DEVICES` — the script claims GPUs itself
+- Chain with `--after` to run multi-GPU jobs sequentially
 
 Check queue status: `/ds:queue`
 

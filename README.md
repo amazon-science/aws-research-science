@@ -74,7 +74,7 @@ Say "try rank 4, 8, and 16" and Claude automatically:
 - Retries failed launches (OOM, device errors) up to 3 times
 - Tracks all jobs in unified queue
 
-**Chain experiments sequentially on the same GPU:**
+**Chain single-GPU experiments sequentially:**
 ```bash
 ./scripts/queue_experiment.sh pretrain "python pretrain.py" 12000
 ./scripts/queue_experiment.sh finetune "python finetune.py"  8000 --after pretrain
@@ -83,6 +83,16 @@ Say "try rank 4, 8, and 16" and Claude automatically:
 - `--after <name>` waits for that job to complete before launching
 - Inherits the dependency's GPU automatically (no VRAM reallocation)
 - Multiple deps: `--after exp_a --after exp_b` waits for all, inherits last completed GPU
+
+**Multi-GPU jobs (Ray, Tensor Parallel, DDP across all GPUs):**
+```bash
+./scripts/queue_experiment.sh gsm8k       "python train_gsm8k.py ..."       4000 --all-gpus
+./scripts/queue_experiment.sh appworld    "python train_appworld.py ..."    4000 --all-gpus --after gsm8k
+./scripts/queue_experiment.sh officebench "python train_officebench.py ..." 4000 --all-gpus --after appworld
+```
+- `--all-gpus` waits for every GPU to be idle before launching
+- Does not set `CUDA_VISIBLE_DEVICES` — the script manages GPU assignment itself
+- Combine with `--after` to run multi-GPU jobs sequentially
 
 **No babysitting required - queue them all at once!**
 
@@ -111,7 +121,7 @@ test_lora_rank6 🔄      accuracy  0.89   5m ago
 ### 📊 Smart Status Line
 Color-coded GPU status at the bottom:
 ```
-[Sonnet 4.5 | 90k/200k (45%)] 📁 dir | GPU# (mem/util) |0. 0%/0% |1. 55%/45% |2. 98%/52% ┃Proc:  3┃
+[Sonnet 4.5 | 90k/200k (45%)] 📁 dir | GPU Util | #0:0%/0% | #1:55%/45% | #2:98%/52% | ┃Proc:  3┃
 ```
 - Green: <30% (available)
 - Orange: 30-70% (moderate)
@@ -366,13 +376,13 @@ Shows everything in one view:
 
 **`/ds:queue` - Queue Status**
 
-Running jobs, queued jobs, and watcher daemon status.
+Running jobs, queued jobs, and watcher daemon status. Works for both single-GPU and multi-GPU (`--all-gpus`) jobs.
 
 **Status Line**
 
 After running `/ds:statusline-setup`, see GPU status at the bottom:
 ```
-[Sonnet 4.5 | 90k/200k (45%)] 📁 dir | GPU# (mem/util) |0. 0%/0% |1. 55%/45% |2. 98%/52% ┃Proc: 3┃
+[Sonnet 4.5 | 90k/200k (45%)] 📁 dir | GPU Util | #0:0%/0% | #1:55%/45% | #2:98%/52% | ┃Proc: 3┃
 ```
 
 - **Green**: <30% util (available)
@@ -471,13 +481,17 @@ ${CLAUDE_PLUGIN_ROOT}/scripts/complete_experiment.sh completed $EXP_FILE
 # Queue a job
 ${CLAUDE_PLUGIN_ROOT}/scripts/queue_experiment.sh "name" "command" [memory_mb]
 
-# Chain experiments (run sequentially on same GPU)
+# Chain single-GPU experiments sequentially
 ${CLAUDE_PLUGIN_ROOT}/scripts/queue_experiment.sh pretrain "python pretrain.py" 12000
 ${CLAUDE_PLUGIN_ROOT}/scripts/queue_experiment.sh finetune "python finetune.py"  8000 --after pretrain
 ${CLAUDE_PLUGIN_ROOT}/scripts/queue_experiment.sh eval     "python eval.py"      4000 --after finetune
 
 # Multiple dependencies (waits for all, inherits last completed GPU)
 ${CLAUDE_PLUGIN_ROOT}/scripts/queue_experiment.sh merge    "python merge.py"     4000 --after run_a --after run_b
+
+# Multi-GPU jobs (Ray, Tensor Parallel — claims all GPUs, no CUDA_VISIBLE_DEVICES)
+${CLAUDE_PLUGIN_ROOT}/scripts/queue_experiment.sh gsm8k       "python train_gsm8k.py ..."       4000 --all-gpus
+${CLAUDE_PLUGIN_ROOT}/scripts/queue_experiment.sh appworld    "python train_appworld.py ..."    4000 --all-gpus --after gsm8k
 
 # Queue management
 ${CLAUDE_PLUGIN_ROOT}/scripts/queue_start_watcher.sh   # Start daemon
@@ -713,7 +727,7 @@ After making changes, restart Claude Code to see updates.
 
 ## Version
 
-**2.0.0** - Job queue system with smart retry logic
+**2.5.0** - Multi-GPU job support (`--all-gpus`), compact statusline format
 
 ## Author
 
