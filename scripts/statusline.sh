@@ -61,10 +61,8 @@ if command -v nvidia-smi &> /dev/null; then
                 COLOR="\033[31m"  # Red (busy)
             fi
 
-            GREY="\033[38;5;240m"
-            SEP="${GREY}│${COLOR_RESET}"
             NUM_STR=$(printf "#%s:%d%%/%d%%" "$idx" "$mem_pct" "$util")
-            GPU_PARTS+=("${SEP}${COLOR}${NUM_STR}${COLOR_RESET}")
+            GPU_PARTS+=(" | ${COLOR}${NUM_STR}${COLOR_RESET}")
         done <<< "$GPU_INFO"
 
         GPU_STATUS="$(IFS=''; echo -e "${GPU_PARTS[*]}")"

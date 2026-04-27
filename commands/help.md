@@ -60,14 +60,12 @@ Claude automatically runs long tasks in the background. Check status with:
 
 ## Statusline
 
-Shows: `[Model | tokens] 📁 dir | GPU# (mem/util) |0. X%/Y% ... Proc:N`
+Shows: `[Model | tokens] 📁 dir | #0:mem%/util% | #1:mem%/util% ... | ┃Proc:N┃`
 
 Color-coded GPUs:
-- Green: <30% util (available)
-- Orange: 30-70% util (moderate)
-- Red: >70% util (busy)
-
-Format: `|GPU#. memory%/utilization%`
+- Green: <30% (available)
+- Orange: 30-70% (moderate)
+- Red: >70% (busy)
 
 ## Setup
 
