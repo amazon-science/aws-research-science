@@ -65,7 +65,7 @@ if command -v nvidia-smi &> /dev/null; then
             GPU_PARTS+=(" | ${COLOR}${NUM_STR}${COLOR_RESET}")
         done <<< "$GPU_INFO"
 
-        GPU_STATUS="$(IFS=''; echo -e "${GPU_PARTS[*]}")"
+        GPU_STATUS="GPU$(IFS=''; echo -e "${GPU_PARTS[*]}")"
     fi
 fi
 
