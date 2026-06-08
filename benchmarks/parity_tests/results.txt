@@ -1,0 +1,70 @@
+Parity Test Results
+Model:    openai.gpt-5.4
+Endpoint: https://bedrock-mantle.us-west-2.api.aws/openai/v1
+Started:  2026-05-27T19:01:34.200723+00:00
+Ended:    2026-05-27T19:04:11.333356+00:00
+============================================================
+
+[PASS] Basic text generation
+       'hello world'
+[PASS] Streaming (response.output_text.delta)
+       5 chunks, text='1\n2\n3'
+[PASS] Instructions field (system prompt)
+       'la capitale de l’allemagne est berlin.'
+[PASS] Multi-role input (developer/user/assistant turns)
+       '8'
+[PASS] Multi-turn via full history (input array)
+       'your name is subshrey.'
+[FAIL] Stateful conversation (previous_response_id)
+       Error code: 404 - {'error': {'code': 'not_found_error', 'message': "Response 'resp_nmvgz5dvgslfqnuho2nptb7pejsmbdgucb4yfwdl3i2mvm3oh7xq' not found.", 'param': None, 'type': 'invalid_request_error'}}
+[PASS] max_output_tokens enforced (min=16)
+       output_tokens=16
+[PASS] Temperature parameter accepted
+       '7'
+[PASS] top_p parameter accepted
+       'yes'
+[PASS] Structured output (json_schema)
+       {'age': 30, 'city': 'NYC', 'name': 'John'}
+[PASS] Function calling (single tool)
+       1 calls, name=get_weather
+[PASS] Parallel function calls
+       2 calls: ['get_weather', 'get_weather']
+[PASS] Tool result round-trip (function_call_output)
+       'boston is currently 55°f and cloudy.'
+[PASS] tool_choice forced
+       1 calls
+[FAIL] Image input (HTTPS URL)
+       Error code: 400 - {'error': {'code': 'validation_error', 'message': 'unsupported image_url scheme: must be `data:` or `s3://`; got https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/GoldenGateB
+[FAIL] Image input (data: base64)
+       Error code: 500 - {'error': {'code': 'internal_server_error', 'message': 'The server had an error while processing your request. Sorry about that!', 'param': None, 'type': 'server_error'}}
+[FAIL] Image input (s3:// URI)
+       Error code: 500 - {'error': {'code': 'internal_server_error', 'message': 'The server had an error while processing your request. Sorry about that!', 'param': None, 'type': 'server_error'}}
+[FAIL] Web search tool
+       NOT SUPPORTED — Error code: 400 - {'error': {'code': 'validation_error', 'message': "Tool type 'web_search' is not supported. Supported tool types are: function, mcp,
+[FAIL] File search tool
+       NOT SUPPORTED — Error code: 400 - {'error': {'code': 'validation_error', 'message': "Tool type 'file_search' is not supported. Supported tool types are: function, mcp
+[PASS] Tool search (gpt-5.4+ feature)
+       output types: ['function_call']
+[FAIL] Remote MCP (server_url)
+       Error code: 400 - {'error': {'code': 'validation_error', 'message': "MCP tool 'dmcp': 'server_url' is not supported. Use a connector ARN instead.", 'param': None, 'type': 'invalid_request_error'}}
+[SKIP] Remote MCP (connector ARN)
+       UNTESTED — requires a provisioned AWS MCP connector ARN; none available in test account
+[PASS] Custom tool type
+       output types: ['message'], text: '294'
+[FAIL] Namespace tool type
+       Error code: 400 - {'error': {'code': 'validation_error', 'message': "invalid request body: Invalid 'tools': missing field `description`", 'param': None, 'type': 'invalid_request_error'}}
+[FAIL] Image generation tool
+       NOT SUPPORTED — Error code: 400 - {'error': {'code': 'validation_error', 'message': "Tool type 'image_generation' is not supported. Supported tool types are: function
+[FAIL] Computer use tool
+       NOT SUPPORTED — Error code: 400 - {'error': {'code': 'validation_error', 'message': "Tool type 'computer_use_preview' is not supported. Supported tool types are: func
+[FAIL] Shell tool
+       NOT SUPPORTED — Error code: 400 - {'error': {'code': 'validation_error', 'message': "Tool type 'shell' is not supported. Supported tool types are: function, mcp, cust
+[PASS] store=False (stateless mode)
+       'stateless'
+[PASS] Usage object (input/output/total tokens)
+       in=159 out=11 total=170
+[FAIL] Response retrieval by ID
+       Error code: 500 - {'error': {'code': 'internal_server_error', 'message': 'The server had an error while processing your request. Sorry about that!', 'param': None, 'type': 'server_error'}}
+
+============================================================
+TOTAL: 17/30 passed | 12 failed | 1 skipped

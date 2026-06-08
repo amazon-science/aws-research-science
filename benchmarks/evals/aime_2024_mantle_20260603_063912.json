@@ -1,0 +1,1976 @@
+{
+  "eval": "aime_2024",
+  "model": "openai.gpt-5.4",
+  "backend": "mantle",
+  "n_questions": 14,
+  "n_repeats": 5,
+  "temperature": 0.6,
+  "started_at": "2026-06-03T06:39:12.640183+00:00",
+  "ended_at": "2026-06-03T06:39:24.063194+00:00",
+  "duration_seconds": 11.4,
+  "correct": 0,
+  "total": 70,
+  "accuracy_pct": 0.0,
+  "results": [
+    {
+      "question_idx": 0,
+      "repeat": 0,
+      "problem_preview": "Among the $900$ residents of Aimeville, there are $195$ who own a diamond ring, $367$ who own a set ",
+      "correct_answer": 73,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_ddoktjzsbkd45n27urgjifi72pbmgfnjo2kxi4mhrvqqknis4mjq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:13 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_ddoktjzsbkd45n27urgjifi72pbmgfnjo2kxi4mhrvqqknis4mjq",
+          "x-request-id": "req_ddoktjzsbkd45n27urgjifi72pbmgfnjo2kxi4mhrvqqknis4mjq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 0,
+      "repeat": 1,
+      "problem_preview": "Among the $900$ residents of Aimeville, there are $195$ who own a diamond ring, $367$ who own a set ",
+      "correct_answer": 73,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_hzxpw5ps2weit6ozypim545s5ss2z5xfc2zoq2p2npqces2vokba",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:14 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_hzxpw5ps2weit6ozypim545s5ss2z5xfc2zoq2p2npqces2vokba",
+          "x-request-id": "req_hzxpw5ps2weit6ozypim545s5ss2z5xfc2zoq2p2npqces2vokba",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 0,
+      "repeat": 2,
+      "problem_preview": "Among the $900$ residents of Aimeville, there are $195$ who own a diamond ring, $367$ who own a set ",
+      "correct_answer": 73,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_hdaoup4w47qiicopx2mn3uhefpyopucqmze2wt73kob5g5ybciia",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:14 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_hdaoup4w47qiicopx2mn3uhefpyopucqmze2wt73kob5g5ybciia",
+          "x-request-id": "req_hdaoup4w47qiicopx2mn3uhefpyopucqmze2wt73kob5g5ybciia",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 0,
+      "repeat": 3,
+      "problem_preview": "Among the $900$ residents of Aimeville, there are $195$ who own a diamond ring, $367$ who own a set ",
+      "correct_answer": 73,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_zcfzvisxde7hz7sapspz4z5pzfl4cyg2z2uwnpnfsj4sqkxo5i5q",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:14 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_zcfzvisxde7hz7sapspz4z5pzfl4cyg2z2uwnpnfsj4sqkxo5i5q",
+          "x-request-id": "req_zcfzvisxde7hz7sapspz4z5pzfl4cyg2z2uwnpnfsj4sqkxo5i5q",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 0,
+      "repeat": 4,
+      "problem_preview": "Among the $900$ residents of Aimeville, there are $195$ who own a diamond ring, $367$ who own a set ",
+      "correct_answer": 73,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_hd63233cva73iruuejpg6nvd7tk4foithow27wyq4s54rammh4ca",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:14 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_hd63233cva73iruuejpg6nvd7tk4foithow27wyq4s54rammh4ca",
+          "x-request-id": "req_hd63233cva73iruuejpg6nvd7tk4foithow27wyq4s54rammh4ca",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 1,
+      "repeat": 0,
+      "problem_preview": "A list of positive integers has the following properties: $\\bullet$ The sum of the items in the list",
+      "correct_answer": 236,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_qt45sqvaqefcoylgverpv22vhzet4aixblk34jvj6cqumzevgriq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:14 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_qt45sqvaqefcoylgverpv22vhzet4aixblk34jvj6cqumzevgriq",
+          "x-request-id": "req_qt45sqvaqefcoylgverpv22vhzet4aixblk34jvj6cqumzevgriq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 1,
+      "repeat": 1,
+      "problem_preview": "A list of positive integers has the following properties: $\\bullet$ The sum of the items in the list",
+      "correct_answer": 236,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_ijp2rt62qpde2cwqqikbpvigbpxnx5yd26zq6hhtlxrrcxchr2vq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:14 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_ijp2rt62qpde2cwqqikbpvigbpxnx5yd26zq6hhtlxrrcxchr2vq",
+          "x-request-id": "req_ijp2rt62qpde2cwqqikbpvigbpxnx5yd26zq6hhtlxrrcxchr2vq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 1,
+      "repeat": 2,
+      "problem_preview": "A list of positive integers has the following properties: $\\bullet$ The sum of the items in the list",
+      "correct_answer": 236,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_6jphrtji4ksjd3khtov7ewqudyuexdcd5exppfqwuah2ob3tdhwq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:14 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_6jphrtji4ksjd3khtov7ewqudyuexdcd5exppfqwuah2ob3tdhwq",
+          "x-request-id": "req_6jphrtji4ksjd3khtov7ewqudyuexdcd5exppfqwuah2ob3tdhwq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 1,
+      "repeat": 3,
+      "problem_preview": "A list of positive integers has the following properties: $\\bullet$ The sum of the items in the list",
+      "correct_answer": 236,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_pwl3gwc4gncjgrpkxba3wxksb7w7ielav3nksqvuslk4cljnbogq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:14 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_pwl3gwc4gncjgrpkxba3wxksb7w7ielav3nksqvuslk4cljnbogq",
+          "x-request-id": "req_pwl3gwc4gncjgrpkxba3wxksb7w7ielav3nksqvuslk4cljnbogq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 1,
+      "repeat": 4,
+      "problem_preview": "A list of positive integers has the following properties: $\\bullet$ The sum of the items in the list",
+      "correct_answer": 236,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_zrrvwpdhdecxbdzqu5fjmfswkfla6mrjqhpzpyzqwn3a7m6a3ubq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:15 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_zrrvwpdhdecxbdzqu5fjmfswkfla6mrjqhpzpyzqwn3a7m6a3ubq",
+          "x-request-id": "req_zrrvwpdhdecxbdzqu5fjmfswkfla6mrjqhpzpyzqwn3a7m6a3ubq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 2,
+      "repeat": 0,
+      "problem_preview": "Find the number of ways to place a digit in each cell of a 2x3 grid so that the sum of the two numbe",
+      "correct_answer": 45,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_62wwnctwydrmddvlz5g5f37j7rcyzfcirqy3ca2avnmeqmep2emq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:15 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_62wwnctwydrmddvlz5g5f37j7rcyzfcirqy3ca2avnmeqmep2emq",
+          "x-request-id": "req_62wwnctwydrmddvlz5g5f37j7rcyzfcirqy3ca2avnmeqmep2emq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 2,
+      "repeat": 1,
+      "problem_preview": "Find the number of ways to place a digit in each cell of a 2x3 grid so that the sum of the two numbe",
+      "correct_answer": 45,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_37pwb2axyip6gw4duevz37k64n7sv5ql7vv3xbdzznmvqrqead6a",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:15 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_37pwb2axyip6gw4duevz37k64n7sv5ql7vv3xbdzznmvqrqead6a",
+          "x-request-id": "req_37pwb2axyip6gw4duevz37k64n7sv5ql7vv3xbdzznmvqrqead6a",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 2,
+      "repeat": 2,
+      "problem_preview": "Find the number of ways to place a digit in each cell of a 2x3 grid so that the sum of the two numbe",
+      "correct_answer": 45,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_pj5pek633oipsnkj2hl7xvvq5qalx3hemjatwwialnvvoybam27a",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:15 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_pj5pek633oipsnkj2hl7xvvq5qalx3hemjatwwialnvvoybam27a",
+          "x-request-id": "req_pj5pek633oipsnkj2hl7xvvq5qalx3hemjatwwialnvvoybam27a",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 2,
+      "repeat": 3,
+      "problem_preview": "Find the number of ways to place a digit in each cell of a 2x3 grid so that the sum of the two numbe",
+      "correct_answer": 45,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_sdlf27yqadi4bvs4c4l46mcnxekrucjubtcdll4ni2ypv7z2dqvq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:15 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_sdlf27yqadi4bvs4c4l46mcnxekrucjubtcdll4ni2ypv7z2dqvq",
+          "x-request-id": "req_sdlf27yqadi4bvs4c4l46mcnxekrucjubtcdll4ni2ypv7z2dqvq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 2,
+      "repeat": 4,
+      "problem_preview": "Find the number of ways to place a digit in each cell of a 2x3 grid so that the sum of the two numbe",
+      "correct_answer": 45,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_jpupksuk22ufk33p7xbyppapdeiopmzfmts733bx5b6cng6x6mcq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:15 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_jpupksuk22ufk33p7xbyppapdeiopmzfmts733bx5b6cng6x6mcq",
+          "x-request-id": "req_jpupksuk22ufk33p7xbyppapdeiopmzfmts733bx5b6cng6x6mcq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 3,
+      "repeat": 0,
+      "problem_preview": "Let $x,y$ and $z$ be positive real numbers that satisfy the following system of equations: \\[\\log_2\\",
+      "correct_answer": 33,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_dgkk5jj33vwc6atrzfnhpfq75etjbur2zhrutaagw4n377auietq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:16 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_dgkk5jj33vwc6atrzfnhpfq75etjbur2zhrutaagw4n377auietq",
+          "x-request-id": "req_dgkk5jj33vwc6atrzfnhpfq75etjbur2zhrutaagw4n377auietq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 3,
+      "repeat": 1,
+      "problem_preview": "Let $x,y$ and $z$ be positive real numbers that satisfy the following system of equations: \\[\\log_2\\",
+      "correct_answer": 33,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_xcu6nivexb52xmxzfldochneaafekticyywvev7t5kbuv7yjjkpa",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:16 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_xcu6nivexb52xmxzfldochneaafekticyywvev7t5kbuv7yjjkpa",
+          "x-request-id": "req_xcu6nivexb52xmxzfldochneaafekticyywvev7t5kbuv7yjjkpa",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 3,
+      "repeat": 2,
+      "problem_preview": "Let $x,y$ and $z$ be positive real numbers that satisfy the following system of equations: \\[\\log_2\\",
+      "correct_answer": 33,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_kaqhfxsttsby7utfqkizc2fku46smenrzxdn34tnwkbnjmypaa3q",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:16 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_kaqhfxsttsby7utfqkizc2fku46smenrzxdn34tnwkbnjmypaa3q",
+          "x-request-id": "req_kaqhfxsttsby7utfqkizc2fku46smenrzxdn34tnwkbnjmypaa3q",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 3,
+      "repeat": 3,
+      "problem_preview": "Let $x,y$ and $z$ be positive real numbers that satisfy the following system of equations: \\[\\log_2\\",
+      "correct_answer": 33,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_4gule4f4clhqqknbw2hvrfd5lkj2m5vnicg6nit275ijsi3lq6ba",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:16 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_4gule4f4clhqqknbw2hvrfd5lkj2m5vnicg6nit275ijsi3lq6ba",
+          "x-request-id": "req_4gule4f4clhqqknbw2hvrfd5lkj2m5vnicg6nit275ijsi3lq6ba",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 3,
+      "repeat": 4,
+      "problem_preview": "Let $x,y$ and $z$ be positive real numbers that satisfy the following system of equations: \\[\\log_2\\",
+      "correct_answer": 33,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_cjkjltyvh4mhy2wcm5h5ip3jtkme3zk7xruxrlmfrfj65jdqg42q",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:16 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_cjkjltyvh4mhy2wcm5h5ip3jtkme3zk7xruxrlmfrfj65jdqg42q",
+          "x-request-id": "req_cjkjltyvh4mhy2wcm5h5ip3jtkme3zk7xruxrlmfrfj65jdqg42q",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 4,
+      "repeat": 0,
+      "problem_preview": "Let $ABCDEF$ be a convex equilateral hexagon in which all pairs of opposite sides are parallel. The ",
+      "correct_answer": 80,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_w3envy6jvph6ivhafno4jvw2lpqk3idh73cdhpbkxk636mb4nuza",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:17 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_w3envy6jvph6ivhafno4jvw2lpqk3idh73cdhpbkxk636mb4nuza",
+          "x-request-id": "req_w3envy6jvph6ivhafno4jvw2lpqk3idh73cdhpbkxk636mb4nuza",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 4,
+      "repeat": 1,
+      "problem_preview": "Let $ABCDEF$ be a convex equilateral hexagon in which all pairs of opposite sides are parallel. The ",
+      "correct_answer": 80,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_ruadxjtcdb5w34ryy6htfc7vgdssgfffdmxymchbbxbilyqveasa",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:17 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_ruadxjtcdb5w34ryy6htfc7vgdssgfffdmxymchbbxbilyqveasa",
+          "x-request-id": "req_ruadxjtcdb5w34ryy6htfc7vgdssgfffdmxymchbbxbilyqveasa",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 4,
+      "repeat": 2,
+      "problem_preview": "Let $ABCDEF$ be a convex equilateral hexagon in which all pairs of opposite sides are parallel. The ",
+      "correct_answer": 80,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_dzntn2joouxznwaynmgjjyjznsydwoqg3zgrafekelpavifh5aga",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:17 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_dzntn2joouxznwaynmgjjyjznsydwoqg3zgrafekelpavifh5aga",
+          "x-request-id": "req_dzntn2joouxznwaynmgjjyjznsydwoqg3zgrafekelpavifh5aga",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 4,
+      "repeat": 3,
+      "problem_preview": "Let $ABCDEF$ be a convex equilateral hexagon in which all pairs of opposite sides are parallel. The ",
+      "correct_answer": 80,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_4insnooovawvtit52qd6zxibkpyyk3v5og3hu255xxmbgnxi32dq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:17 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_4insnooovawvtit52qd6zxibkpyyk3v5og3hu255xxmbgnxi32dq",
+          "x-request-id": "req_4insnooovawvtit52qd6zxibkpyyk3v5og3hu255xxmbgnxi32dq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 4,
+      "repeat": 4,
+      "problem_preview": "Let $ABCDEF$ be a convex equilateral hexagon in which all pairs of opposite sides are parallel. The ",
+      "correct_answer": 80,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_nfqzi5hcg3i7gslgam6gei3ydpgmv5chxahyp4fkgx4azt3x33uq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:17 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_nfqzi5hcg3i7gslgam6gei3ydpgmv5chxahyp4fkgx4azt3x33uq",
+          "x-request-id": "req_nfqzi5hcg3i7gslgam6gei3ydpgmv5chxahyp4fkgx4azt3x33uq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 5,
+      "repeat": 0,
+      "problem_preview": "Alice chooses a set $A$ of positive integers. Then Bob lists all finite nonempty sets $B$ of positiv",
+      "correct_answer": 55,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_yyapan3lej4woskq23373gpmufmvbtg6ziei5ufd7gpfphcb42ja",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:17 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_yyapan3lej4woskq23373gpmufmvbtg6ziei5ufd7gpfphcb42ja",
+          "x-request-id": "req_yyapan3lej4woskq23373gpmufmvbtg6ziei5ufd7gpfphcb42ja",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 5,
+      "repeat": 1,
+      "problem_preview": "Alice chooses a set $A$ of positive integers. Then Bob lists all finite nonempty sets $B$ of positiv",
+      "correct_answer": 55,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_ixf6nddzubgx4m4ijgieqkrhuhgo7fr6uujpfd5dahb4pqqlwa3q",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:17 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_ixf6nddzubgx4m4ijgieqkrhuhgo7fr6uujpfd5dahb4pqqlwa3q",
+          "x-request-id": "req_ixf6nddzubgx4m4ijgieqkrhuhgo7fr6uujpfd5dahb4pqqlwa3q",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 5,
+      "repeat": 2,
+      "problem_preview": "Alice chooses a set $A$ of positive integers. Then Bob lists all finite nonempty sets $B$ of positiv",
+      "correct_answer": 55,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_h5sqei32olglp5h6rvhjguqgsmsccjkwokwn6kej3defp23cqngq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:17 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_h5sqei32olglp5h6rvhjguqgsmsccjkwokwn6kej3defp23cqngq",
+          "x-request-id": "req_h5sqei32olglp5h6rvhjguqgsmsccjkwokwn6kej3defp23cqngq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 5,
+      "repeat": 3,
+      "problem_preview": "Alice chooses a set $A$ of positive integers. Then Bob lists all finite nonempty sets $B$ of positiv",
+      "correct_answer": 55,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_jfri4idwngcqwrjpkx75p36f74opvow2bxtkvimuojtwajn3uzha",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:17 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_jfri4idwngcqwrjpkx75p36f74opvow2bxtkvimuojtwajn3uzha",
+          "x-request-id": "req_jfri4idwngcqwrjpkx75p36f74opvow2bxtkvimuojtwajn3uzha",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 5,
+      "repeat": 4,
+      "problem_preview": "Alice chooses a set $A$ of positive integers. Then Bob lists all finite nonempty sets $B$ of positiv",
+      "correct_answer": 55,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_wjxiaigeym7aw6uf4kqfbtrfqsqmbatuls73iltl2ywan46d75ma",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:18 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_wjxiaigeym7aw6uf4kqfbtrfqsqmbatuls73iltl2ywan46d75ma",
+          "x-request-id": "req_wjxiaigeym7aw6uf4kqfbtrfqsqmbatuls73iltl2ywan46d75ma",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 6,
+      "repeat": 0,
+      "problem_preview": "Let $N$ be the greatest four-digit integer with the property that whenever one of its digits is chan",
+      "correct_answer": 699,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_7mo3kcw6vrt7oudfapx6bz7jsi2j7mege5yfcrcrtuqaztbnwu3q",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:18 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_7mo3kcw6vrt7oudfapx6bz7jsi2j7mege5yfcrcrtuqaztbnwu3q",
+          "x-request-id": "req_7mo3kcw6vrt7oudfapx6bz7jsi2j7mege5yfcrcrtuqaztbnwu3q",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 6,
+      "repeat": 1,
+      "problem_preview": "Let $N$ be the greatest four-digit integer with the property that whenever one of its digits is chan",
+      "correct_answer": 699,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_ibvdsevnfkqely2eac3ihyf2dke6vyfoypuoi7dxh2lj4iy3huhq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:18 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_ibvdsevnfkqely2eac3ihyf2dke6vyfoypuoi7dxh2lj4iy3huhq",
+          "x-request-id": "req_ibvdsevnfkqely2eac3ihyf2dke6vyfoypuoi7dxh2lj4iy3huhq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 6,
+      "repeat": 2,
+      "problem_preview": "Let $N$ be the greatest four-digit integer with the property that whenever one of its digits is chan",
+      "correct_answer": 699,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_tv2d223vcczvbhedl4ge6zexchvd6c2ulcwn52ddci4hlt3ksrsa",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:18 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_tv2d223vcczvbhedl4ge6zexchvd6c2ulcwn52ddci4hlt3ksrsa",
+          "x-request-id": "req_tv2d223vcczvbhedl4ge6zexchvd6c2ulcwn52ddci4hlt3ksrsa",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 6,
+      "repeat": 3,
+      "problem_preview": "Let $N$ be the greatest four-digit integer with the property that whenever one of its digits is chan",
+      "correct_answer": 699,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_2hnaousrg553dthxktjz2nvopb3ocogabrbdb6vsv4snwg4k2y6a",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:18 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_2hnaousrg553dthxktjz2nvopb3ocogabrbdb6vsv4snwg4k2y6a",
+          "x-request-id": "req_2hnaousrg553dthxktjz2nvopb3ocogabrbdb6vsv4snwg4k2y6a",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 6,
+      "repeat": 4,
+      "problem_preview": "Let $N$ be the greatest four-digit integer with the property that whenever one of its digits is chan",
+      "correct_answer": 699,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_wdbkyk7qj6xnzyf6bck4ya3vhanua4bifcefwwnv3tigdbexs6xa",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:18 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_wdbkyk7qj6xnzyf6bck4ya3vhanua4bifcefwwnv3tigdbexs6xa",
+          "x-request-id": "req_wdbkyk7qj6xnzyf6bck4ya3vhanua4bifcefwwnv3tigdbexs6xa",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 7,
+      "repeat": 0,
+      "problem_preview": "Torus $T$ is the surface produced by revolving a circle with radius 3 around an axis in the plane of",
+      "correct_answer": 127,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_cra3bvqhdsl5rdi3z5zwe5j2ayvqsjpoytk3ucpyvafuruwvsjha",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:19 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_cra3bvqhdsl5rdi3z5zwe5j2ayvqsjpoytk3ucpyvafuruwvsjha",
+          "x-request-id": "req_cra3bvqhdsl5rdi3z5zwe5j2ayvqsjpoytk3ucpyvafuruwvsjha",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 7,
+      "repeat": 1,
+      "problem_preview": "Torus $T$ is the surface produced by revolving a circle with radius 3 around an axis in the plane of",
+      "correct_answer": 127,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_2ghc2az64plqjwpg7qvgk6skrxpkeiup3py5trtvrdidgid4v6fq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:19 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_2ghc2az64plqjwpg7qvgk6skrxpkeiup3py5trtvrdidgid4v6fq",
+          "x-request-id": "req_2ghc2az64plqjwpg7qvgk6skrxpkeiup3py5trtvrdidgid4v6fq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 7,
+      "repeat": 2,
+      "problem_preview": "Torus $T$ is the surface produced by revolving a circle with radius 3 around an axis in the plane of",
+      "correct_answer": 127,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_sc6jsyke5sjqb22qbk6ljhihyb5k2ufwo3mq43uca3nx5vx7dwna",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:19 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_sc6jsyke5sjqb22qbk6ljhihyb5k2ufwo3mq43uca3nx5vx7dwna",
+          "x-request-id": "req_sc6jsyke5sjqb22qbk6ljhihyb5k2ufwo3mq43uca3nx5vx7dwna",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 7,
+      "repeat": 3,
+      "problem_preview": "Torus $T$ is the surface produced by revolving a circle with radius 3 around an axis in the plane of",
+      "correct_answer": 127,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_gqi2cwxgru3r7yn5dvqz5gyhqvl6wkdt7pg2qlwx5aqpq2eaaddq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:19 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_gqi2cwxgru3r7yn5dvqz5gyhqvl6wkdt7pg2qlwx5aqpq2eaaddq",
+          "x-request-id": "req_gqi2cwxgru3r7yn5dvqz5gyhqvl6wkdt7pg2qlwx5aqpq2eaaddq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 7,
+      "repeat": 4,
+      "problem_preview": "Torus $T$ is the surface produced by revolving a circle with radius 3 around an axis in the plane of",
+      "correct_answer": 127,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_irc4pqv43egfwntolj2ocd7jbhvu5ku5p7rmi6zaha7mjt7xjnfq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:19 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_irc4pqv43egfwntolj2ocd7jbhvu5ku5p7rmi6zaha7mjt7xjnfq",
+          "x-request-id": "req_irc4pqv43egfwntolj2ocd7jbhvu5ku5p7rmi6zaha7mjt7xjnfq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 8,
+      "repeat": 0,
+      "problem_preview": "Let $\\triangle$ $ABC$ have incenter $I$ and circumcenter $O$ with $\\overline{IA} \\perp \\overline{OI}",
+      "correct_answer": 468,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_vcvu2lycvqant6vukgx62lzwyarl24nuaao2dja7zoxaxntr2foa",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:20 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_vcvu2lycvqant6vukgx62lzwyarl24nuaao2dja7zoxaxntr2foa",
+          "x-request-id": "req_vcvu2lycvqant6vukgx62lzwyarl24nuaao2dja7zoxaxntr2foa",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 8,
+      "repeat": 1,
+      "problem_preview": "Let $\\triangle$ $ABC$ have incenter $I$ and circumcenter $O$ with $\\overline{IA} \\perp \\overline{OI}",
+      "correct_answer": 468,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_hkkhl2eaklsryfdc5jrlpgsjod72vyfeowfqdshscui5jahnjlmq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:20 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_hkkhl2eaklsryfdc5jrlpgsjod72vyfeowfqdshscui5jahnjlmq",
+          "x-request-id": "req_hkkhl2eaklsryfdc5jrlpgsjod72vyfeowfqdshscui5jahnjlmq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 8,
+      "repeat": 2,
+      "problem_preview": "Let $\\triangle$ $ABC$ have incenter $I$ and circumcenter $O$ with $\\overline{IA} \\perp \\overline{OI}",
+      "correct_answer": 468,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_f5lajuyiywsuyguago4tm3qe3glisjau6k5fvbx45k664iqld5pa",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:20 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_f5lajuyiywsuyguago4tm3qe3glisjau6k5fvbx45k664iqld5pa",
+          "x-request-id": "req_f5lajuyiywsuyguago4tm3qe3glisjau6k5fvbx45k664iqld5pa",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 8,
+      "repeat": 3,
+      "problem_preview": "Let $\\triangle$ $ABC$ have incenter $I$ and circumcenter $O$ with $\\overline{IA} \\perp \\overline{OI}",
+      "correct_answer": 468,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_ugkud3lhrdyyz2eznrecjfirhfo6jubvffywqxqzbfkve64vrgya",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:20 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_ugkud3lhrdyyz2eznrecjfirhfo6jubvffywqxqzbfkve64vrgya",
+          "x-request-id": "req_ugkud3lhrdyyz2eznrecjfirhfo6jubvffywqxqzbfkve64vrgya",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 8,
+      "repeat": 4,
+      "problem_preview": "Let $\\triangle$ $ABC$ have incenter $I$ and circumcenter $O$ with $\\overline{IA} \\perp \\overline{OI}",
+      "correct_answer": 468,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_cgg3bdo54ivdunzuwtuvtcfksjndvvrjppas3wh4rviau47geiia",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:20 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_cgg3bdo54ivdunzuwtuvtcfksjndvvrjppas3wh4rviau47geiia",
+          "x-request-id": "req_cgg3bdo54ivdunzuwtuvtcfksjndvvrjppas3wh4rviau47geiia",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 9,
+      "repeat": 0,
+      "problem_preview": "Find the number of triples of nonnegative integers $(a, b, c)$ satisfying $a + b + c = 300$ and \\[a^",
+      "correct_answer": 601,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_2urp2cdzpjbwzvuz3yz54pdr6mm4qyt5kaxylreom7pjsaqx7vba",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:20 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_2urp2cdzpjbwzvuz3yz54pdr6mm4qyt5kaxylreom7pjsaqx7vba",
+          "x-request-id": "req_2urp2cdzpjbwzvuz3yz54pdr6mm4qyt5kaxylreom7pjsaqx7vba",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 9,
+      "repeat": 1,
+      "problem_preview": "Find the number of triples of nonnegative integers $(a, b, c)$ satisfying $a + b + c = 300$ and \\[a^",
+      "correct_answer": 601,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_ztdkrrglr7oy6qhqejjm7nlk5vziglnkuw5m7gu6fxsqbguqa5ja",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:20 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_ztdkrrglr7oy6qhqejjm7nlk5vziglnkuw5m7gu6fxsqbguqa5ja",
+          "x-request-id": "req_ztdkrrglr7oy6qhqejjm7nlk5vziglnkuw5m7gu6fxsqbguqa5ja",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 9,
+      "repeat": 2,
+      "problem_preview": "Find the number of triples of nonnegative integers $(a, b, c)$ satisfying $a + b + c = 300$ and \\[a^",
+      "correct_answer": 601,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_w2carfa465uxc6ps7nxlthszb2lk5q3ocsrejqek7aofyah4x47a",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:20 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_w2carfa465uxc6ps7nxlthszb2lk5q3ocsrejqek7aofyah4x47a",
+          "x-request-id": "req_w2carfa465uxc6ps7nxlthszb2lk5q3ocsrejqek7aofyah4x47a",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 9,
+      "repeat": 3,
+      "problem_preview": "Find the number of triples of nonnegative integers $(a, b, c)$ satisfying $a + b + c = 300$ and \\[a^",
+      "correct_answer": 601,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_ixvtzojswlptj6pwc724rec6jkcnzo3v3tbsnxq2cspwox3srikq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:20 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_ixvtzojswlptj6pwc724rec6jkcnzo3v3tbsnxq2cspwox3srikq",
+          "x-request-id": "req_ixvtzojswlptj6pwc724rec6jkcnzo3v3tbsnxq2cspwox3srikq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 9,
+      "repeat": 4,
+      "problem_preview": "Find the number of triples of nonnegative integers $(a, b, c)$ satisfying $a + b + c = 300$ and \\[a^",
+      "correct_answer": 601,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_hy3tartthyouwkr4vcnhceomze5tsjz5wmqv7gfasctivzwg4oda",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:21 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_hy3tartthyouwkr4vcnhceomze5tsjz5wmqv7gfasctivzwg4oda",
+          "x-request-id": "req_hy3tartthyouwkr4vcnhceomze5tsjz5wmqv7gfasctivzwg4oda",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 10,
+      "repeat": 0,
+      "problem_preview": "Let $O(0,0),A(\\tfrac{1}{2},0),$ and $B(0,\\tfrac{\\sqrt{3}}{2})$ be points in the coordinate plane. Le",
+      "correct_answer": 23,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_4cmw4dqfzfbjulc4rawhytwtgf57aztddtxndtyj6gzzwwjmogoa",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:21 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_4cmw4dqfzfbjulc4rawhytwtgf57aztddtxndtyj6gzzwwjmogoa",
+          "x-request-id": "req_4cmw4dqfzfbjulc4rawhytwtgf57aztddtxndtyj6gzzwwjmogoa",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 10,
+      "repeat": 1,
+      "problem_preview": "Let $O(0,0),A(\\tfrac{1}{2},0),$ and $B(0,\\tfrac{\\sqrt{3}}{2})$ be points in the coordinate plane. Le",
+      "correct_answer": 23,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_eo2ip3aykxdb7odmr24yjxsiupsxknwqfwjsypv7lgwkbks6uz3a",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:21 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_eo2ip3aykxdb7odmr24yjxsiupsxknwqfwjsypv7lgwkbks6uz3a",
+          "x-request-id": "req_eo2ip3aykxdb7odmr24yjxsiupsxknwqfwjsypv7lgwkbks6uz3a",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 10,
+      "repeat": 2,
+      "problem_preview": "Let $O(0,0),A(\\tfrac{1}{2},0),$ and $B(0,\\tfrac{\\sqrt{3}}{2})$ be points in the coordinate plane. Le",
+      "correct_answer": 23,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_7pzmjtwi3jmaga5wiezfntpebln5d4snbhiom3mr65xdju2iepja",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:21 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_7pzmjtwi3jmaga5wiezfntpebln5d4snbhiom3mr65xdju2iepja",
+          "x-request-id": "req_7pzmjtwi3jmaga5wiezfntpebln5d4snbhiom3mr65xdju2iepja",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 10,
+      "repeat": 3,
+      "problem_preview": "Let $O(0,0),A(\\tfrac{1}{2},0),$ and $B(0,\\tfrac{\\sqrt{3}}{2})$ be points in the coordinate plane. Le",
+      "correct_answer": 23,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_gv7cho4gsvusy5awdig76vdpvh5fg5hpud6h5nlmieotafokidrq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:21 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_gv7cho4gsvusy5awdig76vdpvh5fg5hpud6h5nlmieotafokidrq",
+          "x-request-id": "req_gv7cho4gsvusy5awdig76vdpvh5fg5hpud6h5nlmieotafokidrq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 10,
+      "repeat": 4,
+      "problem_preview": "Let $O(0,0),A(\\tfrac{1}{2},0),$ and $B(0,\\tfrac{\\sqrt{3}}{2})$ be points in the coordinate plane. Le",
+      "correct_answer": 23,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_l6grx7j57gbkwpj72fztcj54huzcytfmohk7ixo37dhduayss4gq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:21 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_l6grx7j57gbkwpj72fztcj54huzcytfmohk7ixo37dhduayss4gq",
+          "x-request-id": "req_l6grx7j57gbkwpj72fztcj54huzcytfmohk7ixo37dhduayss4gq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 11,
+      "repeat": 0,
+      "problem_preview": "Let $\\omega\\neq 1$ be a 13th root of unity. Find the remainder when \\[\\prod_{k=0}^{12}(2-2\\omega^k+\\",
+      "correct_answer": 321,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_2c2g5ak6vj24ynkplpioynvkh4qfxtrhomdd7jua6q2z5yv3w6ga",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:22 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_2c2g5ak6vj24ynkplpioynvkh4qfxtrhomdd7jua6q2z5yv3w6ga",
+          "x-request-id": "req_2c2g5ak6vj24ynkplpioynvkh4qfxtrhomdd7jua6q2z5yv3w6ga",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 11,
+      "repeat": 1,
+      "problem_preview": "Let $\\omega\\neq 1$ be a 13th root of unity. Find the remainder when \\[\\prod_{k=0}^{12}(2-2\\omega^k+\\",
+      "correct_answer": 321,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_r6yelc3sf2zlm4g46rp3bnm6xffzr44ky2uwzgha7yanf4k3xswq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:22 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_r6yelc3sf2zlm4g46rp3bnm6xffzr44ky2uwzgha7yanf4k3xswq",
+          "x-request-id": "req_r6yelc3sf2zlm4g46rp3bnm6xffzr44ky2uwzgha7yanf4k3xswq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 11,
+      "repeat": 2,
+      "problem_preview": "Let $\\omega\\neq 1$ be a 13th root of unity. Find the remainder when \\[\\prod_{k=0}^{12}(2-2\\omega^k+\\",
+      "correct_answer": 321,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_nnczku4bffx3o2tfvhyyhhv3dysjkqweihmtdwdtxlv2sszmtcta",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:22 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_nnczku4bffx3o2tfvhyyhhv3dysjkqweihmtdwdtxlv2sszmtcta",
+          "x-request-id": "req_nnczku4bffx3o2tfvhyyhhv3dysjkqweihmtdwdtxlv2sszmtcta",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 11,
+      "repeat": 3,
+      "problem_preview": "Let $\\omega\\neq 1$ be a 13th root of unity. Find the remainder when \\[\\prod_{k=0}^{12}(2-2\\omega^k+\\",
+      "correct_answer": 321,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_xawrzxyfwlkz3rfaygclnimm3svacirxizwcjz5ulrtq6d42xj3a",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:22 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_xawrzxyfwlkz3rfaygclnimm3svacirxizwcjz5ulrtq6d42xj3a",
+          "x-request-id": "req_xawrzxyfwlkz3rfaygclnimm3svacirxizwcjz5ulrtq6d42xj3a",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 11,
+      "repeat": 4,
+      "problem_preview": "Let $\\omega\\neq 1$ be a 13th root of unity. Find the remainder when \\[\\prod_{k=0}^{12}(2-2\\omega^k+\\",
+      "correct_answer": 321,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_3mrffxxqfxnfbfuadi565nbrdjdkns2ldzbxle3a6wqzmiryr5iq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:22 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_3mrffxxqfxnfbfuadi565nbrdjdkns2ldzbxle3a6wqzmiryr5iq",
+          "x-request-id": "req_3mrffxxqfxnfbfuadi565nbrdjdkns2ldzbxle3a6wqzmiryr5iq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 12,
+      "repeat": 0,
+      "problem_preview": "Let $b \\geq 2$ be an integer. Call a positive integer $n$ $b\\textit{-eautiful}$ if it has exactly tw",
+      "correct_answer": 211,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_2zzmgeeymlw5clafvs6kxdjwc36rldrmcizhfff2aqbhbfjsq65q",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:22 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_2zzmgeeymlw5clafvs6kxdjwc36rldrmcizhfff2aqbhbfjsq65q",
+          "x-request-id": "req_2zzmgeeymlw5clafvs6kxdjwc36rldrmcizhfff2aqbhbfjsq65q",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 12,
+      "repeat": 1,
+      "problem_preview": "Let $b \\geq 2$ be an integer. Call a positive integer $n$ $b\\textit{-eautiful}$ if it has exactly tw",
+      "correct_answer": 211,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_bm2p7fsvwz6gyfvttf7bchv5elxblyuaedkvxa3v3rtdydd554uq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:23 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_bm2p7fsvwz6gyfvttf7bchv5elxblyuaedkvxa3v3rtdydd554uq",
+          "x-request-id": "req_bm2p7fsvwz6gyfvttf7bchv5elxblyuaedkvxa3v3rtdydd554uq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 12,
+      "repeat": 2,
+      "problem_preview": "Let $b \\geq 2$ be an integer. Call a positive integer $n$ $b\\textit{-eautiful}$ if it has exactly tw",
+      "correct_answer": 211,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_4xaibu5ekdptu3q3ochzpfyrowhnj4iuzwmazldiro72c5mnk7oq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:23 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_4xaibu5ekdptu3q3ochzpfyrowhnj4iuzwmazldiro72c5mnk7oq",
+          "x-request-id": "req_4xaibu5ekdptu3q3ochzpfyrowhnj4iuzwmazldiro72c5mnk7oq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 12,
+      "repeat": 3,
+      "problem_preview": "Let $b \\geq 2$ be an integer. Call a positive integer $n$ $b\\textit{-eautiful}$ if it has exactly tw",
+      "correct_answer": 211,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_y42lgntqixppbhouxznpxibtijizaa47nk4mx7vsg625eioutzqq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:23 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_y42lgntqixppbhouxznpxibtijizaa47nk4mx7vsg625eioutzqq",
+          "x-request-id": "req_y42lgntqixppbhouxznpxibtijizaa47nk4mx7vsg625eioutzqq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 12,
+      "repeat": 4,
+      "problem_preview": "Let $b \\geq 2$ be an integer. Call a positive integer $n$ $b\\textit{-eautiful}$ if it has exactly tw",
+      "correct_answer": 211,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_tyz4oagfk5uj2lvudoahohukvgk77iiv2drpa63lu4jybncz6vza",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:23 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_tyz4oagfk5uj2lvudoahohukvgk77iiv2drpa63lu4jybncz6vza",
+          "x-request-id": "req_tyz4oagfk5uj2lvudoahohukvgk77iiv2drpa63lu4jybncz6vza",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 13,
+      "repeat": 0,
+      "problem_preview": "Find the number of rectangles that can be formed inside a fixed regular dodecagon ( $12$ -gon) where",
+      "correct_answer": 315,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_ckbph3sl2yybkcwcdorhd3fb54sjjtx4566upzcwfz75crp342ya",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:23 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_ckbph3sl2yybkcwcdorhd3fb54sjjtx4566upzcwfz75crp342ya",
+          "x-request-id": "req_ckbph3sl2yybkcwcdorhd3fb54sjjtx4566upzcwfz75crp342ya",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 13,
+      "repeat": 1,
+      "problem_preview": "Find the number of rectangles that can be formed inside a fixed regular dodecagon ( $12$ -gon) where",
+      "correct_answer": 315,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_qwtoqetgfyhvfwk6j6bii2pjed3ghcnznkp33xf3qme4hzmblava",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:23 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_qwtoqetgfyhvfwk6j6bii2pjed3ghcnznkp33xf3qme4hzmblava",
+          "x-request-id": "req_qwtoqetgfyhvfwk6j6bii2pjed3ghcnznkp33xf3qme4hzmblava",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 13,
+      "repeat": 2,
+      "problem_preview": "Find the number of rectangles that can be formed inside a fixed regular dodecagon ( $12$ -gon) where",
+      "correct_answer": 315,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_5sqkz6ss4guliwijavthyw2fivymek6q52teuircqwb2y7jtsnpq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:23 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_5sqkz6ss4guliwijavthyw2fivymek6q52teuircqwb2y7jtsnpq",
+          "x-request-id": "req_5sqkz6ss4guliwijavthyw2fivymek6q52teuircqwb2y7jtsnpq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 13,
+      "repeat": 3,
+      "problem_preview": "Find the number of rectangles that can be formed inside a fixed regular dodecagon ( $12$ -gon) where",
+      "correct_answer": 315,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_73xujo23dcf4woxg3liokc54bzdpnappryvwdhq55gjl26i32hoq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:23 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_73xujo23dcf4woxg3liokc54bzdpnappryvwdhq55gjl26i32hoq",
+          "x-request-id": "req_73xujo23dcf4woxg3liokc54bzdpnappryvwdhq55gjl26i32hoq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 13,
+      "repeat": 4,
+      "problem_preview": "Find the number of rectangles that can be formed inside a fixed regular dodecagon ( $12$ -gon) where",
+      "correct_answer": 315,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'The security token included in the request is invalid.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_wc7lcdcmkmp5jnrheh6rxbxrmcpimplchtcnzv6bvauoxyugogiq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 06:39:23 GMT",
+          "content-type": "application/json",
+          "content-length": "149",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_wc7lcdcmkmp5jnrheh6rxbxrmcpimplchtcnzv6bvauoxyugogiq",
+          "x-request-id": "req_wc7lcdcmkmp5jnrheh6rxbxrmcpimplchtcnzv6bvauoxyugogiq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    }
+  ]
+}

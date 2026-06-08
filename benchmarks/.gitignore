@@ -1,0 +1,31 @@
+# Private internal benchmarks
+independent_benchmarks/
+
+# Word documents
+*.docx
+
+# Claude session files
+.claude/
+.claude_session
+
+# macOS
+.DS_Store
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+.env/
+env/
+
+# Credentials / tokens (extra safety)
+*.pem
+*.key
+credentials

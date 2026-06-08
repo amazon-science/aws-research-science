@@ -1,0 +1,826 @@
+{
+  "eval": "aime_2025",
+  "model": "openai.gpt-5.4",
+  "base_url": "https://bedrock-mantle.us-west-2.api.aws/openai/v1",
+  "n_questions": 90,
+  "n_repeats": 1,
+  "temperature": 0.6,
+  "started_at": "2026-05-28T01:24:49.547110+00:00",
+  "ended_at": "2026-05-28T01:50:54.326706+00:00",
+  "duration_seconds": 1564.8,
+  "correct": 57,
+  "total": 90,
+  "accuracy_pct": 63.33,
+  "results": [
+    {
+      "question_idx": 0,
+      "repeat": 0,
+      "problem_preview": "Quadratic polynomials $P(x)$ and $Q(x)$ have leading coefficients $2$ and $-2,$ respectively. The gr",
+      "correct_answer": 116,
+      "predicted": 116,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 1,
+      "repeat": 0,
+      "problem_preview": "Three spheres with radii $11$, $13$, and $19$ are mutually externally tangent. A plane intersects th",
+      "correct_answer": 756,
+      "predicted": 756,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 2,
+      "repeat": 0,
+      "problem_preview": "Let $ABCD$ be a parallelogram with $\\angle BAD < 90^\\circ.$ A circle tangent to sides $\\overline{DA}",
+      "correct_answer": 150,
+      "predicted": null,
+      "is_correct": false,
+      "error": "Error code: 400 - {'error': {'code': 'validation_error', 'message': 'Your request was flagged as potentially violating our usage policy. Please try again with a different prompt.', 'param': None, 'typ"
+    },
+    {
+      "question_idx": 3,
+      "repeat": 0,
+      "problem_preview": "For any finite set $X$, let $| X |$ denote the number of elements in $X$. Define\n\\[S_n = \\sum | A \\c",
+      "correct_answer": 245,
+      "predicted": 165,
+      "is_correct": false,
+      "error": null
+    },
+    {
+      "question_idx": 4,
+      "repeat": 0,
+      "problem_preview": "Let $S$ be the set of all rational numbers that can be expressed as a repeating decimal in the form ",
+      "correct_answer": 392,
+      "predicted": 392,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 5,
+      "repeat": 0,
+      "problem_preview": "Given $\\triangle ABC$ and a point $P$ on one of its sides, call line $\\ell$ the $\\textit{splitting l",
+      "correct_answer": 459,
+      "predicted": null,
+      "is_correct": false,
+      "error": "Error code: 400 - {'error': {'code': 'validation_error', 'message': 'Your request was flagged as potentially violating our usage policy. Please try again with a different prompt.', 'param': None, 'typ"
+    },
+    {
+      "question_idx": 6,
+      "repeat": 0,
+      "problem_preview": "Let $x,$ $y,$ and $z$ be positive real numbers satisfying the system of equations:\n\\begin{align*} \\s",
+      "correct_answer": 33,
+      "predicted": 33,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 7,
+      "repeat": 0,
+      "problem_preview": "Find the three-digit positive integer $\\underline{a}\\,\\underline{b}\\,\\underline{c}$ whose representa",
+      "correct_answer": 227,
+      "predicted": 227,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 8,
+      "repeat": 0,
+      "problem_preview": "In isosceles trapezoid $ABCD$, parallel bases $\\overline{AB}$ and $\\overline{CD}$ have lengths $500$",
+      "correct_answer": 242,
+      "predicted": 242,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 9,
+      "repeat": 0,
+      "problem_preview": "Let $w = \\dfrac{\\sqrt{3} + i}{2}$ and $z = \\dfrac{-1 + i\\sqrt{3}}{2},$ where $i = \\sqrt{-1}.$ Find t",
+      "correct_answer": 834,
+      "predicted": 834,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 10,
+      "repeat": 0,
+      "problem_preview": "A straight river that is $264$ meters wide flows from west to east at a rate of $14$ meters per minu",
+      "correct_answer": 550,
+      "predicted": 550,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 11,
+      "repeat": 0,
+      "problem_preview": "Find the number of ordered pairs of integers $(a, b)$ such that the sequence\\[3, 4, 5, a, b, 30, 40,",
+      "correct_answer": 228,
+      "predicted": null,
+      "is_correct": false,
+      "error": "Error code: 400 - {'error': {'code': 'validation_error', 'message': 'Your request was flagged as potentially violating our usage policy. Please try again with a different prompt.', 'param': None, 'typ"
+    },
+    {
+      "question_idx": 12,
+      "repeat": 0,
+      "problem_preview": "Let $a,b,c,d,e,f,g,h,i$ be distinct integers from $1$ to $9.$ The minimum possible positive value of",
+      "correct_answer": 289,
+      "predicted": 289,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 13,
+      "repeat": 0,
+      "problem_preview": "Equilateral triangle $\\triangle ABC$ is inscribed in circle $\\omega$ with radius $18.$ Circle $\\omeg",
+      "correct_answer": 378,
+      "predicted": null,
+      "is_correct": false,
+      "error": "Error code: 400 - {'error': {'code': 'validation_error', 'message': 'Your request was flagged as potentially violating our usage policy. Please try again with a different prompt.', 'param': None, 'typ"
+    },
+    {
+      "question_idx": 14,
+      "repeat": 0,
+      "problem_preview": "Ellina has twelve blocks, two each of red ($\\textbf{R}$), blue ($\\textbf{B}$), yellow ($\\textbf{Y}$)",
+      "correct_answer": 247,
+      "predicted": 123,
+      "is_correct": false,
+      "error": null
+    },
+    {
+      "question_idx": 15,
+      "repeat": 0,
+      "problem_preview": "Adults made up $\\frac5{12}$ of the crowd of people at a concert. After a bus carrying $50$ more peop",
+      "correct_answer": 154,
+      "predicted": 154,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 16,
+      "repeat": 0,
+      "problem_preview": "Find the remainder when\\[\\binom{\\binom{3}{2}}{2} + \\binom{\\binom{4}{2}}{2} + \\dots +  \\binom{\\binom{",
+      "correct_answer": 4,
+      "predicted": 4,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 17,
+      "repeat": 0,
+      "problem_preview": "Let $ABCD$ be a convex quadrilateral with $AB=2, AD=7,$ and $CD=3$ such that the bisectors of acute ",
+      "correct_answer": 180,
+      "predicted": null,
+      "is_correct": false,
+      "error": "Error code: 400 - {'error': {'code': 'validation_error', 'message': 'Your request was flagged as potentially violating our usage policy. Please try again with a different prompt.', 'param': None, 'typ"
+    },
+    {
+      "question_idx": 18,
+      "repeat": 0,
+      "problem_preview": "Let $a, b, x,$ and $y$ be real numbers with $a>4$ and $b>1$ such that\\[\\frac{x^2}{a^2}+\\frac{y^2}{a^",
+      "correct_answer": 23,
+      "predicted": 23,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 19,
+      "repeat": 0,
+      "problem_preview": "There is a polynomial $P(x)$ with integer coefficients such that\\[P(x)=\\frac{(x^{2310}-1)^6}{(x^{105",
+      "correct_answer": 220,
+      "predicted": null,
+      "is_correct": false,
+      "error": "Error code: 400 - {'error': {'code': 'validation_error', 'message': 'Your request was flagged as potentially violating our usage policy. Please try again with a different prompt.', 'param': None, 'typ"
+    },
+    {
+      "question_idx": 20,
+      "repeat": 0,
+      "problem_preview": "For positive integers $a$, $b$, and $c$ with $a < b < c$, consider collections of postage stamps in ",
+      "correct_answer": 188,
+      "predicted": null,
+      "is_correct": false,
+      "error": "Error code: 400 - {'error': {'code': 'validation_error', 'message': 'Your request was flagged as potentially violating our usage policy. Please try again with a different prompt.', 'param': None, 'typ"
+    },
+    {
+      "question_idx": 21,
+      "repeat": 0,
+      "problem_preview": "Two externally tangent circles $\\omega_1$ and $\\omega_2$ have centers $O_1$ and $O_2$, respectively.",
+      "correct_answer": 140,
+      "predicted": null,
+      "is_correct": false,
+      "error": "Error code: 400 - {'error': {'code': 'validation_error', 'message': 'Your request was flagged as potentially violating our usage policy. Please try again with a different prompt.', 'param': None, 'typ"
+    },
+    {
+      "question_idx": 22,
+      "repeat": 0,
+      "problem_preview": "Azar, Carl, Jon, and Sergey are the four players left in a singles tennis tournament. They are rando",
+      "correct_answer": 125,
+      "predicted": 125,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 23,
+      "repeat": 0,
+      "problem_preview": "A right square pyramid with volume $54$ has a base with side length $6.$ The five vertices of the py",
+      "correct_answer": 21,
+      "predicted": 21,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 24,
+      "repeat": 0,
+      "problem_preview": "There is a positive real number $x$ not equal to either $\\tfrac{1}{20}$ or $\\tfrac{1}{2}$ such that\\",
+      "correct_answer": 112,
+      "predicted": 112,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 25,
+      "repeat": 0,
+      "problem_preview": "Twenty distinct points are marked on a circle and labeled $1$ through $20$ in clockwise order. A lin",
+      "correct_answer": 72,
+      "predicted": 72,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 26,
+      "repeat": 0,
+      "problem_preview": "Let $x_1\\leq x_2\\leq \\cdots\\leq x_{100}$ be real numbers such that $|x_1| + |x_2| + \\cdots + |x_{100",
+      "correct_answer": 841,
+      "predicted": 841,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 27,
+      "repeat": 0,
+      "problem_preview": "A circle with radius $6$ is externally tangent to a circle with radius $24$. Find the area of the tr",
+      "correct_answer": 192,
+      "predicted": 192,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 28,
+      "repeat": 0,
+      "problem_preview": "Find the number of positive integers $n \\le 600$ whose value can be uniquely determined when the val",
+      "correct_answer": 80,
+      "predicted": 60,
+      "is_correct": false,
+      "error": null
+    },
+    {
+      "question_idx": 29,
+      "repeat": 0,
+      "problem_preview": "Let $\\ell_A$ and $\\ell_B$ be two distinct parallel lines. For positive integers $m$ and $n$, distinc",
+      "correct_answer": 244,
+      "predicted": null,
+      "is_correct": false,
+      "error": "Error code: 400 - {'error': {'code': 'validation_error', 'message': 'Your request was flagged as potentially violating our usage policy. Please try again with a different prompt.', 'param': None, 'typ"
+    },
+    {
+      "question_idx": 30,
+      "repeat": 0,
+      "problem_preview": "Five men and nine women stand equally spaced around a circle in random order. The probability that e",
+      "correct_answer": 191,
+      "predicted": 191,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 31,
+      "repeat": 0,
+      "problem_preview": "There exists a unique positive integer $a$ for which the sum \\[U=\\sum_{n=1}^{2023}\\left\\lfloor\\dfrac",
+      "correct_answer": 944,
+      "predicted": null,
+      "is_correct": false,
+      "error": "Error code: 400 - {'error': {'code': 'validation_error', 'message': 'Your request was flagged as potentially violating our usage policy. Please try again with a different prompt.', 'param': None, 'typ"
+    },
+    {
+      "question_idx": 32,
+      "repeat": 0,
+      "problem_preview": "Find the number of subsets of $\\{1,2,3,\\ldots,10\\}$ that contain exactly one pair of consecutive int",
+      "correct_answer": 235,
+      "predicted": 235,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 33,
+      "repeat": 0,
+      "problem_preview": "Let $\\triangle ABC$ be an equilateral triangle with side length $55.$ Points $D,$ $E,$ and $F$ lie o",
+      "correct_answer": 75,
+      "predicted": null,
+      "is_correct": false,
+      "error": "Error code: 400 - {'error': {'code': 'validation_error', 'message': 'Your request was flagged as potentially violating our usage policy. Please try again with a different prompt.', 'param': None, 'typ"
+    },
+    {
+      "question_idx": 34,
+      "repeat": 0,
+      "problem_preview": "Each face of two noncongruent parallelepipeds is a rhombus whose diagonals have lengths $\\sqrt{21}$ ",
+      "correct_answer": 125,
+      "predicted": 125,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 35,
+      "repeat": 0,
+      "problem_preview": "The following analog clock has two hands that can move independently of each other.\n\nInitially, both",
+      "correct_answer": 608,
+      "predicted": 24,
+      "is_correct": false,
+      "error": null
+    },
+    {
+      "question_idx": 36,
+      "repeat": 0,
+      "problem_preview": "Find the largest prime number $p<1000$ for which there exists a complex number $z$ satisfying\n\nthe r",
+      "correct_answer": 349,
+      "predicted": null,
+      "is_correct": false,
+      "error": "Error code: 400 - {'error': {'code': 'validation_error', 'message': 'Your request was flagged as potentially violating our usage policy. Please try again with a different prompt.', 'param': None, 'typ"
+    },
+    {
+      "question_idx": 37,
+      "repeat": 0,
+      "problem_preview": "Positive real numbers $b \\not= 1$ and $n$ satisfy the equations \\[\\sqrt{\\log_b n} = \\log_b \\sqrt{n} ",
+      "correct_answer": 881,
+      "predicted": 881,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 38,
+      "repeat": 0,
+      "problem_preview": "A plane contains $40$ lines, no $2$ of which are parallel. Suppose that there are $3$ points where e",
+      "correct_answer": 607,
+      "predicted": 607,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 39,
+      "repeat": 0,
+      "problem_preview": "The sum of all positive integers $m$ such that $\\frac{13!}{m}$ is a perfect square can be written as",
+      "correct_answer": 12,
+      "predicted": 12,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 40,
+      "repeat": 0,
+      "problem_preview": "Let $P$ be a point on the circle circumscribing square $ABCD$ that satisfies $PA \\cdot PC = 56$ and ",
+      "correct_answer": 106,
+      "predicted": 106,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 41,
+      "repeat": 0,
+      "problem_preview": "Alice knows that $3$ red cards and $3$ black cards will be revealed to her one at a time in random o",
+      "correct_answer": 51,
+      "predicted": 51,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 42,
+      "repeat": 0,
+      "problem_preview": "Call a positive integer $n$ extra-distinct if the remainders when $n$ is divided by $2, 3, 4, 5,$ an",
+      "correct_answer": 49,
+      "predicted": 34,
+      "is_correct": false,
+      "error": null
+    },
+    {
+      "question_idx": 43,
+      "repeat": 0,
+      "problem_preview": "Rhombus $ABCD$ has $\\angle BAD < 90^\\circ.$ There is a point $P$ on the incircle of the rhombus such",
+      "correct_answer": 125,
+      "predicted": 125,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 44,
+      "repeat": 0,
+      "problem_preview": "Find the number of cubic polynomials $p(x) = x^3 + ax^2 + bx + c,$ where $a, b,$ and $c$ are integer",
+      "correct_answer": 738,
+      "predicted": 738,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 45,
+      "repeat": 0,
+      "problem_preview": "The numbers of apples growing on each of six apple trees form an arithmetic sequence where the great",
+      "correct_answer": 220,
+      "predicted": 220,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 46,
+      "repeat": 0,
+      "problem_preview": "Let $N$ be the number of ways to place the integers $1$ through $12$ in the $12$ cells of a $2 \\time",
+      "correct_answer": 144,
+      "predicted": 144,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 47,
+      "repeat": 0,
+      "problem_preview": "Find the number of collections of $16$ distinct subsets of $\\{1,2,3,4,5\\}$ with the property that fo",
+      "correct_answer": 81,
+      "predicted": 5,
+      "is_correct": false,
+      "error": null
+    },
+    {
+      "question_idx": 48,
+      "repeat": 0,
+      "problem_preview": "In $\\triangle ABC$ with side lengths $AB = 13,$ $BC = 14,$ and $CA = 15,$ let $M$ be the midpoint of",
+      "correct_answer": 247,
+      "predicted": null,
+      "is_correct": false,
+      "error": "Error code: 400 - {'error': {'code': 'validation_error', 'message': 'Your request was flagged as potentially violating our usage policy. Please try again with a different prompt.', 'param': None, 'typ"
+    },
+    {
+      "question_idx": 49,
+      "repeat": 0,
+      "problem_preview": "Let $A$ be an acute angle such that $\\tan A = 2 \\cos A.$ Find the number of positive integers $n$ le",
+      "correct_answer": 167,
+      "predicted": null,
+      "is_correct": false,
+      "error": "Error code: 400 - {'error': {'code': 'validation_error', 'message': 'Your request was flagged as potentially violating our usage policy. Please try again with a different prompt.', 'param': None, 'typ"
+    },
+    {
+      "question_idx": 50,
+      "repeat": 0,
+      "problem_preview": "A cube-shaped container has vertices $A,$ $B,$ $C,$ and $D,$ where $\\overline{AB}$ and $\\overline{CD",
+      "correct_answer": 751,
+      "predicted": null,
+      "is_correct": false,
+      "error": "Error code: 400 - {'error': {'code': 'validation_error', 'message': 'Your request was flagged as potentially violating our usage policy. Please try again with a different prompt.', 'param': None, 'typ"
+    },
+    {
+      "question_idx": 51,
+      "repeat": 0,
+      "problem_preview": "For each positive integer $n$ let $a_n$ be the least positive integer multiple of $23$ such that $a_",
+      "correct_answer": 363,
+      "predicted": 363,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 52,
+      "repeat": 0,
+      "problem_preview": "Recall that a palindrome is a number that reads the same forward and backward. Find the greatest int",
+      "correct_answer": 585,
+      "predicted": null,
+      "is_correct": false,
+      "error": "Error code: 400 - {'error': {'code': 'validation_error', 'message': 'Your request was flagged as potentially violating our usage policy. Please try again with a different prompt.', 'param': None, 'typ"
+    },
+    {
+      "question_idx": 53,
+      "repeat": 0,
+      "problem_preview": "Let $\\triangle ABC$ be an isosceles triangle with $\\angle A = 90^\\circ.$ There exists a point $P$ in",
+      "correct_answer": 250,
+      "predicted": 250,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 54,
+      "repeat": 0,
+      "problem_preview": "Let $x,y,$ and $z$ be real numbers satisfying the system of equations\n\\begin{align*} xy + 4z &= 60 \\",
+      "correct_answer": 273,
+      "predicted": 273,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 55,
+      "repeat": 0,
+      "problem_preview": "Let $S$ be the set of all positive rational numbers $r$ such that when the two numbers $r$ and $55r$",
+      "correct_answer": 719,
+      "predicted": 719,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 56,
+      "repeat": 0,
+      "problem_preview": "Consider the L-shaped region formed by three unit squares joined at their sides, as shown below. Two",
+      "correct_answer": 35,
+      "predicted": 35,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 57,
+      "repeat": 0,
+      "problem_preview": "Each vertex of a regular dodecagon ($12$-gon) is to be colored either red or blue, and thus there ar",
+      "correct_answer": 928,
+      "predicted": 928,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 58,
+      "repeat": 0,
+      "problem_preview": "Let $\\omega = \\cos\\frac{2\\pi}{7} + i \\cdot \\sin\\frac{2\\pi}{7},$ where $i = \\sqrt{-1}.$ Find the valu",
+      "correct_answer": 24,
+      "predicted": 24,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 59,
+      "repeat": 0,
+      "problem_preview": "Circles $\\omega_1$ and $\\omega_2$ intersect at two points $P$ and $Q,$ and their common tangent line",
+      "correct_answer": 33,
+      "predicted": 33,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 60,
+      "repeat": 0,
+      "problem_preview": "Every morning Aya goes for a $9$-kilometer-long walk and stops at a coffee shop afterwards. When she",
+      "correct_answer": 204,
+      "predicted": 204,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 61,
+      "repeat": 0,
+      "problem_preview": "Let $ABC$ be a triangle inscribed in circle $\\omega$. Let the tangents to $\\omega$ at $B$ and $C$ in",
+      "correct_answer": 113,
+      "predicted": 113,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 62,
+      "repeat": 0,
+      "problem_preview": "Each vertex of a regular octagon is independently colored either red or blue with equal probability.",
+      "correct_answer": 371,
+      "predicted": null,
+      "is_correct": false,
+      "error": "Error code: 400 - {'error': {'code': 'validation_error', 'message': 'Your request was flagged as potentially violating our usage policy. Please try again with a different prompt.', 'param': None, 'typ"
+    },
+    {
+      "question_idx": 63,
+      "repeat": 0,
+      "problem_preview": "Define $f(x)=|| x|-\\tfrac{1}{2}|$ and $g(x)=|| x|-\\tfrac{1}{4}|$. Find the number of intersections o",
+      "correct_answer": 385,
+      "predicted": 96,
+      "is_correct": false,
+      "error": null
+    },
+    {
+      "question_idx": 64,
+      "repeat": 0,
+      "problem_preview": "Let $p$ be the least prime number for which there exists a positive integer $n$ such that $n^{4}+1$ ",
+      "correct_answer": 110,
+      "predicted": 110,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 65,
+      "repeat": 0,
+      "problem_preview": "Let $ABCD$ be a tetrahedron such that $AB=CD= \\sqrt{41}$, $AC=BD= \\sqrt{80}$, and $BC=AD= \\sqrt{89}$",
+      "correct_answer": 104,
+      "predicted": 104,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 66,
+      "repeat": 0,
+      "problem_preview": "Let $\\mathcal{B}$ be the set of rectangular boxes with surface area $54$ and volume $23$. Let $r$ be",
+      "correct_answer": 721,
+      "predicted": 721,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 67,
+      "repeat": 0,
+      "problem_preview": "There exist real numbers $x$ and $y$, both greater than 1, such that $\\log_x\\left(y^x\\right)=\\log_y\\",
+      "correct_answer": 25,
+      "predicted": 25,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 68,
+      "repeat": 0,
+      "problem_preview": "Alice and Bob play the following game. A stack of $n$ tokens lies before them. The players take turn",
+      "correct_answer": 809,
+      "predicted": 808,
+      "is_correct": false,
+      "error": null
+    },
+    {
+      "question_idx": 69,
+      "repeat": 0,
+      "problem_preview": "Jen enters a lottery by picking $4$ distinct numbers from $S=\\{1,2,3,\\cdots,9,10\\}.$ $4$ numbers are",
+      "correct_answer": 116,
+      "predicted": 116,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 70,
+      "repeat": 0,
+      "problem_preview": "Rectangles $ABCD$ and $EFGH$ are drawn such that $D,E,C,F$ are collinear. Also, $A,D,H,G$ all lie on",
+      "correct_answer": 104,
+      "predicted": null,
+      "is_correct": false,
+      "error": "Error code: 400 - {'error': {'code': 'validation_error', 'message': 'Your request was flagged as potentially violating our usage policy. Please try again with a different prompt.', 'param': None, 'typ"
+    },
+    {
+      "question_idx": 71,
+      "repeat": 0,
+      "problem_preview": "Consider the paths of length $16$ that follow the lines from the lower left corner to the upper righ",
+      "correct_answer": 294,
+      "predicted": 294,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 72,
+      "repeat": 0,
+      "problem_preview": "Find the largest possible real part of \\[(75+117i)z+\\frac{96+144i}{z}\\]where $z$ is a complex number",
+      "correct_answer": 540,
+      "predicted": 540,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 73,
+      "repeat": 0,
+      "problem_preview": "Eight circles of radius $34$ are sequentially tangent, and two of the circles are tangent to $AB$ an",
+      "correct_answer": 197,
+      "predicted": 929,
+      "is_correct": false,
+      "error": null
+    },
+    {
+      "question_idx": 74,
+      "repeat": 0,
+      "problem_preview": "Let $A$, $B$, $C$, and $D$ be point on the hyperbola $\\frac{x^2}{20}- \\frac{y^2}{24} = 1$ such that ",
+      "correct_answer": 480,
+      "predicted": 480,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 75,
+      "repeat": 0,
+      "problem_preview": "Among the 900 residents of Aimeville, there are 195 who own a diamond ring, 367 who own a set of gol",
+      "correct_answer": 73,
+      "predicted": 73,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 76,
+      "repeat": 0,
+      "problem_preview": "Let $\\triangle ABC$ have circumcenter $O$ and incenter $I$ with $\\overline{IA}\\perp\\overline{OI}$, c",
+      "correct_answer": 468,
+      "predicted": null,
+      "is_correct": false,
+      "error": "Error code: 400 - {'error': {'code': 'validation_error', 'message': 'Your request was flagged as potentially violating our usage policy. Please try again with a different prompt.', 'param': None, 'typ"
+    },
+    {
+      "question_idx": 77,
+      "repeat": 0,
+      "problem_preview": "Find the number of triples of nonnegative integers \\((a,b,c)\\) satisfying \\(a + b + c = 300\\) and\n\\b",
+      "correct_answer": 601,
+      "predicted": 601,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 78,
+      "repeat": 0,
+      "problem_preview": "Let \\(O=(0,0)\\), \\(A=\\left(\\tfrac{1}{2},0\\right)\\), and \\(B=\\left(0,\\tfrac{\\sqrt{3}}{2}\\right)\\) be ",
+      "correct_answer": 23,
+      "predicted": 23,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 79,
+      "repeat": 0,
+      "problem_preview": "Let $\\omega\\neq 1$ be a 13th root of unity. Find the remainder when\n\\[\\prod_{k=0}^{12}(2-2\\omega^k+\\",
+      "correct_answer": 321,
+      "predicted": 321,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 80,
+      "repeat": 0,
+      "problem_preview": "Let \\(b\\ge 2\\) be an integer. Call a positive integer \\(n\\) \\(b\\text-\\textit{eautiful}\\) if it has e",
+      "correct_answer": 211,
+      "predicted": 211,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 81,
+      "repeat": 0,
+      "problem_preview": "Find the number of rectangles that can be formed inside a fixed regular dodecagon ($12$-gon) where e",
+      "correct_answer": 315,
+      "predicted": 675,
+      "is_correct": false,
+      "error": null
+    },
+    {
+      "question_idx": 82,
+      "repeat": 0,
+      "problem_preview": "A list of positive integers has the following properties:\n$\\bullet$ The sum of the items in the list",
+      "correct_answer": 236,
+      "predicted": 236,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 83,
+      "repeat": 0,
+      "problem_preview": "Find the number of ways to place a digit in each cell of a 2x3 grid so that the sum of the two numbe",
+      "correct_answer": 45,
+      "predicted": 45,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 84,
+      "repeat": 0,
+      "problem_preview": "Let $x,y$ and $z$ be positive real numbers that satisfy the following system of equations:\n\\[\\log_2\\",
+      "correct_answer": 33,
+      "predicted": null,
+      "is_correct": false,
+      "error": "Error code: 400 - {'error': {'code': 'validation_error', 'message': 'Your request was flagged as potentially violating our usage policy. Please try again with a different prompt.', 'param': None, 'typ"
+    },
+    {
+      "question_idx": 85,
+      "repeat": 0,
+      "problem_preview": "Let ABCDEF be a convex equilateral hexagon in which all pairs of opposite sides are parallel. The tr",
+      "correct_answer": 80,
+      "predicted": null,
+      "is_correct": false,
+      "error": "Error code: 400 - {'error': {'code': 'validation_error', 'message': 'Your request was flagged as potentially violating our usage policy. Please try again with a different prompt.', 'param': None, 'typ"
+    },
+    {
+      "question_idx": 86,
+      "repeat": 0,
+      "problem_preview": "Alice chooses a set $A$ of positive integers. Then Bob lists all finite nonempty sets $B$ of positiv",
+      "correct_answer": 55,
+      "predicted": 55,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 87,
+      "repeat": 0,
+      "problem_preview": "Let $N$ be the greatest four-digit positive integer with the property that whenever one of its digit",
+      "correct_answer": 699,
+      "predicted": 896,
+      "is_correct": false,
+      "error": null
+    },
+    {
+      "question_idx": 88,
+      "repeat": 0,
+      "problem_preview": "Torus $T$ is the surface produced by revolving a circle with radius $3$ around an axis in the plane ",
+      "correct_answer": 127,
+      "predicted": 127,
+      "is_correct": true,
+      "error": null
+    },
+    {
+      "question_idx": 89,
+      "repeat": 0,
+      "problem_preview": "There is a collection of $25$ indistinguishable white chips and $25$ indistinguishable black chips. ",
+      "correct_answer": 902,
+      "predicted": 22,
+      "is_correct": false,
+      "error": null
+    }
+  ]
+}

@@ -1,0 +1,217 @@
+{
+  "model": "gpt-5.4",
+  "base_url": "https://api.openai.com/v1",
+  "input_label": "10k",
+  "nominal_input_tokens": 9984,
+  "max_output_tokens": 1000,
+  "n_runs": 25,
+  "started_at": "2026-05-27T17:37:09.629860+00:00",
+  "ended_at": "2026-05-27T17:48:38.123639+00:00",
+  "duration_seconds": 688.5,
+  "summary": {
+    "ttft_ms": {
+      "mean": 1264.4,
+      "stddev": 756.3,
+      "p50": 1051.7,
+      "p95": 2633.3,
+      "p99": 3131.6,
+      "min": 557.9,
+      "max": 3284.1
+    },
+    "otps": {
+      "mean": 45.9,
+      "stddev": 13.8,
+      "p50": 52.2,
+      "p95": 57.5,
+      "p99": 59.3,
+      "min": 12.2,
+      "max": 59.9
+    },
+    "e2e_ms": {
+      "mean": 27539.5,
+      "stddev": 17220.5,
+      "p50": 20302.1,
+      "p95": 69471.6,
+      "p99": 82889.6,
+      "min": 17258.8,
+      "max": 85279.4
+    }
+  },
+  "raw": [
+    {
+      "input_tokens": 9834,
+      "output_tokens": 1000,
+      "ttft_ms": 2040.0,
+      "otps": 56.9,
+      "e2e_ms": 19627.1
+    },
+    {
+      "input_tokens": 9834,
+      "output_tokens": 1000,
+      "ttft_ms": 648.7,
+      "otps": 56.5,
+      "e2e_ms": 18355.2
+    },
+    {
+      "input_tokens": 9834,
+      "output_tokens": 1000,
+      "ttft_ms": 833.4,
+      "otps": 51.9,
+      "e2e_ms": 20085.8
+    },
+    {
+      "input_tokens": 9834,
+      "output_tokens": 1000,
+      "ttft_ms": 557.9,
+      "otps": 44.8,
+      "e2e_ms": 22889.9
+    },
+    {
+      "input_tokens": 9834,
+      "output_tokens": 1000,
+      "ttft_ms": 2648.5,
+      "otps": 52.3,
+      "e2e_ms": 21759.3
+    },
+    {
+      "input_tokens": 9834,
+      "output_tokens": 1000,
+      "ttft_ms": 1247.7,
+      "otps": 57.6,
+      "e2e_ms": 18595.2
+    },
+    {
+      "input_tokens": 9834,
+      "output_tokens": 1000,
+      "ttft_ms": 2123.3,
+      "otps": 54.0,
+      "e2e_ms": 20646.9
+    },
+    {
+      "input_tokens": 9834,
+      "output_tokens": 1000,
+      "ttft_ms": 1233.6,
+      "otps": 52.4,
+      "e2e_ms": 20302.1
+    },
+    {
+      "input_tokens": 9834,
+      "output_tokens": 1000,
+      "ttft_ms": 3284.1,
+      "otps": 12.2,
+      "e2e_ms": 85279.4
+    },
+    {
+      "input_tokens": 9834,
+      "output_tokens": 1000,
+      "ttft_ms": 1635.9,
+      "otps": 33.3,
+      "e2e_ms": 31631.7
+    },
+    {
+      "input_tokens": 9834,
+      "output_tokens": 1000,
+      "ttft_ms": 734.4,
+      "otps": 52.4,
+      "e2e_ms": 19805.5
+    },
+    {
+      "input_tokens": 9834,
+      "output_tokens": 1000,
+      "ttft_ms": 560.6,
+      "otps": 51.8,
+      "e2e_ms": 19861.3
+    },
+    {
+      "input_tokens": 9834,
+      "output_tokens": 1000,
+      "ttft_ms": 687.1,
+      "otps": 37.3,
+      "e2e_ms": 27512.2
+    },
+    {
+      "input_tokens": 9834,
+      "output_tokens": 1000,
+      "ttft_ms": 1051.7,
+      "otps": 52.9,
+      "e2e_ms": 19965.5
+    },
+    {
+      "input_tokens": 9834,
+      "output_tokens": 1000,
+      "ttft_ms": 1055.9,
+      "otps": 38.7,
+      "e2e_ms": 26905.5
+    },
+    {
+      "input_tokens": 9834,
+      "output_tokens": 1000,
+      "ttft_ms": 857.6,
+      "otps": 52.2,
+      "e2e_ms": 20015.4
+    },
+    {
+      "input_tokens": 9834,
+      "output_tokens": 1000,
+      "ttft_ms": 624.2,
+      "otps": 55.2,
+      "e2e_ms": 18742.7
+    },
+    {
+      "input_tokens": 9834,
+      "output_tokens": 1000,
+      "ttft_ms": 2572.3,
+      "otps": 49.4,
+      "e2e_ms": 22798.1
+    },
+    {
+      "input_tokens": 9834,
+      "output_tokens": 1000,
+      "ttft_ms": 567.1,
+      "otps": 59.9,
+      "e2e_ms": 17258.8
+    },
+    {
+      "input_tokens": 9834,
+      "output_tokens": 1000,
+      "ttft_ms": 687.8,
+      "otps": 55.0,
+      "e2e_ms": 18859.8
+    },
+    {
+      "input_tokens": 9834,
+      "output_tokens": 1000,
+      "ttft_ms": 1376.1,
+      "otps": 13.5,
+      "e2e_ms": 75322.1
+    },
+    {
+      "input_tokens": 9834,
+      "output_tokens": 1000,
+      "ttft_ms": 1091.8,
+      "otps": 22.2,
+      "e2e_ms": 46069.5
+    },
+    {
+      "input_tokens": 9834,
+      "output_tokens": 1000,
+      "ttft_ms": 1049.3,
+      "otps": 28.5,
+      "e2e_ms": 36167.6
+    },
+    {
+      "input_tokens": 9834,
+      "output_tokens": 1000,
+      "ttft_ms": 1850.6,
+      "otps": 57.0,
+      "e2e_ms": 19399.7
+    },
+    {
+      "input_tokens": 9834,
+      "output_tokens": 1000,
+      "ttft_ms": 589.5,
+      "otps": 49.9,
+      "e2e_ms": 20630.0
+    }
+  ]
+}

@@ -1,0 +1,1976 @@
+{
+  "eval": "aime_2024",
+  "model": "openai.gpt-5.4",
+  "backend": "mantle",
+  "n_questions": 14,
+  "n_repeats": 5,
+  "temperature": 0.6,
+  "started_at": "2026-06-03T12:55:03.005279+00:00",
+  "ended_at": "2026-06-03T12:55:13.746481+00:00",
+  "duration_seconds": 10.7,
+  "correct": 0,
+  "total": 70,
+  "accuracy_pct": 0.0,
+  "results": [
+    {
+      "question_idx": 0,
+      "repeat": 0,
+      "problem_preview": "Among the $900$ residents of Aimeville, there are $195$ who own a diamond ring, $367$ who own a set ",
+      "correct_answer": 73,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_u4ys57ojf4txsjdnzu25juzlopsng55fvjzxvpp5b7ocpqjmcn7a",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:03 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_u4ys57ojf4txsjdnzu25juzlopsng55fvjzxvpp5b7ocpqjmcn7a",
+          "x-request-id": "req_u4ys57ojf4txsjdnzu25juzlopsng55fvjzxvpp5b7ocpqjmcn7a",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 0,
+      "repeat": 1,
+      "problem_preview": "Among the $900$ residents of Aimeville, there are $195$ who own a diamond ring, $367$ who own a set ",
+      "correct_answer": 73,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_kpbt43wlwani3bym2kb55xnvg6us7zklgbh5dfg7skkjoxasb7fq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:04 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_kpbt43wlwani3bym2kb55xnvg6us7zklgbh5dfg7skkjoxasb7fq",
+          "x-request-id": "req_kpbt43wlwani3bym2kb55xnvg6us7zklgbh5dfg7skkjoxasb7fq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 0,
+      "repeat": 2,
+      "problem_preview": "Among the $900$ residents of Aimeville, there are $195$ who own a diamond ring, $367$ who own a set ",
+      "correct_answer": 73,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_fnksck2s3urrzyb7bbswq3h56256on5w4dxkmgrpgoidgzhqpa3q",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:04 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_fnksck2s3urrzyb7bbswq3h56256on5w4dxkmgrpgoidgzhqpa3q",
+          "x-request-id": "req_fnksck2s3urrzyb7bbswq3h56256on5w4dxkmgrpgoidgzhqpa3q",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 0,
+      "repeat": 3,
+      "problem_preview": "Among the $900$ residents of Aimeville, there are $195$ who own a diamond ring, $367$ who own a set ",
+      "correct_answer": 73,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_web7xql7veaxyoznvvku663wu5yfjnv4vjjjnurdetondtmgs5va",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:04 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_web7xql7veaxyoznvvku663wu5yfjnv4vjjjnurdetondtmgs5va",
+          "x-request-id": "req_web7xql7veaxyoznvvku663wu5yfjnv4vjjjnurdetondtmgs5va",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 0,
+      "repeat": 4,
+      "problem_preview": "Among the $900$ residents of Aimeville, there are $195$ who own a diamond ring, $367$ who own a set ",
+      "correct_answer": 73,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_d7rurpt5amncpfesjyifwdwph3bbiuusyyipt4jr5hbyen6m6jqq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:04 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_d7rurpt5amncpfesjyifwdwph3bbiuusyyipt4jr5hbyen6m6jqq",
+          "x-request-id": "req_d7rurpt5amncpfesjyifwdwph3bbiuusyyipt4jr5hbyen6m6jqq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 1,
+      "repeat": 0,
+      "problem_preview": "A list of positive integers has the following properties: $\\bullet$ The sum of the items in the list",
+      "correct_answer": 236,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_sj7bq6sfzkb2f7sdk22wt5iubk3afzysrupfszjmhuav56nhsofq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:04 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_sj7bq6sfzkb2f7sdk22wt5iubk3afzysrupfszjmhuav56nhsofq",
+          "x-request-id": "req_sj7bq6sfzkb2f7sdk22wt5iubk3afzysrupfszjmhuav56nhsofq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 1,
+      "repeat": 1,
+      "problem_preview": "A list of positive integers has the following properties: $\\bullet$ The sum of the items in the list",
+      "correct_answer": 236,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_kityr7vb55dzpjp45jp4tuif6yliwg73hefk2fojid3fso2bxqtq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:04 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_kityr7vb55dzpjp45jp4tuif6yliwg73hefk2fojid3fso2bxqtq",
+          "x-request-id": "req_kityr7vb55dzpjp45jp4tuif6yliwg73hefk2fojid3fso2bxqtq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 1,
+      "repeat": 2,
+      "problem_preview": "A list of positive integers has the following properties: $\\bullet$ The sum of the items in the list",
+      "correct_answer": 236,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_6zih5ahbmt2f466p5hwtervgbrorrzgukqfaivwzrbpdug3n4cqq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:04 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_6zih5ahbmt2f466p5hwtervgbrorrzgukqfaivwzrbpdug3n4cqq",
+          "x-request-id": "req_6zih5ahbmt2f466p5hwtervgbrorrzgukqfaivwzrbpdug3n4cqq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 1,
+      "repeat": 3,
+      "problem_preview": "A list of positive integers has the following properties: $\\bullet$ The sum of the items in the list",
+      "correct_answer": 236,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_cmn5bys5wkvcs6g7ljwwnodpyflg7cgog2umsxp7ahopmrbsddjq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:04 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_cmn5bys5wkvcs6g7ljwwnodpyflg7cgog2umsxp7ahopmrbsddjq",
+          "x-request-id": "req_cmn5bys5wkvcs6g7ljwwnodpyflg7cgog2umsxp7ahopmrbsddjq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 1,
+      "repeat": 4,
+      "problem_preview": "A list of positive integers has the following properties: $\\bullet$ The sum of the items in the list",
+      "correct_answer": 236,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_6y7eu4qbfuir36yrlmmad2g3duoqt3q6fsjppr4brqs6inotculq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:04 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_6y7eu4qbfuir36yrlmmad2g3duoqt3q6fsjppr4brqs6inotculq",
+          "x-request-id": "req_6y7eu4qbfuir36yrlmmad2g3duoqt3q6fsjppr4brqs6inotculq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 2,
+      "repeat": 0,
+      "problem_preview": "Find the number of ways to place a digit in each cell of a 2x3 grid so that the sum of the two numbe",
+      "correct_answer": 45,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_z6bl27colgejjl24dgw5m7gy6dv2mdsztxsdj6mlixy4nibmiufa",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:05 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_z6bl27colgejjl24dgw5m7gy6dv2mdsztxsdj6mlixy4nibmiufa",
+          "x-request-id": "req_z6bl27colgejjl24dgw5m7gy6dv2mdsztxsdj6mlixy4nibmiufa",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 2,
+      "repeat": 1,
+      "problem_preview": "Find the number of ways to place a digit in each cell of a 2x3 grid so that the sum of the two numbe",
+      "correct_answer": 45,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_nnelkqohey6ohtjpwgvf3jbhm6bmr37fvqhvyjesuvkpb75c4bfa",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:05 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_nnelkqohey6ohtjpwgvf3jbhm6bmr37fvqhvyjesuvkpb75c4bfa",
+          "x-request-id": "req_nnelkqohey6ohtjpwgvf3jbhm6bmr37fvqhvyjesuvkpb75c4bfa",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 2,
+      "repeat": 2,
+      "problem_preview": "Find the number of ways to place a digit in each cell of a 2x3 grid so that the sum of the two numbe",
+      "correct_answer": 45,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_gfoetxd5npvirdwrpvsdj5xjb53mhao43rajxdivwy6opkgtdyia",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:05 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_gfoetxd5npvirdwrpvsdj5xjb53mhao43rajxdivwy6opkgtdyia",
+          "x-request-id": "req_gfoetxd5npvirdwrpvsdj5xjb53mhao43rajxdivwy6opkgtdyia",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 2,
+      "repeat": 3,
+      "problem_preview": "Find the number of ways to place a digit in each cell of a 2x3 grid so that the sum of the two numbe",
+      "correct_answer": 45,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_rdtq5qbpmelxkuy5mivhcaj6g4xojdjjfje4wmupl2gor46oi4dq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:05 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_rdtq5qbpmelxkuy5mivhcaj6g4xojdjjfje4wmupl2gor46oi4dq",
+          "x-request-id": "req_rdtq5qbpmelxkuy5mivhcaj6g4xojdjjfje4wmupl2gor46oi4dq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 2,
+      "repeat": 4,
+      "problem_preview": "Find the number of ways to place a digit in each cell of a 2x3 grid so that the sum of the two numbe",
+      "correct_answer": 45,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_ahfv4aix3iyonbs2cofi7ukd4hgwjsfa6x3zz4r7knn75qtnj2na",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:05 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_ahfv4aix3iyonbs2cofi7ukd4hgwjsfa6x3zz4r7knn75qtnj2na",
+          "x-request-id": "req_ahfv4aix3iyonbs2cofi7ukd4hgwjsfa6x3zz4r7knn75qtnj2na",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 3,
+      "repeat": 0,
+      "problem_preview": "Let $x,y$ and $z$ be positive real numbers that satisfy the following system of equations: \\[\\log_2\\",
+      "correct_answer": 33,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_lk32lt3lawrs7qw2s4u2e2c4hhyzb5tn2e5t3iheopd7fzfmoyba",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:05 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_lk32lt3lawrs7qw2s4u2e2c4hhyzb5tn2e5t3iheopd7fzfmoyba",
+          "x-request-id": "req_lk32lt3lawrs7qw2s4u2e2c4hhyzb5tn2e5t3iheopd7fzfmoyba",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 3,
+      "repeat": 1,
+      "problem_preview": "Let $x,y$ and $z$ be positive real numbers that satisfy the following system of equations: \\[\\log_2\\",
+      "correct_answer": 33,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_zu5muryeyl5djksqnimdepn5yltqva3btu4lugav62vketdgqoha",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:06 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_zu5muryeyl5djksqnimdepn5yltqva3btu4lugav62vketdgqoha",
+          "x-request-id": "req_zu5muryeyl5djksqnimdepn5yltqva3btu4lugav62vketdgqoha",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 3,
+      "repeat": 2,
+      "problem_preview": "Let $x,y$ and $z$ be positive real numbers that satisfy the following system of equations: \\[\\log_2\\",
+      "correct_answer": 33,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_7mqtaolfzzfsyfgiqd3b7opn66hpnnlogddjoxx2z7cdikkvtmza",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:06 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_7mqtaolfzzfsyfgiqd3b7opn66hpnnlogddjoxx2z7cdikkvtmza",
+          "x-request-id": "req_7mqtaolfzzfsyfgiqd3b7opn66hpnnlogddjoxx2z7cdikkvtmza",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 3,
+      "repeat": 3,
+      "problem_preview": "Let $x,y$ and $z$ be positive real numbers that satisfy the following system of equations: \\[\\log_2\\",
+      "correct_answer": 33,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_2wlk7gv3kjymj2a3d6hzx5hfeufoaqadf7ry4almxjccz6txxnia",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:06 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_2wlk7gv3kjymj2a3d6hzx5hfeufoaqadf7ry4almxjccz6txxnia",
+          "x-request-id": "req_2wlk7gv3kjymj2a3d6hzx5hfeufoaqadf7ry4almxjccz6txxnia",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 3,
+      "repeat": 4,
+      "problem_preview": "Let $x,y$ and $z$ be positive real numbers that satisfy the following system of equations: \\[\\log_2\\",
+      "correct_answer": 33,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_himzvdxxeysxbkzri6pkdbq4fap47nutw7daxkfos5laxyiyjmja",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:06 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_himzvdxxeysxbkzri6pkdbq4fap47nutw7daxkfos5laxyiyjmja",
+          "x-request-id": "req_himzvdxxeysxbkzri6pkdbq4fap47nutw7daxkfos5laxyiyjmja",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 4,
+      "repeat": 0,
+      "problem_preview": "Let $ABCDEF$ be a convex equilateral hexagon in which all pairs of opposite sides are parallel. The ",
+      "correct_answer": 80,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_vhc7hoqet7vxgwn3lyrnzanmzpm5e246g7f3b4whcp7pplc6yqda",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:06 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_vhc7hoqet7vxgwn3lyrnzanmzpm5e246g7f3b4whcp7pplc6yqda",
+          "x-request-id": "req_vhc7hoqet7vxgwn3lyrnzanmzpm5e246g7f3b4whcp7pplc6yqda",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 4,
+      "repeat": 1,
+      "problem_preview": "Let $ABCDEF$ be a convex equilateral hexagon in which all pairs of opposite sides are parallel. The ",
+      "correct_answer": 80,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_pb2kvpmwqm7ouy3aqpslcsh6u3e6vjzvflmszdvrucy33mdauama",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:06 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_pb2kvpmwqm7ouy3aqpslcsh6u3e6vjzvflmszdvrucy33mdauama",
+          "x-request-id": "req_pb2kvpmwqm7ouy3aqpslcsh6u3e6vjzvflmszdvrucy33mdauama",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 4,
+      "repeat": 2,
+      "problem_preview": "Let $ABCDEF$ be a convex equilateral hexagon in which all pairs of opposite sides are parallel. The ",
+      "correct_answer": 80,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_mtxpccae5igakhjk2qc4f66xst7a2hrzy5g5xrdjycv5fldnaqaq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:07 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_mtxpccae5igakhjk2qc4f66xst7a2hrzy5g5xrdjycv5fldnaqaq",
+          "x-request-id": "req_mtxpccae5igakhjk2qc4f66xst7a2hrzy5g5xrdjycv5fldnaqaq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 4,
+      "repeat": 3,
+      "problem_preview": "Let $ABCDEF$ be a convex equilateral hexagon in which all pairs of opposite sides are parallel. The ",
+      "correct_answer": 80,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_4cbu37ag4brp7juwuboon23vdnuiqs6e5edhzfic4xtjt3u3dxqa",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:07 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_4cbu37ag4brp7juwuboon23vdnuiqs6e5edhzfic4xtjt3u3dxqa",
+          "x-request-id": "req_4cbu37ag4brp7juwuboon23vdnuiqs6e5edhzfic4xtjt3u3dxqa",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 4,
+      "repeat": 4,
+      "problem_preview": "Let $ABCDEF$ be a convex equilateral hexagon in which all pairs of opposite sides are parallel. The ",
+      "correct_answer": 80,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_d3yvk5ibm2zwbdfhhh3oao762sqids4v4patn5wkbuqbncquc5yq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:07 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_d3yvk5ibm2zwbdfhhh3oao762sqids4v4patn5wkbuqbncquc5yq",
+          "x-request-id": "req_d3yvk5ibm2zwbdfhhh3oao762sqids4v4patn5wkbuqbncquc5yq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 5,
+      "repeat": 0,
+      "problem_preview": "Alice chooses a set $A$ of positive integers. Then Bob lists all finite nonempty sets $B$ of positiv",
+      "correct_answer": 55,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_weh2srpa22k3gmhzwdhuzik5fxbpjjqaoeh522uyl25lvshn3xcq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:07 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_weh2srpa22k3gmhzwdhuzik5fxbpjjqaoeh522uyl25lvshn3xcq",
+          "x-request-id": "req_weh2srpa22k3gmhzwdhuzik5fxbpjjqaoeh522uyl25lvshn3xcq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 5,
+      "repeat": 1,
+      "problem_preview": "Alice chooses a set $A$ of positive integers. Then Bob lists all finite nonempty sets $B$ of positiv",
+      "correct_answer": 55,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_upzko5s2ilp45tk323chq73asatggbz73e3cxpi6ybsw4ipf2qlq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:07 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_upzko5s2ilp45tk323chq73asatggbz73e3cxpi6ybsw4ipf2qlq",
+          "x-request-id": "req_upzko5s2ilp45tk323chq73asatggbz73e3cxpi6ybsw4ipf2qlq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 5,
+      "repeat": 2,
+      "problem_preview": "Alice chooses a set $A$ of positive integers. Then Bob lists all finite nonempty sets $B$ of positiv",
+      "correct_answer": 55,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_ebbziezmsoayiejzjrzl4kz27kkkdmsbza72sj2zgvlw66rpjcwq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:07 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_ebbziezmsoayiejzjrzl4kz27kkkdmsbza72sj2zgvlw66rpjcwq",
+          "x-request-id": "req_ebbziezmsoayiejzjrzl4kz27kkkdmsbza72sj2zgvlw66rpjcwq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 5,
+      "repeat": 3,
+      "problem_preview": "Alice chooses a set $A$ of positive integers. Then Bob lists all finite nonempty sets $B$ of positiv",
+      "correct_answer": 55,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_hyjubobtdikdznoftlj2xqiq7wj7t6bqhmskyx2suqki56ghed5a",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:07 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_hyjubobtdikdznoftlj2xqiq7wj7t6bqhmskyx2suqki56ghed5a",
+          "x-request-id": "req_hyjubobtdikdznoftlj2xqiq7wj7t6bqhmskyx2suqki56ghed5a",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 5,
+      "repeat": 4,
+      "problem_preview": "Alice chooses a set $A$ of positive integers. Then Bob lists all finite nonempty sets $B$ of positiv",
+      "correct_answer": 55,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_w6vx6zjfugl3uts2isqljmyoknp4lignjt6gw4p6e3bk2tw723ra",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:07 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_w6vx6zjfugl3uts2isqljmyoknp4lignjt6gw4p6e3bk2tw723ra",
+          "x-request-id": "req_w6vx6zjfugl3uts2isqljmyoknp4lignjt6gw4p6e3bk2tw723ra",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 6,
+      "repeat": 0,
+      "problem_preview": "Let $N$ be the greatest four-digit integer with the property that whenever one of its digits is chan",
+      "correct_answer": 699,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_zj7dfnyf53ztpdvgms46ua2dxtbeariilqef4wkrrzjivnhcaa6q",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:08 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_zj7dfnyf53ztpdvgms46ua2dxtbeariilqef4wkrrzjivnhcaa6q",
+          "x-request-id": "req_zj7dfnyf53ztpdvgms46ua2dxtbeariilqef4wkrrzjivnhcaa6q",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 6,
+      "repeat": 1,
+      "problem_preview": "Let $N$ be the greatest four-digit integer with the property that whenever one of its digits is chan",
+      "correct_answer": 699,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_hxwljuy3umt44td5jaztn6co65katsw7lf7jukcgt3nk2mjkozjq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:08 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_hxwljuy3umt44td5jaztn6co65katsw7lf7jukcgt3nk2mjkozjq",
+          "x-request-id": "req_hxwljuy3umt44td5jaztn6co65katsw7lf7jukcgt3nk2mjkozjq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 6,
+      "repeat": 2,
+      "problem_preview": "Let $N$ be the greatest four-digit integer with the property that whenever one of its digits is chan",
+      "correct_answer": 699,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_mb35pppbcghhwwynqr4h5wggvz2dtmqcm3lkm7lempf5bw5sgf2a",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:08 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_mb35pppbcghhwwynqr4h5wggvz2dtmqcm3lkm7lempf5bw5sgf2a",
+          "x-request-id": "req_mb35pppbcghhwwynqr4h5wggvz2dtmqcm3lkm7lempf5bw5sgf2a",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 6,
+      "repeat": 3,
+      "problem_preview": "Let $N$ be the greatest four-digit integer with the property that whenever one of its digits is chan",
+      "correct_answer": 699,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_sahkok5m6grtxzznx62ytz65uqkgzc22istqr2ewbbgey64r33pq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:08 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_sahkok5m6grtxzznx62ytz65uqkgzc22istqr2ewbbgey64r33pq",
+          "x-request-id": "req_sahkok5m6grtxzznx62ytz65uqkgzc22istqr2ewbbgey64r33pq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 6,
+      "repeat": 4,
+      "problem_preview": "Let $N$ be the greatest four-digit integer with the property that whenever one of its digits is chan",
+      "correct_answer": 699,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_365xu5rirppwejn3xqnibk2velg6ar5cybs3ixozoxtr7v622drq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:08 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_365xu5rirppwejn3xqnibk2velg6ar5cybs3ixozoxtr7v622drq",
+          "x-request-id": "req_365xu5rirppwejn3xqnibk2velg6ar5cybs3ixozoxtr7v622drq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 7,
+      "repeat": 0,
+      "problem_preview": "Torus $T$ is the surface produced by revolving a circle with radius 3 around an axis in the plane of",
+      "correct_answer": 127,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_aqczwgjofo3d4j6lk62wkdrgndkl4ecgxf3nqnoe3ium6zesc23a",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:08 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_aqczwgjofo3d4j6lk62wkdrgndkl4ecgxf3nqnoe3ium6zesc23a",
+          "x-request-id": "req_aqczwgjofo3d4j6lk62wkdrgndkl4ecgxf3nqnoe3ium6zesc23a",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 7,
+      "repeat": 1,
+      "problem_preview": "Torus $T$ is the surface produced by revolving a circle with radius 3 around an axis in the plane of",
+      "correct_answer": 127,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_cakhtwncoc65ujrf22j7v7ho3iewrlh4gfvibizs5qkhlbaipb3q",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:08 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_cakhtwncoc65ujrf22j7v7ho3iewrlh4gfvibizs5qkhlbaipb3q",
+          "x-request-id": "req_cakhtwncoc65ujrf22j7v7ho3iewrlh4gfvibizs5qkhlbaipb3q",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 7,
+      "repeat": 2,
+      "problem_preview": "Torus $T$ is the surface produced by revolving a circle with radius 3 around an axis in the plane of",
+      "correct_answer": 127,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_pri5chv3j55jstxy3zmp6trdymfqs7knennrmuviii7j2rmffcua",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:09 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_pri5chv3j55jstxy3zmp6trdymfqs7knennrmuviii7j2rmffcua",
+          "x-request-id": "req_pri5chv3j55jstxy3zmp6trdymfqs7knennrmuviii7j2rmffcua",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 7,
+      "repeat": 3,
+      "problem_preview": "Torus $T$ is the surface produced by revolving a circle with radius 3 around an axis in the plane of",
+      "correct_answer": 127,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_7qgxsbt4ec7ldnkdvr3hyprskobhurh3zunljaleisw3nmwbiv4q",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:09 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_7qgxsbt4ec7ldnkdvr3hyprskobhurh3zunljaleisw3nmwbiv4q",
+          "x-request-id": "req_7qgxsbt4ec7ldnkdvr3hyprskobhurh3zunljaleisw3nmwbiv4q",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 7,
+      "repeat": 4,
+      "problem_preview": "Torus $T$ is the surface produced by revolving a circle with radius 3 around an axis in the plane of",
+      "correct_answer": 127,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_asrnngcugcacr6lw5x4f6xltnf2bvv5pyp6lodercjqytp2q4ema",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:09 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_asrnngcugcacr6lw5x4f6xltnf2bvv5pyp6lodercjqytp2q4ema",
+          "x-request-id": "req_asrnngcugcacr6lw5x4f6xltnf2bvv5pyp6lodercjqytp2q4ema",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 8,
+      "repeat": 0,
+      "problem_preview": "Let $\\triangle$ $ABC$ have incenter $I$ and circumcenter $O$ with $\\overline{IA} \\perp \\overline{OI}",
+      "correct_answer": 468,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_smq7mktoeclyb4mg6vd2bj3akz3njlo4bcfu4uc256j77mwrmbga",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:09 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_smq7mktoeclyb4mg6vd2bj3akz3njlo4bcfu4uc256j77mwrmbga",
+          "x-request-id": "req_smq7mktoeclyb4mg6vd2bj3akz3njlo4bcfu4uc256j77mwrmbga",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 8,
+      "repeat": 1,
+      "problem_preview": "Let $\\triangle$ $ABC$ have incenter $I$ and circumcenter $O$ with $\\overline{IA} \\perp \\overline{OI}",
+      "correct_answer": 468,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_q2xfanppcvfakglpyzjedn5ng24y6gjeiqx2rdh3mi7suhhlz3aa",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:09 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_q2xfanppcvfakglpyzjedn5ng24y6gjeiqx2rdh3mi7suhhlz3aa",
+          "x-request-id": "req_q2xfanppcvfakglpyzjedn5ng24y6gjeiqx2rdh3mi7suhhlz3aa",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 8,
+      "repeat": 2,
+      "problem_preview": "Let $\\triangle$ $ABC$ have incenter $I$ and circumcenter $O$ with $\\overline{IA} \\perp \\overline{OI}",
+      "correct_answer": 468,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_6jht6aooeaqhp427htyobpmz7oeuhf3xl3ia2uvuvsh32hftf3tq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:09 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_6jht6aooeaqhp427htyobpmz7oeuhf3xl3ia2uvuvsh32hftf3tq",
+          "x-request-id": "req_6jht6aooeaqhp427htyobpmz7oeuhf3xl3ia2uvuvsh32hftf3tq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 8,
+      "repeat": 3,
+      "problem_preview": "Let $\\triangle$ $ABC$ have incenter $I$ and circumcenter $O$ with $\\overline{IA} \\perp \\overline{OI}",
+      "correct_answer": 468,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_ngov2hm7mwdcddslwxcemcyklgkiduwz3inewfigwsa6rjk4qklq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:10 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_ngov2hm7mwdcddslwxcemcyklgkiduwz3inewfigwsa6rjk4qklq",
+          "x-request-id": "req_ngov2hm7mwdcddslwxcemcyklgkiduwz3inewfigwsa6rjk4qklq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 8,
+      "repeat": 4,
+      "problem_preview": "Let $\\triangle$ $ABC$ have incenter $I$ and circumcenter $O$ with $\\overline{IA} \\perp \\overline{OI}",
+      "correct_answer": 468,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_jpfvyzxyztg7o3ehfkecqa7xkrk72clzcjncjct72hjh6aofxqha",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:10 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_jpfvyzxyztg7o3ehfkecqa7xkrk72clzcjncjct72hjh6aofxqha",
+          "x-request-id": "req_jpfvyzxyztg7o3ehfkecqa7xkrk72clzcjncjct72hjh6aofxqha",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 9,
+      "repeat": 0,
+      "problem_preview": "Find the number of triples of nonnegative integers $(a, b, c)$ satisfying $a + b + c = 300$ and \\[a^",
+      "correct_answer": 601,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_dosksvelwnd6bp2fj4d6btpbpzhr33ys6ttixum6235lk3kt3uvq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:10 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_dosksvelwnd6bp2fj4d6btpbpzhr33ys6ttixum6235lk3kt3uvq",
+          "x-request-id": "req_dosksvelwnd6bp2fj4d6btpbpzhr33ys6ttixum6235lk3kt3uvq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 9,
+      "repeat": 1,
+      "problem_preview": "Find the number of triples of nonnegative integers $(a, b, c)$ satisfying $a + b + c = 300$ and \\[a^",
+      "correct_answer": 601,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_i7jbmiex6cfelfucaws7bsupcq7efodt2jxoyizqnw57cke7myzq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:10 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_i7jbmiex6cfelfucaws7bsupcq7efodt2jxoyizqnw57cke7myzq",
+          "x-request-id": "req_i7jbmiex6cfelfucaws7bsupcq7efodt2jxoyizqnw57cke7myzq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 9,
+      "repeat": 2,
+      "problem_preview": "Find the number of triples of nonnegative integers $(a, b, c)$ satisfying $a + b + c = 300$ and \\[a^",
+      "correct_answer": 601,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_ujtx4bfobyaihydevysinumq4s775tgtmx7dg6bllsl3a3kzkjvq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:10 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_ujtx4bfobyaihydevysinumq4s775tgtmx7dg6bllsl3a3kzkjvq",
+          "x-request-id": "req_ujtx4bfobyaihydevysinumq4s775tgtmx7dg6bllsl3a3kzkjvq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 9,
+      "repeat": 3,
+      "problem_preview": "Find the number of triples of nonnegative integers $(a, b, c)$ satisfying $a + b + c = 300$ and \\[a^",
+      "correct_answer": 601,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_cp7d5irrwlyfqfau6x25tz4tmraadzm74tovrqh6icnpmhqjhqtq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:10 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_cp7d5irrwlyfqfau6x25tz4tmraadzm74tovrqh6icnpmhqjhqtq",
+          "x-request-id": "req_cp7d5irrwlyfqfau6x25tz4tmraadzm74tovrqh6icnpmhqjhqtq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 9,
+      "repeat": 4,
+      "problem_preview": "Find the number of triples of nonnegative integers $(a, b, c)$ satisfying $a + b + c = 300$ and \\[a^",
+      "correct_answer": 601,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_2o7lethwzt4qh5zy5gffxyv25bv3fdbiihoug2nhmqne4luz7utq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:10 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_2o7lethwzt4qh5zy5gffxyv25bv3fdbiihoug2nhmqne4luz7utq",
+          "x-request-id": "req_2o7lethwzt4qh5zy5gffxyv25bv3fdbiihoug2nhmqne4luz7utq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 10,
+      "repeat": 0,
+      "problem_preview": "Let $O(0,0),A(\\tfrac{1}{2},0),$ and $B(0,\\tfrac{\\sqrt{3}}{2})$ be points in the coordinate plane. Le",
+      "correct_answer": 23,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_kvvkfabwiif3sz6ilqyis4vtig7jolz2r7njkmtoa5b7t63bibfa",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:11 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_kvvkfabwiif3sz6ilqyis4vtig7jolz2r7njkmtoa5b7t63bibfa",
+          "x-request-id": "req_kvvkfabwiif3sz6ilqyis4vtig7jolz2r7njkmtoa5b7t63bibfa",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 10,
+      "repeat": 1,
+      "problem_preview": "Let $O(0,0),A(\\tfrac{1}{2},0),$ and $B(0,\\tfrac{\\sqrt{3}}{2})$ be points in the coordinate plane. Le",
+      "correct_answer": 23,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_rybnafdgpqtqvf3xevrvzoyd572lawhjel4vywip5l65v5uoju4q",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:11 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_rybnafdgpqtqvf3xevrvzoyd572lawhjel4vywip5l65v5uoju4q",
+          "x-request-id": "req_rybnafdgpqtqvf3xevrvzoyd572lawhjel4vywip5l65v5uoju4q",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 10,
+      "repeat": 2,
+      "problem_preview": "Let $O(0,0),A(\\tfrac{1}{2},0),$ and $B(0,\\tfrac{\\sqrt{3}}{2})$ be points in the coordinate plane. Le",
+      "correct_answer": 23,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_bh7oe5gusntdlpbiy3si7bvy6if5pfrnaiuj26opupiu5ds66wdq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:11 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_bh7oe5gusntdlpbiy3si7bvy6if5pfrnaiuj26opupiu5ds66wdq",
+          "x-request-id": "req_bh7oe5gusntdlpbiy3si7bvy6if5pfrnaiuj26opupiu5ds66wdq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 10,
+      "repeat": 3,
+      "problem_preview": "Let $O(0,0),A(\\tfrac{1}{2},0),$ and $B(0,\\tfrac{\\sqrt{3}}{2})$ be points in the coordinate plane. Le",
+      "correct_answer": 23,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_lrsb57yfemlhpfem4ktee6c5m4n7bl6lm4v6uithsfe6oc2ibjmq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:11 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_lrsb57yfemlhpfem4ktee6c5m4n7bl6lm4v6uithsfe6oc2ibjmq",
+          "x-request-id": "req_lrsb57yfemlhpfem4ktee6c5m4n7bl6lm4v6uithsfe6oc2ibjmq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 10,
+      "repeat": 4,
+      "problem_preview": "Let $O(0,0),A(\\tfrac{1}{2},0),$ and $B(0,\\tfrac{\\sqrt{3}}{2})$ be points in the coordinate plane. Le",
+      "correct_answer": 23,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_aiswzzfyjigdkmqw4sfeqo7qyp3q6kpasyhvqab3ac2mdkwamwyq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:11 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_aiswzzfyjigdkmqw4sfeqo7qyp3q6kpasyhvqab3ac2mdkwamwyq",
+          "x-request-id": "req_aiswzzfyjigdkmqw4sfeqo7qyp3q6kpasyhvqab3ac2mdkwamwyq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 11,
+      "repeat": 0,
+      "problem_preview": "Let $\\omega\\neq 1$ be a 13th root of unity. Find the remainder when \\[\\prod_{k=0}^{12}(2-2\\omega^k+\\",
+      "correct_answer": 321,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_afg43zhjzn45oplofd3mvckfj3teyumc7wj3huhy27r34dolr7qq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:11 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_afg43zhjzn45oplofd3mvckfj3teyumc7wj3huhy27r34dolr7qq",
+          "x-request-id": "req_afg43zhjzn45oplofd3mvckfj3teyumc7wj3huhy27r34dolr7qq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 11,
+      "repeat": 1,
+      "problem_preview": "Let $\\omega\\neq 1$ be a 13th root of unity. Find the remainder when \\[\\prod_{k=0}^{12}(2-2\\omega^k+\\",
+      "correct_answer": 321,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_fywy6mwf2tztoprzg7ejiroskez7jxu33ecz5776a52aeallnnuq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:11 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_fywy6mwf2tztoprzg7ejiroskez7jxu33ecz5776a52aeallnnuq",
+          "x-request-id": "req_fywy6mwf2tztoprzg7ejiroskez7jxu33ecz5776a52aeallnnuq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 11,
+      "repeat": 2,
+      "problem_preview": "Let $\\omega\\neq 1$ be a 13th root of unity. Find the remainder when \\[\\prod_{k=0}^{12}(2-2\\omega^k+\\",
+      "correct_answer": 321,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_3w34l3aenebdv2zkhg3gw3snxhp7jsbxsapsds6ns35bf36dvmja",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:11 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_3w34l3aenebdv2zkhg3gw3snxhp7jsbxsapsds6ns35bf36dvmja",
+          "x-request-id": "req_3w34l3aenebdv2zkhg3gw3snxhp7jsbxsapsds6ns35bf36dvmja",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 11,
+      "repeat": 3,
+      "problem_preview": "Let $\\omega\\neq 1$ be a 13th root of unity. Find the remainder when \\[\\prod_{k=0}^{12}(2-2\\omega^k+\\",
+      "correct_answer": 321,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_uxkbrgnzxwhnhzkx3thzfjhlhpy7brs4stdch2hwhs25cqbi7nfa",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:12 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_uxkbrgnzxwhnhzkx3thzfjhlhpy7brs4stdch2hwhs25cqbi7nfa",
+          "x-request-id": "req_uxkbrgnzxwhnhzkx3thzfjhlhpy7brs4stdch2hwhs25cqbi7nfa",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 11,
+      "repeat": 4,
+      "problem_preview": "Let $\\omega\\neq 1$ be a 13th root of unity. Find the remainder when \\[\\prod_{k=0}^{12}(2-2\\omega^k+\\",
+      "correct_answer": 321,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_gcuuv2iey3voo6qpvcrhemt7nzelnmivtp3znixtfxjjub2z4gsq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:12 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_gcuuv2iey3voo6qpvcrhemt7nzelnmivtp3znixtfxjjub2z4gsq",
+          "x-request-id": "req_gcuuv2iey3voo6qpvcrhemt7nzelnmivtp3znixtfxjjub2z4gsq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 12,
+      "repeat": 0,
+      "problem_preview": "Let $b \\geq 2$ be an integer. Call a positive integer $n$ $b\\textit{-eautiful}$ if it has exactly tw",
+      "correct_answer": 211,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_lp7yntz7c4c477suxmq3u4bxuqdrksp4oxqet36necbxisgcolda",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:12 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_lp7yntz7c4c477suxmq3u4bxuqdrksp4oxqet36necbxisgcolda",
+          "x-request-id": "req_lp7yntz7c4c477suxmq3u4bxuqdrksp4oxqet36necbxisgcolda",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 12,
+      "repeat": 1,
+      "problem_preview": "Let $b \\geq 2$ be an integer. Call a positive integer $n$ $b\\textit{-eautiful}$ if it has exactly tw",
+      "correct_answer": 211,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_63zedngtedbejzxq5heieuucskle72w7umi7sbiv54uzgnc6vkfq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:12 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_63zedngtedbejzxq5heieuucskle72w7umi7sbiv54uzgnc6vkfq",
+          "x-request-id": "req_63zedngtedbejzxq5heieuucskle72w7umi7sbiv54uzgnc6vkfq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 12,
+      "repeat": 2,
+      "problem_preview": "Let $b \\geq 2$ be an integer. Call a positive integer $n$ $b\\textit{-eautiful}$ if it has exactly tw",
+      "correct_answer": 211,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_ceip6mb275icbwxcp4plxxut4urw63ojigv4orilyrwklnvtgr7a",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:12 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_ceip6mb275icbwxcp4plxxut4urw63ojigv4orilyrwklnvtgr7a",
+          "x-request-id": "req_ceip6mb275icbwxcp4plxxut4urw63ojigv4orilyrwklnvtgr7a",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 12,
+      "repeat": 3,
+      "problem_preview": "Let $b \\geq 2$ be an integer. Call a positive integer $n$ $b\\textit{-eautiful}$ if it has exactly tw",
+      "correct_answer": 211,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_7sixnb7jkaywzwp2vn62ldvmkygrv4ee2y76leyurzu6cwubj5pq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:13 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_7sixnb7jkaywzwp2vn62ldvmkygrv4ee2y76leyurzu6cwubj5pq",
+          "x-request-id": "req_7sixnb7jkaywzwp2vn62ldvmkygrv4ee2y76leyurzu6cwubj5pq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 12,
+      "repeat": 4,
+      "problem_preview": "Let $b \\geq 2$ be an integer. Call a positive integer $n$ $b\\textit{-eautiful}$ if it has exactly tw",
+      "correct_answer": 211,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_jn2ggrggru5ctoul7c43unhny6khvqaarohoxhv6jhqnt54ly7dq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:13 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_jn2ggrggru5ctoul7c43unhny6khvqaarohoxhv6jhqnt54ly7dq",
+          "x-request-id": "req_jn2ggrggru5ctoul7c43unhny6khvqaarohoxhv6jhqnt54ly7dq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 13,
+      "repeat": 0,
+      "problem_preview": "Find the number of rectangles that can be formed inside a fixed regular dodecagon ( $12$ -gon) where",
+      "correct_answer": 315,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_jotqdju4jwrbemsjpcdbetq6hbmar4rfxmmre2iwdhtj5yy2xaaq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:13 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_jotqdju4jwrbemsjpcdbetq6hbmar4rfxmmre2iwdhtj5yy2xaaq",
+          "x-request-id": "req_jotqdju4jwrbemsjpcdbetq6hbmar4rfxmmre2iwdhtj5yy2xaaq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 13,
+      "repeat": 1,
+      "problem_preview": "Find the number of rectangles that can be formed inside a fixed regular dodecagon ( $12$ -gon) where",
+      "correct_answer": 315,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_j4q7z25ctyemker6p2slischp4c73jiy45my4bj6s6blhcsnz7va",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:13 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_j4q7z25ctyemker6p2slischp4c73jiy45my4bj6s6blhcsnz7va",
+          "x-request-id": "req_j4q7z25ctyemker6p2slischp4c73jiy45my4bj6s6blhcsnz7va",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 13,
+      "repeat": 2,
+      "problem_preview": "Find the number of rectangles that can be formed inside a fixed regular dodecagon ( $12$ -gon) where",
+      "correct_answer": 315,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_pjaswmjptkxowr4r7hvtjxxk4xzbrmtzmf7l4moxxlipohz5bura",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:13 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_pjaswmjptkxowr4r7hvtjxxk4xzbrmtzmf7l4moxxlipohz5bura",
+          "x-request-id": "req_pjaswmjptkxowr4r7hvtjxxk4xzbrmtzmf7l4moxxlipohz5bura",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 13,
+      "repeat": 3,
+      "problem_preview": "Find the number of rectangles that can be formed inside a fixed regular dodecagon ( $12$ -gon) where",
+      "correct_answer": 315,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_cckbl563mo524dvbtvfirufotyxkservaxxrmmitsmrmb562tvga",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:13 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_cckbl563mo524dvbtvfirufotyxkservaxxrmmitsmrmb562tvga",
+          "x-request-id": "req_cckbl563mo524dvbtvfirufotyxkservaxxrmmitsmrmb562tvga",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    },
+    {
+      "question_idx": 13,
+      "repeat": 4,
+      "problem_preview": "Find the number of rectangles that can be formed inside a fixed regular dodecagon ( $12$ -gon) where",
+      "correct_answer": 315,
+      "predicted": null,
+      "is_correct": false,
+      "error": {
+        "error_type": "AuthenticationError",
+        "error_message": "Error code: 401 - {'error': {'code': 'invalid_api_key', 'message': 'Credential should be scoped to a valid region.', 'param': None, 'type': 'permission_denied_error'}}",
+        "request_id": "req_reykrj3nwdltzfwtzofjul3pej3l5clzayxtat5ssg5go5bj44wq",
+        "status_code": 401,
+        "error_code": "invalid_api_key",
+        "error_param": null,
+        "api_error_type": "permission_denied_error",
+        "response_headers": {
+          "date": "Wed, 03 Jun 2026 12:55:13 GMT",
+          "content-type": "application/json",
+          "content-length": "141",
+          "connection": "keep-alive",
+          "x-amzn-requestid": "req_reykrj3nwdltzfwtzofjul3pej3l5clzayxtat5ssg5go5bj44wq",
+          "x-request-id": "req_reykrj3nwdltzfwtzofjul3pej3l5clzayxtat5ssg5go5bj44wq",
+          "vary": "origin, access-control-request-method, access-control-request-headers",
+          "access-control-allow-origin": "*",
+          "access-control-expose-headers": "x-amzn-requestid,x-request-id,date"
+        }
+      }
+    }
+  ]
+}
